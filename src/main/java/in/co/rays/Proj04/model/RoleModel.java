@@ -1,17 +1,13 @@
 package in.co.rays.Proj04.model;
 
-import java.beans.beancontext.BeanContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import in.co.rays.Proj04.bean.RoleBean;
-import in.co.rays.Proj04.bean.UserBean;
 import in.co.rays.Proj04.util.JDBCDataSource;
 
 public class RoleModel {
@@ -72,7 +68,7 @@ public class RoleModel {
 
 	}
 
-	public void delete(int id) throws Exception {
+	public void delete(RoleBean bean) throws Exception {
 
 		Connection conn = null;
 
@@ -83,7 +79,7 @@ public class RoleModel {
 			conn.setAutoCommit(false);
 
 			PreparedStatement pstmt = conn.prepareStatement("delete from st_role where id = ?");
-			pstmt.setLong(1, id);
+			pstmt.setLong(1, bean.getId());
 
 			int i = pstmt.executeUpdate();
 
@@ -128,6 +124,36 @@ public class RoleModel {
 		} finally {
 			conn.close();
 		}
+
+	}
+
+	public RoleBean findByPk(int id) {
+
+		Connection conn = null;
+		RoleBean bean = null;
+
+		try {
+
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_role where id = ?");
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new RoleBean();
+				bean.setId(rs.getLong(1));
+				bean.setName(rs.getString(2));
+				bean.setDescription(rs.getString(3));
+				bean.setCreatedBy(rs.getString(4));
+				bean.setModifiedBy(rs.getString(5));
+				bean.setCreatedDateTime(rs.getTimestamp(6));
+				bean.setModifiedDateTime(rs.getTimestamp(7));
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return bean;
 
 	}
 

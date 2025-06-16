@@ -43,7 +43,9 @@ public class TestRoleModel {
 
 	public static void testDelete() throws Exception {
 		RoleModel model = new RoleModel();
-		model.delete(6);
+		RoleBean bean = new RoleBean();
+		bean.setId(6);
+		model.delete(bean);
 	}
 
 	public static void testUpdate() throws Exception {
@@ -64,6 +66,8 @@ public class TestRoleModel {
 
 	public static void testSearch() {
 		RoleBean bean = new RoleBean();
+		
+		bean.setName("admin");
 		RoleModel model = new RoleModel();
  
  		
@@ -83,5 +87,9 @@ public class TestRoleModel {
  
 		}
 
+	}
+	
+	public void testFindByPk() {
+		
 	}
 }
