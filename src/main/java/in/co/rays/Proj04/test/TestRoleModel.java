@@ -9,16 +9,33 @@ import java.util.List;
 
 import in.co.rays.Proj04.bean.RoleBean;
 import in.co.rays.Proj04.bean.UserBean;
+import in.co.rays.Proj04.exception.DuplicateRecordException;
 import in.co.rays.Proj04.model.RoleModel;
 
 public class TestRoleModel {
 
 	public static void main(String[] args) throws Exception {
 		// testNextpk();
-		//testAdd();
+		testAdd();
 		// testDelete();
 		// testUpdate();
-		testSearch();
+		// testSearch();
+		// testFindByPk();
+		//testFindByName();
+	}
+
+	private static void testFindByName() {
+		RoleModel model = new RoleModel();
+		RoleBean bean = null;
+		bean = model.findByName("faculty");
+		System.out.print(bean.getId());
+		System.out.print("\t" + bean.getName());
+		System.out.print("\t" + bean.getDescription());
+		System.out.print("\t" + bean.getCreatedBy());
+		System.out.print("\t" + bean.getModifiedBy());
+		System.out.print("\t" + bean.getCreatedDateTime());
+		System.out.println("\t" + bean.getModifiedDateTime());
+
 	}
 
 	public static void testNextpk() {
@@ -27,11 +44,11 @@ public class TestRoleModel {
 		System.out.println("nextPk : " + i);
 	}
 
-	public static void testAdd() throws SQLException {
+	public static void testAdd() throws SQLException, DuplicateRecordException {
 		RoleBean bean = new RoleBean();
 		RoleModel model = new RoleModel();
 
-		bean.setName("kiosk");
+		bean.setName("admin");
 		bean.setDescription("kiosk");
 		bean.setCreatedBy("admin");
 		bean.setModifiedBy("root");
@@ -66,11 +83,10 @@ public class TestRoleModel {
 
 	public static void testSearch() {
 		RoleBean bean = new RoleBean();
-		
+
 		bean.setName("admin");
 		RoleModel model = new RoleModel();
- 
- 		
+
 		List list = model.search(bean);
 
 		Iterator it = list.iterator();
@@ -84,12 +100,23 @@ public class TestRoleModel {
 			System.out.print("\t" + bean.getModifiedBy());
 			System.out.print("\t" + bean.getCreatedDateTime());
 			System.out.println("\t" + bean.getModifiedDateTime());
- 
+
 		}
 
 	}
-	
-	public void testFindByPk() {
-		
+
+	public static void testFindByPk() {
+
+		RoleModel model = new RoleModel();
+		RoleBean bean = new RoleBean();
+		bean = model.findByPk(2);
+		System.out.print(bean.getId());
+		System.out.print("\t" + bean.getName());
+		System.out.print("\t" + bean.getDescription());
+		System.out.print("\t" + bean.getCreatedBy());
+		System.out.print("\t" + bean.getModifiedBy());
+		System.out.print("\t" + bean.getCreatedDateTime());
+		System.out.println("\t" + bean.getModifiedDateTime());
+
 	}
 }
