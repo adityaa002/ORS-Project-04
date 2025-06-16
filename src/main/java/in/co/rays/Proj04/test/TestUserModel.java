@@ -1,5 +1,6 @@
 package in.co.rays.Proj04.test;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,17 +8,20 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import in.co.rays.Proj04.bean.RoleBean;
 import in.co.rays.Proj04.bean.UserBean;
+import in.co.rays.Proj04.model.RoleModel;
 import in.co.rays.Proj04.model.UserModel;
 
 public class TestUserModel {
 	public static void main(String[] args) throws Exception {
 		//testNextpk();
-		//testAdd();
+		testAdd();
 		//testUpdate();
 		//testDelete();
 		// testSearch();
-		testFindByPk();
+		//testFindByPk();
+		//testFindByLogin();
 	}
 
 	private static void testFindByPk() {
@@ -39,6 +43,28 @@ public class TestUserModel {
 		System.out.println(" \t" + bean.getModifiedDateTime());
 
 	}
+	
+	public static void testFindByLogin() throws SQLException {
+
+		UserModel model = new UserModel();
+		UserBean bean = new UserBean();
+		 bean = model.findByLogin("shreytiwari44@gmail.com");
+		 
+		 System.out.print(bean.getId());
+			System.out.print(" \t" + bean.getFirstName());
+			System.out.print(" \t" + bean.getLastName());
+			System.out.print(" \t" + bean.getLogin());
+			System.out.print(" \t" + bean.getPassword());
+			System.out.print(" \t" + bean.getDob());
+			System.out.print(" \t" + bean.getMobileNo());
+			System.out.print(" \t" + bean.getRoleId());
+			System.out.print(" \t" + bean.getGender());
+			System.out.print(" \t" + bean.getCreatedBy());
+			System.out.print(" \t" + bean.getModifiedBy());
+			System.out.print(" \t" + bean.getCreatedDateTime());
+			System.out.println(" \t" + bean.getModifiedDateTime());
+		 
+		}
 
 	public static void testNextpk() {
 

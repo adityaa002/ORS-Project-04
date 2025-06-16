@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.co.rays.Proj04.bean.RoleBean;
+import in.co.rays.Proj04.exception.DuplicateRecordException;
 import in.co.rays.Proj04.util.JDBCDataSource;
 
 public class RoleModel {
@@ -33,9 +34,14 @@ public class RoleModel {
 		return pk + 1;
 	}
 
-	public int add(RoleBean bean) throws SQLException {
+	public int add(RoleBean bean) throws SQLException, DuplicateRecordException {
 		Connection conn = null;
 		int id = nextpk();
+
+		RoleBean existBean = findByName(bean.getName());
+		if (existBean != null) {
+			throw new DuplicateRecordException("Role already exist");
+		}
 
 		try {
 
@@ -127,6 +133,36 @@ public class RoleModel {
 
 	}
 
+	public RoleBean findByName(String name) {
+
+		Connection conn = null;
+		RoleBean bean = null;
+
+		try {
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_role where name = ?");
+			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				bean = new RoleBean();
+				bean.setId(rs.getLong(1));
+				bean.setName(rs.getString(2));
+				bean.setDescription(rs.getString(3));
+				bean.setCreatedBy(rs.getString(4));
+				bean.setModifiedBy(rs.getString(5));
+				bean.setCreatedDateTime(rs.getTimestamp(6));
+				bean.setModifiedDateTime(rs.getTimestamp(7));
+
+			}
+
+		} catch (Exception e) {
+
+		}
+		return bean;
+
+	}
+
 	public RoleBean findByPk(int id) {
 
 		Connection conn = null;
@@ -136,8 +172,8 @@ public class RoleModel {
 
 			conn = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_role where id = ?");
+			pstmt.setLong(1, id);
 			ResultSet rs = pstmt.executeQuery();
-
 			while (rs.next()) {
 				bean = new RoleBean();
 				bean.setId(rs.getLong(1));
