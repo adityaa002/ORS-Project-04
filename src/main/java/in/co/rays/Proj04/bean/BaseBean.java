@@ -6,7 +6,6 @@ public abstract class BaseBean implements Comparable<BaseBean>, DropdownListInt 
 
 	protected long id;
 	protected String createdBy;
-
 	protected String modifiedBy;
 	protected Timestamp createdDateTime;
 	protected Timestamp modifiedDateTime;
