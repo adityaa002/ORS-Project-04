@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import in.co.rays.Proj04.bean.RoleBean;
 import in.co.rays.Proj04.bean.UserBean;
@@ -106,14 +108,15 @@ public class RoleModel {
 			conn = JDBCDataSource.getConnection();
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
-					"update st_role set name = ?, description=?,created_by = ?, modified_by = ? ,  modified_datetime = ? where id = ?");
+					"update st_role set name = ?, description=?,created_by = ?, modified_by = ? ,  created_datetime = ?, modified_datetime = ? where id = ?");
 
 			pstmt.setString(1, bean.getName());
 			pstmt.setString(2, bean.getDescription());
 			pstmt.setString(3, bean.getCreatedBy());
 			pstmt.setString(4, bean.getModifiedBy());
- 			pstmt.setTimestamp(5, bean.getModifiedDateTime());
-			pstmt.setLong(6, bean.getId());
+			pstmt.setTimestamp(5, bean.getCreatedDateTime());
+			pstmt.setTimestamp(6, bean.getModifiedDateTime());
+			pstmt.setLong(7, bean.getId());
 
 			int i = pstmt.executeUpdate();
 			conn.commit();
@@ -128,4 +131,61 @@ public class RoleModel {
 
 	}
 
+	public List search(RoleBean bean) {
+
+		Connection conn = null;
+		List list = new ArrayList();
+
+		try {
+
+			conn = JDBCDataSource.getConnection();
+			StringBuffer sql = new StringBuffer("select * from st_role where 1=1");
+
+			if (bean != null) {
+
+				if (bean.getName() != null && bean.getName().length() > 0) {
+					sql.append(" and name like '" + bean.getName() + "%'");
+
+				}
+				if (bean.getDescription() != null && bean.getDescription().length() > 0) {
+					sql.append(" and description like '" + bean.getDescription() + "%'");
+				}
+				if (bean.getCreatedBy() != null && bean.getCreatedBy().length() > 0) {
+					sql.append(" and created_by like '" + bean.getCreatedBy() + "%'");
+				}
+				if (bean.getModifiedBy() != null && bean.getModifiedBy().length() > 0) {
+					sql.append(" and modified_by like '" + bean.getModifiedBy() + "%'");
+				}
+				/*
+				 * if(bean.getCreatedDateTime() != null) {
+				 * sql.append(" and DATE(created_datetime) '"+bean.getCreatedDateTime()+"%'"); }
+				 * 
+				 * if(bean.getModifiedDateTime() != null) {
+				 * sql.append(" and DATE(modified_datetime)" +bean.getModifiedDateTime()); }
+				 */
+			}
+			System.out.println("your query : " + sql.toString());
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bean = new RoleBean();
+				bean.setId(rs.getLong(1));
+				bean.setName(rs.getString(2));
+				bean.setDescription(rs.getString(3));
+				bean.setCreatedBy(rs.getString(4));
+				bean.setModifiedBy(rs.getString(5));
+				bean.setCreatedDateTime(rs.getTimestamp(6));
+				bean.setModifiedDateTime(rs.getTimestamp(7));
+
+				list.add(bean);
+
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return list;
+
+	}
 }
