@@ -193,7 +193,7 @@ public class RoleModel {
 
 	}
 
-	public List search(RoleBean bean) {
+	public List search(RoleBean bean, int pageNo, int pageSize) {
 
 		Connection conn = null;
 		List list = new ArrayList();
@@ -226,6 +226,14 @@ public class RoleModel {
 				 * sql.append(" and DATE(modified_datetime)" +bean.getModifiedDateTime()); }
 				 */
 			}
+
+			if (pageSize > 0) {
+
+				pageNo = (pageNo - 1) * pageSize;
+				sql.append(" limit " + pageNo + " , " + pageSize);
+
+			}
+
 			System.out.println("your query : " + sql.toString());
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 

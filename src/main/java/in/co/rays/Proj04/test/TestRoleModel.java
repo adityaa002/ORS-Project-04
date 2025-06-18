@@ -16,10 +16,10 @@ public class TestRoleModel {
 
 	public static void main(String[] args) throws Exception {
 		// testNextpk();
-		testAdd();
+		//testAdd();
 		// testDelete();
 		// testUpdate();
-		// testSearch();
+		 testSearch();
 		// testFindByPk();
 		//testFindByName();
 	}
@@ -84,10 +84,10 @@ public class TestRoleModel {
 	public static void testSearch() {
 		RoleBean bean = new RoleBean();
 
-		bean.setName("admin");
+		//bean.setName("admin");
 		RoleModel model = new RoleModel();
 
-		List list = model.search(bean);
+		List list = model.search(bean, 2, 2);
 
 		Iterator it = list.iterator();
 
