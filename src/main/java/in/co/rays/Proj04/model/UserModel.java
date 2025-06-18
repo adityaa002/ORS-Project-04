@@ -28,7 +28,7 @@ public class UserModel {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				pk = rs.getInt(1);
-				//System.out.println("max id :" + pk);
+				// System.out.println("max id :" + pk);
 			}
 
 		} catch (Exception e) {
@@ -43,11 +43,12 @@ public class UserModel {
 		int id = nextpk();
 		Connection conn = null;
 		UserBean existBean = findByLogin(bean.getLogin());
-		
-		if(existBean != null) {
-			throw new DuplicateRecordException("role already exist");
+
+		if (existBean != null) {
+			throw new DuplicateRecordException("record already exists");
+
 		}
-		
+
 		try {
 
 			conn = JDBCDataSource.getConnection();
@@ -226,11 +227,47 @@ public class UserModel {
 		return bean;
 
 	}
-// 
-//	public UserBean authenticate() {
-//		return null;
-//
-//	}
+
+	public UserBean authenticate(String login, String password) {
+		Connection conn = null;
+		UserBean bean = null;
+
+		try {
+
+			conn = JDBCDataSource.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
+			pstmt.setString(1, login);
+			pstmt.setString(2, password);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+
+				bean = new UserBean();
+
+				bean.setId(rs.getInt(1));
+				bean.setFirstName(rs.getString(2));
+				bean.setLastName(rs.getString(3));
+				bean.setLogin(rs.getString(4));
+				bean.setPassword(rs.getString(5));
+				bean.setDob(rs.getDate(6));
+				bean.setMobileNo(rs.getString(7));
+				bean.setRoleId(rs.getInt(8));
+				bean.setGender(rs.getString(9));
+				bean.setCreatedBy(rs.getString(10));
+				bean.setModifiedBy(rs.getString(11));
+				bean.setCreatedDateTime(rs.getTimestamp(12));
+				bean.setModifiedDateTime(rs.getTimestamp(13));
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return bean;
+
+	}
 
 	public List search(UserBean bean) throws Exception {
 
@@ -246,6 +283,12 @@ public class UserModel {
 			if (bean != null) {
 				if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
 					sql.append(" and first_name like '" + bean.getFirstName() + "%'");
+				}
+				if (bean.getId() != 0 && bean.getId() > 0) {
+					sql.append(" and id like '" + bean.getId() + "%'");
+				}
+				if (bean.getLogin() != null && bean.getLogin().length() > 0) {
+					sql.append(" and login like '" + bean.getLogin() + "%'");
 				}
 
 			}
