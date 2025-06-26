@@ -76,6 +76,7 @@ public class UserModel {
 			conn.commit();
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			conn.rollback();
 		} finally {
 			conn.close();

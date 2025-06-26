@@ -16,7 +16,7 @@ import in.co.rays.Proj04.model.UserModel;
 public class TestUserModel {
 	public static void main(String[] args) throws Exception {
 		// testNextpk();
-		//testAdd();
+		testAdd();
 		// testUpdate();
 		// testDelete();
 		// testSearch();
@@ -77,16 +77,16 @@ public class TestUserModel {
 		UserBean bean = new UserBean();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		bean.setFirstName("shrey");
-		bean.setLastName("tiwari");
-		bean.setLogin("shreytiwari44@gmail.com");
-		bean.setPassword("shrey@#92");
+		bean.setFirstName("kamlesh");
+		bean.setLastName("singh");
+		bean.setLogin("kamlesh12@gmail.com");
+		bean.setPassword("pass");
 		try {
 			bean.setDob(sdf.parse("2000-09-28"));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		bean.setMobileNo("785965485");
+		bean.setMobileNo("7656365485");
 		bean.setRoleId(2);
 		bean.setGender("male");
 		bean.setCreatedBy("root");
