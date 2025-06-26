@@ -1,8 +1,8 @@
 package in.co.rays.Proj04.controller;
 
-public class ORSView {
+public interface ORSView {
 
-	public String APP_CONTEXT = "/ORSProject-04";
+	public String APP_CONTEXT = "/ORS-Project-04";
 
 	public static String PAGE_FOLDER = "/jsp";
 
@@ -65,5 +65,4 @@ public class ORSView {
 	public String TIMETABLE_CTL = APP_CONTEXT + "/ctl/TimeTableCtl";
 	public String TIMETABLE_LIST_CTL = APP_CONTEXT + "/ctl/TimeTableListCtl";
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
-
 }

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.Proj04.bean.BaseBean;
 import in.co.rays.Proj04.bean.UserBean;
+import in.co.rays.Proj04.util.DataUtility;
+import in.co.rays.Proj04.util.DataValidator;
+import in.co.rays.Proj04.util.ServletUtility;
 
 public abstract class BaseCtl extends HttpServlet {
 	public static final String OP_SAVE = "Save";
@@ -35,7 +38,6 @@ public abstract class BaseCtl extends HttpServlet {
 	/**
 	 * Error message key constant
 	 */
-
 	public static final String MSG_ERROR = "error";
 
 	/**
@@ -46,7 +48,6 @@ public abstract class BaseCtl extends HttpServlet {
 	 */
 	protected boolean validate(HttpServletRequest request) {
 		return true;
-
 	}
 
 	/**
@@ -54,8 +55,7 @@ public abstract class BaseCtl extends HttpServlet {
 	 *
 	 * @param request
 	 */
-	public void preload(HttpServletRequest request) {
-
+	protected void preload(HttpServletRequest request) {
 	}
 
 	/**
@@ -64,19 +64,32 @@ public abstract class BaseCtl extends HttpServlet {
 	 * @param request
 	 * @return
 	 */
-	public BaseBean populates(HttpServletRequest request) {
+	protected BaseBean populateBean(HttpServletRequest request) {
 		return null;
-
 	}
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("mai sbse pehle chalunga");
+		System.out.println("me sabse phle chalunga");
 
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		System.out.println("op: " + op);
+
+		if (DataValidator.isNotNull(op) && !OP_CANCEL.equalsIgnoreCase(op) && !OP_VIEW.equalsIgnoreCase(op)
+				&& !OP_DELETE.equalsIgnoreCase(op) && !OP_RESET.equalsIgnoreCase(op)) {
+
+			if (!validate(request)) {
+				System.out.println("Bctl validate ");
+				BaseBean bean = (BaseBean) populateBean(request);
+				ServletUtility.setBean(bean, request);
+				ServletUtility.forward(getView(), request, response);
+				return;
+			}
+		}
 		super.service(request, response);
 	}
 
 	protected abstract String getView();
-
 }
