@@ -3,19 +3,27 @@ package in.co.rays.Proj04.bean;
 import java.util.Date;
 
 public class UserBean extends BaseBean {
-	
-	
+
 	private String firstName;
 	private String lastName;
 	private String login;
 	private String password;
+
+	private String confirmPassword;
+
 	private Date dob;
 	private String mobileNo;
 	private long roleId;
 	private String gender;
 
-	
-	
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -79,7 +87,6 @@ public class UserBean extends BaseBean {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
 
 	@Override
 	public String getKey() {

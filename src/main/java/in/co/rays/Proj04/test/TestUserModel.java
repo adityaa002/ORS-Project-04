@@ -16,13 +16,13 @@ import in.co.rays.Proj04.model.UserModel;
 public class TestUserModel {
 	public static void main(String[] args) throws Exception {
 		// testNextpk();
-		testAdd();
+		// testAdd();
 		// testUpdate();
 		// testDelete();
 		// testSearch();
 		// testFindByPk();
 		// testFindByLogin();
-		// testAuth();
+		testAuth();
 	}
 
 	private static void testFindByPk() {
@@ -162,7 +162,7 @@ public class TestUserModel {
 
 	}
 
-	public static void testAuth() {
+	public static void testAuth() throws Exception {
 
 		UserModel model = new UserModel();
 		UserBean bean = model.authenticate("aditya02@gmail.com", "pass@12");

@@ -10,7 +10,7 @@
 
 <%@include file = "Header.jsp" %>
 
-<h1 align="center" style="color: blue" >Welcome to ORS</h1>
+<h1 align="center" style="color: blue;" >Welcome to ORS</h1>
 
 <%@include file = "Footer.jsp" %>
 </body>

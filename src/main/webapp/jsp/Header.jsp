@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 
 <%@page import="in.co.rays.Proj04.bean.RoleBean"%>
@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<%
+	<%
 		UserBean userBean = (UserBean) session.getAttribute("user");
 		boolean userLoggedIn = userBean != null;
 		String welcomeMsg = "Hi, ";
