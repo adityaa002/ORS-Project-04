@@ -229,11 +229,13 @@ public class UserModel {
 
 	}
 
-	public UserBean authenticate(String login, String password) {
+	public UserBean authenticate(String login, String password) throws Exception {
 		Connection conn = null;
-		UserBean bean = null;
 
-		try {
+		System.out.println("login: " + login);
+		System.out.println("password: " + password);
+
+		
 
 			conn = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select * from st_user where login = ? and password = ?");
@@ -242,6 +244,7 @@ public class UserModel {
 
 			ResultSet rs = pstmt.executeQuery();
 
+			UserBean bean = null;
 			while (rs.next()) {
 
 				bean = new UserBean();
@@ -262,9 +265,6 @@ public class UserModel {
 
 			}
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 
 		return bean;
 

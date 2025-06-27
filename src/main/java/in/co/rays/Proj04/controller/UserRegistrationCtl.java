@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.co.rays.Proj04.bean.BaseBean;
 import in.co.rays.Proj04.bean.RoleBean;
 import in.co.rays.Proj04.bean.UserBean;
+import in.co.rays.Proj04.exception.DuplicateRecordException;
 import in.co.rays.Proj04.model.UserModel;
 import in.co.rays.Proj04.util.DataUtility;
 import in.co.rays.Proj04.util.DataValidator;
@@ -100,7 +101,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		System.out.println("in do post method");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		System.out.println("operation: "+ op);
+		System.out.println("operation: " + op);
 		UserBean bean = new UserBean();
 		UserModel model = new UserModel();
 
@@ -110,10 +111,11 @@ public class UserRegistrationCtl extends BaseCtl {
 			try {
 				model.add(bean);
 				System.out.println(" executed add method ");
+				ServletUtility.setSuccessMessage("User registered successfully", request);
 			} catch (Exception e) {
+				ServletUtility.setErrorMessage(e.getMessage(), request);
 				e.printStackTrace(System.out);
 			}
-			ServletUtility.setSuccessMessage("User registered successfully", request);
 
 		}
 		ServletUtility.forward(getView(), request, response);
