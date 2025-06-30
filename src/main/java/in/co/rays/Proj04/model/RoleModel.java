@@ -163,7 +163,7 @@ public class RoleModel {
 
 	}
 
-	public RoleBean findByPk(int id) {
+	public RoleBean findByPk(long id) {
 
 		Connection conn = null;
 		RoleBean bean = null;
