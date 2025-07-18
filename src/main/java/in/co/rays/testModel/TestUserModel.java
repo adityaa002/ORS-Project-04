@@ -8,19 +8,18 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.UserBean;
+import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
-import in.co.rays.model.CollegeModel;
 import in.co.rays.model.UserModel;
 
 public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 		// testNextPk();
-		// testAdd();
+		 testAdd();
 		// testUpdate();
-		// testDelete();
+		 //testDelete();
 		// testFindByLogin();
 		// testFindByPk();
 		// testAuth();
@@ -54,26 +53,26 @@ public class TestUserModel {
 		System.out.println(model.nextPk());
 	}
 
-	public static void testAdd() throws ParseException, SQLException {
+	public static void testAdd() throws ParseException, SQLException, ApplicationException, DuplicateRecordException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
-		bean.setFirstName("deva");
+		bean.setFirstName("Aditya");
 		bean.setLastName("Sharma");
-		bean.setLogin("aditya02@gmail.com");
+		bean.setLogin("aditya@gmail.com");
 		bean.setPassword("adi@123");
 		bean.setDob(sdf.parse("2002-07-12"));
 		bean.setMobileNo("8574585965");
-		bean.setRoleId(2);
+		bean.setRoleId(1);
 		bean.setGender("male");
-		bean.setCreatedBy("admin");
-		bean.setModifiedBy("admin");
+		bean.setCreatedBy("root");
+		bean.setModifiedBy("root");
 		bean.setCreatedDatetime(new Timestamp(new Date().getTime()));
 		bean.setModifiedDatetime(new Timestamp(new Date().getTime()));
 		UserModel model = new UserModel();
 		model.add(bean);
 	}
 
-	public static void testUpdate() throws ParseException, SQLException, DuplicateRecordException {
+	public static void testUpdate() throws ParseException, SQLException, DuplicateRecordException, ApplicationException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		UserBean bean = new UserBean();
@@ -97,10 +96,10 @@ public class TestUserModel {
 
 	public static void testDelete() throws SQLException {
 		UserModel model = new UserModel();
-		model.delete(2);
+		model.delete(1);
 	}
 
-	public static void testFindByLogin() throws SQLException {
+	public static void testFindByLogin() throws SQLException, ApplicationException {
 		UserModel model = new UserModel();
 
 		UserBean bean = model.findByLogin("aditya02@gmail.com");

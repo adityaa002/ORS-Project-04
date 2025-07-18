@@ -7,11 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import in.co.rays.bean.CollegeBean;
-import in.co.rays.bean.RoleBean;
-import in.co.rays.bean.UserBean;
 import in.co.rays.model.CollegeModel;
-import in.co.rays.model.RoleModel;
-import in.co.rays.model.UserModel;
 
 public class TestCollegeModel {
 	public static void main(String[] args) throws Exception {

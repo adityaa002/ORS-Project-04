@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import in.co.rays.bean.CourseBean;
-import in.co.rays.bean.StudentBean;
 import in.co.rays.bean.SubjectBean;
 import in.co.rays.util.JDBCDataSource;
 

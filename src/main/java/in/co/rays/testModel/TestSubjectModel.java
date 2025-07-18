@@ -6,9 +6,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import in.co.rays.bean.StudentBean;
 import in.co.rays.bean.SubjectBean;
-import in.co.rays.model.StudentModel;
 import in.co.rays.model.SubjectModel;
 
 public class TestSubjectModel {

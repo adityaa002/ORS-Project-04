@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.co.rays.bean.BaseBean;
-import in.co.rays.ctl.BaseCtl;
+import in.co.rays.controller.BaseCtl;
 
 public class ServletUtility {
 

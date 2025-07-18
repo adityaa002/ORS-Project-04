@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.DropdownListBean;
 import in.co.rays.model.RoleModel;
 

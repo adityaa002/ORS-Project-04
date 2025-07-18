@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import in.co.rays.bean.TimetableBean;
-import in.co.rays.model.SubjectModel;
 import in.co.rays.model.TimetableModel;
 
 public class TestTimetableModel {

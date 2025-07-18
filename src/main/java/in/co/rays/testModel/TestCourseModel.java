@@ -8,7 +8,6 @@ import java.util.List;
 
 import in.co.rays.bean.CourseBean;
 import in.co.rays.model.CourseModel;
-import in.co.rays.model.StudentModel;
 
 public class TestCourseModel {
 

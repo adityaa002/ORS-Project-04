@@ -3,13 +3,11 @@ package in.co.rays.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.StudentBean;
-import in.co.rays.bean.UserBean;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 

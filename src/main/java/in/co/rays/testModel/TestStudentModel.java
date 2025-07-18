@@ -1,17 +1,13 @@
 package in.co.rays.testModel;
 
-import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import in.co.rays.bean.StudentBean;
-import in.co.rays.bean.UserBean;
 import in.co.rays.model.StudentModel;
-import in.co.rays.model.UserModel;
 
 public class TestStudentModel {
 	

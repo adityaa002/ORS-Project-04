@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import in.co.rays.bean.UserBean;
@@ -35,27 +34,24 @@ public class UserModel {
 		return pk + 1;
 	}
 
-	public long add(UserBean bean) throws SQLException {
+	public long add(UserBean bean) throws ApplicationException, DuplicateRecordException {
 
 		Connection conn = null;
 		int pk = 0;
 
+		UserBean existbean = findByLogin(bean.getLogin());
+
+		if (existbean != null) {
+			throw new DuplicateRecordException("Login Id already exists");
+		}
+
 		try {
-
-			UserBean existBean = findByLogin(bean.getLogin());
-			if (existBean != null) {
-				throw new DuplicateRecordException("login id already exist..!");
-
-			}
-
 			conn = JDBCDataSource.getConnection();
 			pk = nextPk();
 			conn.setAutoCommit(false);
-
 			PreparedStatement pstmt = conn
-					.prepareStatement("insert into st_user values(? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,?)");
-
-			pstmt.setLong(1, pk);
+					.prepareStatement("insert into st_user values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getFirstName());
 			pstmt.setString(3, bean.getLastName());
 			pstmt.setString(4, bean.getLogin());
@@ -68,20 +64,24 @@ public class UserModel {
 			pstmt.setString(11, bean.getModifiedBy());
 			pstmt.setTimestamp(12, bean.getCreatedDatetime());
 			pstmt.setTimestamp(13, bean.getModifiedDatetime());
-
-			int i = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			conn.commit();
-			System.out.println("data inserted..!! " + i);
-
+			pstmt.close();
 		} catch (Exception e) {
-			e.getMessage();
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				throw new ApplicationException("Exception : add rollback exception " + ex.getMessage());
+			}
+			throw new ApplicationException("Exception : Exception in add User");
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 		return pk;
 	}
 
-	public void update(UserBean bean) throws SQLException, DuplicateRecordException {
+	public void update(UserBean bean) throws ApplicationException, DuplicateRecordException {
 
 		Connection conn = null;
 		UserBean existBean = findByLogin(bean.getLogin());
@@ -114,10 +114,15 @@ public class UserModel {
 			conn.commit();
 			System.out.println("record update success..!! " + i);
 		} catch (Exception e) {
-			e.getMessage();
-
+			e.printStackTrace();
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				throw new ApplicationException("Exception : Delete rollback exception " + ex.getMessage());
+			}
+			throw new ApplicationException("Exception in updating User ");
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 	}
 
@@ -142,7 +147,7 @@ public class UserModel {
 		}
 	}
 
-	public UserBean findByLogin(String login) throws SQLException {
+	public UserBean findByLogin(String login) throws ApplicationException {
 
 		Connection conn = null;
 		UserBean bean = null;
@@ -176,11 +181,11 @@ public class UserModel {
 			conn.commit();
 
 		} catch (Exception e) {
-			conn.rollback();
+			e.printStackTrace();
+			throw new ApplicationException("Exception : Exception in getting User by login");
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
-
 		return bean;
 
 	}
@@ -313,15 +318,15 @@ public class UserModel {
 				list.add(bean);
 			}
 
- 
 		} catch (Exception e) {
 			e.printStackTrace();
- 		} finally {
+		} finally {
 			conn.close();
 		}
 		return list;
 	}
-	public List<UserBean > list() throws SQLException {
+
+	public List<UserBean> list() throws SQLException {
 		return search(null, 0, 0);
 	}
 }

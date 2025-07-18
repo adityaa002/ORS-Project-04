@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.util.JDBCDataSource;
 
