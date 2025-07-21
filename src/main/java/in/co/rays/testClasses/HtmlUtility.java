@@ -1,9 +1,7 @@
 package in.co.rays.testClasses;
 
-import java.nio.channels.SelectableChannel;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import in.co.rays.bean.DropdownListBean;
@@ -66,7 +64,7 @@ public class HtmlUtility {
 		RoleModel model = new RoleModel();
 		List<DropdownListBean> list = model.list();
 
-		String SelectedVal = "1";
+		String SelectedVal = "3";
 		String HtmlListFromList = HtmlUtility.getList("name", SelectedVal, list);
 		System.out.println(HtmlListFromList);
 

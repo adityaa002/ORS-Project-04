@@ -30,7 +30,7 @@ public class RoleBean extends BaseBean {
 	 
 	public String getKey() {
 		// TODO Auto-generated method stub
-		return id + " ";
+		return id + "";
 	}
 
 	 

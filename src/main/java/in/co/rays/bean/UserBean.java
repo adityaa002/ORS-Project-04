@@ -88,12 +88,12 @@ public class UserBean extends BaseBean {
 
 	public String getKey() {
 		// TODO Auto-generated method stub
-		return null;
+		return id + "";
 	}
 
 	public String getValue() {
 		// TODO Auto-generated method stub
-		return null;
+		return firstName + "" + lastName;
 	}
 
 }

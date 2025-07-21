@@ -132,7 +132,7 @@ public class TestRoleModel {
 		// testUpdate();
 		// testDelete();
 		// testFindByPk();
-		 testFindByName();
+		// testFindByName();
 		// testSearch();
 		// testListAll();
 	}
