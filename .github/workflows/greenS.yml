@@ -1,8 +1,8 @@
 name: Green Squares
 
 on:
-  schedule:
-    - cron: '0 5 * * *' # Runs every day at 10:30 AM IST (5:00 UTC)
+schedule:
+  - cron: '7 8 * * *'  # Runs daily at 1:37 PM IST
   workflow_dispatch: # Allows you to manually trigger the action
 
 jobs:
