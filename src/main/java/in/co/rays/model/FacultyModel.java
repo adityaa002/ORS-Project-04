@@ -10,6 +10,7 @@ import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.FacultyBean;
 import in.co.rays.bean.SubjectBean;
+import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
@@ -27,7 +28,7 @@ public class FacultyModel {
 		return pk + 1;
 	}
 
-	public void add(FacultyBean bean) throws Exception {
+	public long add(FacultyBean bean) throws Exception  {
 
 		CollegeModel collegeModel = new CollegeModel();
 		CollegeBean collegeBean = collegeModel.findByPK(bean.getCollegeId());
@@ -38,7 +39,7 @@ public class FacultyModel {
 		bean.setCourseName(courseBean.getName());
 
 		SubjectModel subjectModel = new SubjectModel();
-		SubjectBean subjectBean = subjectModel.findByPK(bean.getSubjectId());
+		SubjectBean subjectBean = subjectModel.findByPk(bean.getSubjectId());
 		bean.setSubjectName(subjectBean.getName());
 
 		FacultyBean existBean = findByEmail(bean.getEmail());
@@ -77,6 +78,7 @@ public class FacultyModel {
 		JDBCDataSource.closeConnection(conn);
 
 		System.out.println("data inserted : " + i);
+		return pk;
 	}
 
 	public void update(FacultyBean bean) throws Exception {
@@ -90,7 +92,7 @@ public class FacultyModel {
 		bean.setCourseName(courseBean.getName());
 
 		SubjectModel subjectModel = new SubjectModel();
-		SubjectBean subjectBean = subjectModel.findByPK(bean.getSubjectId());
+		SubjectBean subjectBean = subjectModel.findByPk(bean.getSubjectId());
 		bean.setSubjectName(subjectBean.getName());
 
 		FacultyBean existBean = findByEmail(bean.getEmail());
@@ -130,13 +132,13 @@ public class FacultyModel {
 
 	}
 
-	public void delete(long id) throws Exception {
+	public void delete(FacultyBean bean) throws Exception {
 
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_faculty where id = ?");
 
-		pstmt.setLong(1, id);
+		pstmt.setLong(1, bean.getId());
 
 		int i = pstmt.executeUpdate();
 

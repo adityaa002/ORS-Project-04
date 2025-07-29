@@ -32,7 +32,7 @@ public class TestSubjectModel {
 
 	public static void testNextPk() throws DatabaseException {
 		SubjectModel model = new SubjectModel();
-		int pk = model.nextPK();
+		int pk = model.nextPk();
 		System.out.println("next primary key : " + pk);
 	}
 
@@ -54,7 +54,7 @@ public class TestSubjectModel {
 
 	public static void testUpdate() throws Exception {
 		SubjectModel model = new SubjectModel();
-		SubjectBean bean = model.findByPK(1);
+		SubjectBean bean = model.findByPk(1);
 
 		bean.setCourseId(7);
 		model.update(bean);
@@ -62,7 +62,7 @@ public class TestSubjectModel {
 
 	public static void testFindByPk() throws Exception {
 		SubjectModel model = new SubjectModel();
-		SubjectBean bean = model.findByPK(1);
+		SubjectBean bean = model.findByPk(1);
 
 		if (bean != null) {
 

@@ -57,7 +57,7 @@ public class TestFacultyModel {
 
 		FacultyModel model = new FacultyModel();
 
-		model.delete(1);
+	//	model.delete(1);
 	}
 
 	public static void testFindByPk() throws Exception {

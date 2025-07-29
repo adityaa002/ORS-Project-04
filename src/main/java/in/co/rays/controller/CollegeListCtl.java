@@ -21,14 +21,16 @@ public class CollegeListCtl extends BaseCtl {
 
 	@Override
 	protected void preload(HttpServletRequest request) {
-		CollegeModel model = new CollegeModel();
+		CollegeModel collegeModel = new CollegeModel();
+
 		try {
-			List<CollegeBean> collegeList =  model.list();
+			List collegeList = collegeModel.list();
 			request.setAttribute("collegeList", collegeList);
+
 		} catch (ApplicationException e) {
 			e.printStackTrace();
+			return;
 		}
-
 	}
 
 	@Override
@@ -37,9 +39,10 @@ public class CollegeListCtl extends BaseCtl {
 		CollegeBean bean = new CollegeBean();
 
 		bean.setName(DataUtility.getString(request.getParameter("name")));
-		bean.setId(DataUtility.getLong(request.getParameter("id")));
-		return bean;
+		bean.setCity(DataUtility.getString(request.getParameter("city")));
+		bean.setId(DataUtility.getLong(request.getParameter("collegeId")));
 
+		return bean;
 	}
 
 	@Override
@@ -48,104 +51,109 @@ public class CollegeListCtl extends BaseCtl {
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
-		CollegeBean bean = (CollegeBean) populateBean(request);
 
+		CollegeBean bean = (CollegeBean) populateBean(request);
 		CollegeModel model = new CollegeModel();
 
 		try {
-			List list = model.search(bean, pageNo, pageSize);
-			List next = model.search(bean, pageNo + 1, pageSize);
+			List<CollegeBean> list = model.search(bean, pageNo, pageSize);
+			List<CollegeBean> next = model.search(bean, pageNo + 1, pageSize);
 
+			if (list == null || list.isEmpty()) {
+				ServletUtility.setErrorMessage("No record found", request);
+			}
+
+			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
-			ServletUtility.setList(list, request);
 			ServletUtility.setBean(bean, request);
-
 			request.setAttribute("nextListSize", next.size());
+
+			ServletUtility.forward(getView(), request, response);
+
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 		}
-
-		ServletUtility.forward(getView(), request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {List list = null;
-			List next = null;
+			throws ServletException, IOException {
 
-			int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
-			int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
+		List list = null;
+		List next = null;
 
-			pageNo = (pageNo == 0) ? 1 : pageNo;
-			pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
+		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
+		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
-			CollegeBean bean = (CollegeBean) populateBean(request);
-			CollegeModel model = new CollegeModel();
+		pageNo = (pageNo == 0) ? 1 : pageNo;
+		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
-			String op = DataUtility.getString(request.getParameter("operation"));
-			String[] ids = request.getParameterValues("ids");
+		CollegeBean bean = (CollegeBean) populateBean(request);
+		CollegeModel model = new CollegeModel();
 
-			try {
+		String op = DataUtility.getString(request.getParameter("operation"));
+		String[] ids = request.getParameterValues("ids");
 
-				if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
+		try {
 
-					if (OP_SEARCH.equalsIgnoreCase(op)) {
-						pageNo = 1;
-					} else if (OP_NEXT.equalsIgnoreCase(op)) {
-						pageNo++;
-					} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
-						pageNo--;
-					}
+			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
 
-				} else if (OP_NEW.equalsIgnoreCase(op)) {
-					ServletUtility.redirect(ORSView.COLLEGE_CTL, request, response);
-					return;
-				} else if (OP_DELETE.equalsIgnoreCase(op)) {
+				if (OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
-					if (ids != null && ids.length > 0) {
-						CollegeBean deletebean = new CollegeBean();
-						for (String id : ids) {
-							deletebean.setId(DataUtility.getInt(id));
-							model.delete(deletebean);
-							ServletUtility.setSuccessMessage("Data is deleted successfully", request);
-						}
-					} else {
-						ServletUtility.setErrorMessage("Select at least one record", request);
-					}
-				} else if (OP_RESET.equalsIgnoreCase(op)) {
-					ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
-					return;
-				} else if (OP_BACK.equalsIgnoreCase(op)) {
-					ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
-					return;
+				} else if (OP_NEXT.equalsIgnoreCase(op)) {
+					pageNo++;
+				} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
+					pageNo--;
 				}
 
-				list = model.search(bean, pageNo, pageSize);
-				next = model.search(bean, pageNo + 1, pageSize);
-
-				if (!OP_DELETE.equalsIgnoreCase(op)) {
-					if (list == null || list.size() == 0) {
-						ServletUtility.setErrorMessage("No record found ", request);
+			} else if (OP_NEW.equalsIgnoreCase(op)) {
+				ServletUtility.redirect(ORSView.COLLEGE_CTL, request, response);
+				return;
+			} else if (OP_DELETE.equalsIgnoreCase(op)) {
+				pageNo = 1;
+				if (ids != null && ids.length > 0) {
+					CollegeBean deletebean = new CollegeBean();
+					for (String id : ids) {
+						deletebean.setId(DataUtility.getInt(id));
+						model.delete(deletebean);
+						ServletUtility.setSuccessMessage("Data is deleted successfully", request);
 					}
+				} else {
+					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
-
-				ServletUtility.setList(list, request);
-				ServletUtility.setPageNo(pageNo, request);
-				ServletUtility.setPageSize(pageSize, request);
-				ServletUtility.setBean(bean, request);
-				request.setAttribute("nextListSize", next.size());
-
-				ServletUtility.forward(getView(), request, response);
-			} catch (ApplicationException e) {
-				e.printStackTrace();
+			} else if (OP_RESET.equalsIgnoreCase(op)) {
+				ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
+				return;
+			} else if (OP_BACK.equalsIgnoreCase(op)) {
+				ServletUtility.redirect(ORSView.COLLEGE_LIST_CTL, request, response);
 				return;
 			}
+
+			list = model.search(bean, pageNo, pageSize);
+			next = model.search(bean, pageNo + 1, pageSize);
+
+			if (!OP_DELETE.equalsIgnoreCase(op)) {
+				if (list == null || list.size() == 0) {
+					ServletUtility.setErrorMessage("No record found ", request);
+				}
+			}
+
+			ServletUtility.setList(list, request);
+			ServletUtility.setPageNo(pageNo, request);
+			ServletUtility.setPageSize(pageSize, request);
+			ServletUtility.setBean(bean, request);
+			request.setAttribute("nextListSize", next.size());
+
+			ServletUtility.forward(getView(), request, response);
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+			return;
 		}
+	}
 
 	@Override
 	protected String getView() {
 		return ORSView.COLLEGE_LIST_VIEW;
 	}
-
 }

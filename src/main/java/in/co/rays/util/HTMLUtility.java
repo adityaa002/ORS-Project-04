@@ -56,7 +56,7 @@ public class HTMLUtility {
 			if (key.trim().equals(selectedVal)) {
 				sb.append("\n<option selected value='" + key + "'>" + val + "</option>");
 			} else {
-				sb.append("\n<option value='" + key+"'>" + val + "</option>");
+				sb.append("\n<option value='"+key+"'>"+val+"</option>");
 			}
 		}
 		sb.append("\n</select>");

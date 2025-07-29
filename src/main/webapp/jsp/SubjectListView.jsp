@@ -1,27 +1,22 @@
-<%@page import="in.co.rays.controller.CollegeListCtl"%>
-<%@page import="in.co.rays.controller.CollegeCtl"%>
 <%@page import="in.co.rays.util.HTMLUtility"%>
 <%@page import="in.co.rays.util.DataUtility"%>
 <%@page import="java.util.Iterator"%>
-<%@page import="in.co.rays.bean.CollegeBean"%>
+<%@page import="in.co.rays.bean.SubjectBean"%>
 <%@page import="java.util.List"%>
+<%@page import="in.co.rays.controller.SubjectListCtl"%>
 <%@page import="in.co.rays.util.ServletUtility"%>
-<%@page import="in.co.rays.controller.ORSView"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>College List</title>
-<link rel="icon" type="image/png"
-	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
+<title>Subject List</title>
 </head>
 <body>
     <%@include file="Header.jsp"%>
     <div align="center">
-        <jsp:useBean id="bean" class="in.co.rays.bean.CollegeBean" scope="request"></jsp:useBean>
-        <h1 align="center" style="margin-bottom: -15; color: navy;">College List</h1>
+        <h1 align="center" style="margin-bottom: -15; color: navy;">Subject List</h1>
 
         <div style="height: 15px; margin-bottom: 12px">
             <h3>
@@ -32,17 +27,20 @@
             </h3>
         </div>
 
-        <form action="<%=ORSView.COLLEGE_LIST_CTL%>" method="POST">
+        <jsp:useBean id="bean" class="in.co.rays.bean.SubjectBean" scope="request"></jsp:useBean>
+        <form action="<%=ORSView.SUBJECT_LIST_CTL%>" method="post">
+
             <%
                 int pageNo = ServletUtility.getPageNo(request);
                 int pageSize = ServletUtility.getPageSize(request);
                 int index = ((pageNo - 1) * pageSize) + 1;
                 int nextPageSize = DataUtility.getInt(request.getAttribute("nextListSize").toString());
 
-                List<CollegeBean> collegeList = (List<CollegeBean>) request.getAttribute("collegeList");
+                List<SubjectBean> courseList = (List<SubjectBean>) request.getAttribute("courseList");
+                List<SubjectBean> subjectList = (List<SubjectBean>) request.getAttribute("subjectList");
 
-                List<CollegeBean> list = (List<CollegeBean>) ServletUtility.getList(request);
-                Iterator<CollegeBean> it = list.iterator();
+                List<SubjectBean> list = (List<SubjectBean>) ServletUtility.getList(request);
+                Iterator<SubjectBean> it = list.iterator();
 
                 if (list.size() != 0) {
             %>
@@ -53,12 +51,12 @@
             <table style="width: 100%">
                 <tr>
                     <td align="center">
-                        <label><b>College Name : </b></label>
-                        <%=HTMLUtility.getList("collegeId", String.valueOf(bean.getId()), collegeList)%>&emsp;
-                        <label><b>City :</b></label>
-                        <input type="text" name="city" placeholder="Enter College City" value="<%=ServletUtility.getParameter("city", request)%>">&emsp;
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_SEARCH%>">&nbsp;
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_RESET%>">
+                        <label><b>Subject Name :</b></label>
+                        <%=HTMLUtility.getList("subjectId", String.valueOf(bean.getId()), subjectList)%>&emsp;
+                        <label><b>Course Name :</b></label>
+                        <%=HTMLUtility.getList("courseId", String.valueOf(bean.getCourseId()), courseList)%>&emsp;
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_SEARCH%>">&nbsp;
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_RESET%>">
                     </td>
                 </tr>
             </table>
@@ -68,11 +66,9 @@
                 <tr style="background-color: #e1e6f1e3;">
                     <th width="5%"><input type="checkbox" id="selectall" /></th>
                     <th width="5%">S.No</th>
-                    <th width="25%">College Name</th>
-                    <th width="25%">Address</th>
-                    <th width="15%">State</th>
-                    <th width="10%">City</th>
-                    <th width="10%">Phone No</th>
+                    <th width="30%">Subject Name</th>
+                    <th width="25%">Course Name</th>
+                    <th width="40%">Description</th>
                     <th width="5%">Edit</th>
                 </tr>
 
@@ -86,11 +82,11 @@
                     </td>
                     <td style="text-align: center;"><%=index++%></td>
                     <td style="text-align: center; text-transform: capitalize;"><%=bean.getName()%></td>
-                    <td style="text-align: center; text-transform: capitalize;"><%=bean.getAddress()%></td>
-                    <td style="text-align: center; text-transform: capitalize;"><%=bean.getState()%></td>
-                    <td style="text-align: center; text-transform: capitalize;"><%=bean.getCity()%></td>
-                    <td style="text-align: center;"><%=bean.getPhoneNo()%></td>
-                    <td style="text-align: center;"><a href="CollegeCtl?id=<%=bean.getId()%>">Edit</a></td>
+                    <td style="text-align: center; text-transform: capitalize;"><%=bean.getCourseName()%></td>
+                    <td style="text-align: center; text-transform: capitalize;"><%=bean.getDescription()%></td>
+                    <td style="text-align: center;">
+                        <a href="SubjectCtl?id=<%=bean.getId()%>">Edit</a>
+                    </td>
                 </tr>
                 <%
                     }
@@ -100,16 +96,16 @@
             <table style="width: 100%">
                 <tr>
                     <td style="width: 25%">
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_PREVIOUS%>" <%=pageNo > 1 ? "" : "disabled"%>>
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_PREVIOUS%>" <%=pageNo > 1 ? "" : "disabled"%>>
                     </td>
                     <td align="center" style="width: 25%">
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_NEW%>">
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_NEW%>">
                     </td>
                     <td align="center" style="width: 25%">
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_DELETE%>">
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_DELETE%>">
                     </td>
                     <td style="width: 25%" align="right">
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_NEXT%>" <%= (nextPageSize != 0) ? "" : "disabled" %>>
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_NEXT%>" <%=nextPageSize != 0 ? "" : "disabled"%>>
                     </td>
                 </tr>
             </table>
@@ -121,7 +117,7 @@
             <table>
                 <tr>
                     <td align="right">
-                        <input type="submit" name="operation" value="<%=CollegeListCtl.OP_BACK%>">
+                        <input type="submit" name="operation" value="<%=SubjectListCtl.OP_BACK%>">
                     </td>
                 </tr>
             </table>
