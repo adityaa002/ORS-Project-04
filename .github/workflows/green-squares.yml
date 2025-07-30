@@ -11,14 +11,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Auto commit to keep the square green 🌱
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
-        run: |
-          date >> log.txt
-          git config user.name "Aditya-Bot"
-          git config user.email "adityaa002@users.noreply.github.com"
-          git add .
-          git commit -m "Auto commit on $(date)" || echo "No changes to commit"
-          git push https://adityaa002:${GH_TOKEN}@github.com/adityaa002/ORS-Project-04.git
+- name: Auto commit to keep the square green 🌱
+  env:
+    GH_TOKEN: ${{ secrets.GH_PAT }}
+  run: |
+    echo "Update on $(date)" >> log.txt
+    git config user.name "Aditya-Bot"
+    git config user.email "adityaa002@users.noreply.github.com"
+    git add .
+    git commit -m "🌱 Auto commit on $(date)" || echo "No changes to commit"
+    git push https://adityaa002:${GH_TOKEN}@github.com/adityaa002/greenS.git
