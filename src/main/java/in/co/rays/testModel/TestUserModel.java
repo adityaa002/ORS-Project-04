@@ -127,7 +127,7 @@ public class TestUserModel {
 
 	}
 
-	public static void testFindByPk() throws SQLException {
+	public static void testFindByPk() throws  ApplicationException {
 		UserModel model = new UserModel();
 		UserBean bean = model.findByPk(1);
 

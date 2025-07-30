@@ -5,11 +5,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
+import in.co.rays.exception.RecordNotFoundException;
+import in.co.rays.util.EmailBuilder;
+import in.co.rays.util.EmailMessage;
+import in.co.rays.util.EmailUtility;
 import in.co.rays.util.JDBCDataSource;
 
 public class UserModel {
@@ -193,7 +198,7 @@ public class UserModel {
 
 	}
 
-	public UserBean findByPk(long id) throws SQLException {
+	public UserBean findByPk(long id) throws ApplicationException {
 
 		Connection conn = null;
 		UserBean bean = null;
@@ -224,17 +229,15 @@ public class UserModel {
 				bean.setCreatedDatetime(rs.getTimestamp(12));
 				bean.setModifiedDatetime(rs.getTimestamp(13));
 			}
-
-			conn.commit();
+			rs.close();
+			pstmt.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			conn.rollback();
-
+			throw new ApplicationException("Exception : Exception in getting User by pk");
 		} finally {
-			conn.close();
+			JDBCDataSource.closeConnection(conn);
 		}
 		return bean;
-
 	}
 
 	public UserBean authenticate(String login, String password) throws ApplicationException {
@@ -273,6 +276,7 @@ public class UserModel {
 		}
 		return bean;
 	}
+
 	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {
 
 		Connection conn = null;
@@ -347,5 +351,64 @@ public class UserModel {
 
 	public List<UserBean> list() throws ApplicationException {
 		return search(null, 0, 0);
+	}
+
+	public long registerUser(UserBean bean) throws ApplicationException, DuplicateRecordException {
+
+		long pk = add(bean);
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("login", bean.getLogin());
+		map.put("password", bean.getPassword());
+
+		String message = EmailBuilder.getUserRegistrationMessage(map);
+
+		EmailMessage msg = new EmailMessage();
+		msg.setTo(bean.getLogin());
+		msg.setSubject("Registration is successful for ORS Project");
+		msg.setMessage(message);
+		msg.setMessageType(EmailMessage.HTML_MSG);
+
+		EmailUtility.sendMail(msg);
+
+		return pk;
+	}
+
+	public boolean changePassword(Long id, String oldPassword, String newPassword)
+			throws RecordNotFoundException, ApplicationException {
+
+		boolean flag = false;
+		UserBean beanExist = null;
+
+		beanExist = findByPk(id);
+		if (beanExist != null && beanExist.getPassword().equals(oldPassword)) {
+			beanExist.setPassword(newPassword);
+			try {
+				update(beanExist);
+			} catch (DuplicateRecordException e) {
+				throw new ApplicationException("LoginId is already exist");
+			}
+			flag = true;
+		} else {
+			throw new RecordNotFoundException("Login not exist");
+		}
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("login", beanExist.getLogin());
+		map.put("password", beanExist.getPassword());
+		map.put("firstName", beanExist.getFirstName());
+		map.put("lastName", beanExist.getLastName());
+
+		String message = EmailBuilder.getChangePasswordMessage(map);
+
+		EmailMessage msg = new EmailMessage();
+		msg.setTo(beanExist.getLogin());
+		msg.setSubject("Rays ORS Password has been changed Successfully.");
+		msg.setMessage(message);
+		msg.setMessageType(EmailMessage.HTML_MSG);
+
+		EmailUtility.sendMail(msg);
+
+		return flag;
 	}
 }

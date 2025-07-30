@@ -74,8 +74,8 @@
 				<tr style="background-color: #e1e6f1e3;">
 					<th style="width: 5%;"><input type="checkbox" id="selectall" /></th>
 					<th style="width: 5%;">S.No</th>
-					<th style="width: 13%;">Course Name</th>
-					<th style="width: 30%;">Subject Name</th>
+					<th style="width: 20%;">Course Name</th>
+					<th style="width: 20%;">Subject Name</th>
 					<th style="width: 7%;">Semester</th>
 					<th style="width: 10%;">Exam Date</th>
 					<th style="width: 15%;">Exam Time</th>

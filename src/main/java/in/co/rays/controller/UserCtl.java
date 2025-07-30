@@ -165,7 +165,7 @@ public class UserCtl extends BaseCtl {
 			try {
 				UserBean bean = model.findByPk(id);
 				ServletUtility.setBean(bean, request);
-			} catch (SQLException e) {
+			} catch (ApplicationException e) {
 				e.printStackTrace();
 			}
 

@@ -12,7 +12,7 @@ public class EmailBuilder {
 		msg.append("<P><B>Login Id: ").append(map.get("login")).append("<BR>Password: ").append(map.get("password"))
 				.append("</B></P>");
 		msg.append("<P>Change your password after logging in for security reasons.</P>");
-		msg.append("<P>For support, contact +91 98273 60504 or hrd@sunrays.co.in.</P>");
+		msg.append("<P>For support, contact +91 7828798680 or hrd@sunrays.co.in.</P>");
 		msg.append("</BODY></HTML>");
 		return msg.toString();
 	}

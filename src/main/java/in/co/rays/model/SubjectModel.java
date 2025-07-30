@@ -229,6 +229,8 @@ public class SubjectModel {
 			pageNo = (pageNo - 1) * pageSize;
 			sql.append(" limit " + pageNo + ", " + pageSize);
 		}
+		
+		System.out.println("subject model query ==> " + sql.toString());
 
 		ArrayList<SubjectBean> list = new ArrayList<SubjectBean>();
 		Connection conn = null;

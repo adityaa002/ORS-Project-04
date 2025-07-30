@@ -140,7 +140,7 @@ public class UserRegistrationCtl extends BaseCtl {
 
 			try {
 
-				model.add(bean);
+				model.registerUser(bean);
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setSuccessMessage("Registration Successful..!", request);
 				ServletUtility.forward(getView(), request, response);
