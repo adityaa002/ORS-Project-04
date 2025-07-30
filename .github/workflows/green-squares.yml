@@ -1,0 +1,24 @@
+name: Green Squares
+
+on:
+  schedule:
+    - cron: '12 8 * * *'  # Runs at 1:42 PM IST daily
+  workflow_dispatch:
+
+jobs:
+  green-square-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Auto commit to keep the square green 🌱
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+        run: |
+          date >> log.txt
+          git config user.name "Aditya-Bot"
+          git config user.email "adityaa002@users.noreply.github.com"
+          git add .
+          git commit -m "Auto commit on $(date)" || echo "No changes to commit"
+          git push https://adityaa002:${GH_TOKEN}@github.com/adityaa002/ORS-Project-04.git
