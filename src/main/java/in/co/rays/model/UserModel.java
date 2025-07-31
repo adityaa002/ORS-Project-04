@@ -367,7 +367,7 @@ public class UserModel {
 		msg.setTo(bean.getLogin());
 		msg.setSubject("Registration is successful for ORS Project");
 		msg.setMessage(message);
-		msg.setMessageType(EmailMessage.HTML_MSG);
+		msg.setMessageType(EmailMessage.TEXT_MSG);
 
 		EmailUtility.sendMail(msg);
 
@@ -408,6 +408,31 @@ public class UserModel {
 		msg.setMessageType(EmailMessage.HTML_MSG);
 
 		EmailUtility.sendMail(msg);
+
+		return flag;
+	}
+	public boolean forgetPassword(String login) throws ApplicationException, RecordNotFoundException {
+		UserBean userData = findByLogin(login);
+		boolean flag = false;
+
+		if (userData == null) {
+			throw new RecordNotFoundException("Email ID does not exists !");
+
+		}
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("login", userData.getLogin());
+		map.put("password", userData.getPassword());
+		map.put("firstName", userData.getFirstName());
+		map.put("lastName", userData.getLastName());
+		String message = EmailBuilder.getForgetPasswordMessage(map);
+		EmailMessage msg = new EmailMessage();
+		msg.setTo(login);
+		msg.setSubject("Rays ORS Password Reset");
+		msg.setMessage(message);
+		msg.setMessageType(EmailMessage.HTML_MSG);
+		EmailUtility.sendMail(msg);
+		flag = true;
 
 		return flag;
 	}

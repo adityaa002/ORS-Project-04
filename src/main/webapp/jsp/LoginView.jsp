@@ -10,7 +10,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>User Login</title>
-  <link rel="icon" type="logo.png" href="<%=ORSView.APP_CONTEXT%>/img/logo.png">
+<link rel="icon" type="logo.png"
+	href="<%=ORSView.APP_CONTEXT%>/img/logo.png">
 
 </head>
 <body>
@@ -60,7 +61,9 @@
 						type="submit" name="operation" value="<%=LoginCtl.OP_SIGN_UP%>"></td>
 				</tr>
 
+
 			</table>
+				<h3><a href="<%=ORSView.FORGET_PASSWORD_CTL%>">forget your password?</a></h3>
 
 
 		</div>

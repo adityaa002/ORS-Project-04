@@ -20,9 +20,9 @@ public class TestSubjectModel {
 		  //testDelete();
 		// testUpdate();
 		// testFindByPk();
-		// testFindByName();
+		 testFindByName();
 		//testSearch();
-		testList();
+		//testList();
 	}
 
 	public static void testDelete() throws SQLException {
@@ -83,7 +83,7 @@ public class TestSubjectModel {
 
 	public static void testFindByName() throws Exception {
 		SubjectModel model = new SubjectModel();
-		SubjectBean bean = model.findByName("Mathematics 2");
+		SubjectBean bean = model.findByName("Data Structures");
 
 		if (bean != null) {
 

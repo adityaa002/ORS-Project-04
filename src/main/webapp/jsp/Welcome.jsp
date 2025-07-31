@@ -13,8 +13,7 @@
 	<form action="<%=ORSView.WELCOME_CTL%>">
 
 		<%@include file="Header.jsp"%>
-		<hr>
-		<br> <br> <br> <br> <br> <br> <br>
+ 		<br> <br> <br> <br> <br> <br> <br>
 		<br>
 		<div align="center">
 

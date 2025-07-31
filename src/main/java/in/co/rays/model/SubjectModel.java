@@ -179,19 +179,20 @@ public class SubjectModel {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				bean = new SubjectBean();
-				pstmt.setLong(1, bean.getId());
-				pstmt.setString(2, bean.getName());
-				pstmt.setLong(3, bean.getCourseId());
-				pstmt.setString(4, bean.getCourseName());
-				pstmt.setString(5, bean.getDescription());
-				pstmt.setString(6, bean.getCreatedBy());
-				pstmt.setString(7, bean.getModifiedBy());
-				pstmt.setTimestamp(8, bean.getCreatedDatetime());
-				pstmt.setTimestamp(9, bean.getModifiedDatetime());
+				bean.setId(rs.getLong(1));
+				bean.setName(rs.getString(2));
+				bean.setCourseId(rs.getLong(3));
+				bean.setCourseName(rs.getString(4));
+				bean.setDescription(rs.getString(5));
+				bean.setCreatedBy(rs.getString(6));
+				bean.setModifiedBy(rs.getString(7));
+				bean.setCreatedDatetime(rs.getTimestamp(8));
+				bean.setModifiedDatetime(rs.getTimestamp(9));
 			}
 			rs.close();
 			pstmt.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new ApplicationException("Exception : Exception in getting Subject by Subject Name");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
