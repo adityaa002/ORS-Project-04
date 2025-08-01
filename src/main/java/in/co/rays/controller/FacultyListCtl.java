@@ -16,8 +16,23 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * FacultyListCtl servlet handles the operations for displaying, searching,
+ * paginating, and deleting faculty records in the application.
+ * 
+ * @author Aditya
+ * @version 1.0
+ * @since 1 Aug 2025
+ */
 @WebServlet(name = "FacultyListCtl", urlPatterns = { "/FacultyListCtl" })
 public class FacultyListCtl extends BaseCtl {
+
+	/**
+	 * Populates FacultyBean object from request parameters.
+	 * 
+	 * @param request HttpServletRequest object
+	 * @return FacultyBean object populated with request data
+	 */
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
@@ -29,6 +44,16 @@ public class FacultyListCtl extends BaseCtl {
 
 		return bean;
 	}
+
+	/**
+	 * Handles HTTP GET method. Used to display the initial list of faculties with
+	 * pagination.
+	 * 
+	 * @param request  HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -63,6 +88,15 @@ public class FacultyListCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Handles HTTP GET method. Used to display the initial list of faculties with
+	 * pagination.
+	 * 
+	 * @param request  HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -140,6 +174,11 @@ public class FacultyListCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 	}
 
+	/**
+	 * Returns the view page path for the Faculty List.
+	 * 
+	 * @return String - path of the Faculty List view
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.FACULTY_LIST_VIEW;

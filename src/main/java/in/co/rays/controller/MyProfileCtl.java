@@ -18,11 +18,24 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Controller to handle My Profile functionality including
+ * viewing and updating user profile data.
+ * 
+ * @author Aditya
+ */
 @WebServlet(name = "MyProfileCtl", urlPatterns = { "/MyProfileCtl" })
 public class MyProfileCtl extends BaseCtl {
 
+	/** Operation for changing the password from profile view */
 	public static final String OP_CHANGE_MY_PASSWORD = "Change Password";
 
+	/**
+	 * Validates the user input fields for profile update.
+	 * 
+	 * @param request HttpServletRequest object
+	 * @return true if all inputs are valid, false otherwise
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 
@@ -74,6 +87,12 @@ public class MyProfileCtl extends BaseCtl {
 		return pass;
 	}
 
+	/**
+	 * Populates the UserBean with form data from request parameters.
+	 * 
+	 * @param request HttpServletRequest object
+	 * @return UserBean object populated with form data
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
@@ -98,6 +117,15 @@ public class MyProfileCtl extends BaseCtl {
 		return bean;
 	}
 
+	/**
+	 * Handles HTTP GET request to pre-fill the profile form
+	 * with current logged-in user data.
+	 * 
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -120,6 +148,15 @@ public class MyProfileCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 	}
 
+	/**
+	 * Handles HTTP POST request to update the user profile
+	 * or redirect to Change Password controller.
+	 * 
+	 * @param request  HttpServletRequest object
+	 * @param response HttpServletResponse object
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -160,6 +197,11 @@ public class MyProfileCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 	}
 
+	/**
+	 * Returns the view page for My Profile.
+	 * 
+	 * @return path to My Profile JSP
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.MY_PROFILE_VIEW;

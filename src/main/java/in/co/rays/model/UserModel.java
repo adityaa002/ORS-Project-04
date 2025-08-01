@@ -367,7 +367,7 @@ public class UserModel {
 		msg.setTo(bean.getLogin());
 		msg.setSubject("Registration is successful for ORS Project");
 		msg.setMessage(message);
-		msg.setMessageType(EmailMessage.TEXT_MSG);
+		msg.setMessageType(EmailMessage.HTML_MSG);
 
 		EmailUtility.sendMail(msg);
 

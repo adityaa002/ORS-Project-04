@@ -1,23 +1,27 @@
 package in.co.rays.controller;
-
+/**
+ * ORSView interface defines constants for all the view (JSP) pages and their corresponding 
+ * controller (Servlet) paths used in the application.
+ * 
+ * This acts as a centralized place to manage view/controller mappings, ensuring 
+ * consistency and easier maintenance.
+ * 
+ * @author Aditya
+ */
 public interface ORSView {
 
 	public String APP_CONTEXT = "/Project-04";
 	public String PAGE_FOLDER = "/jsp";
 
-
 	public String MY_PROFILE_VIEW = PAGE_FOLDER + "/MyProfileView.jsp";
 	public String MY_PROFILE_CTL = APP_CONTEXT + "/MyProfileCtl";
-	
 
 	public String GET_MARKSHEET_VIEW = PAGE_FOLDER + "/GetMarksheetView.jsp";
 	public String GET_MARKSHEET_CTL = APP_CONTEXT + "/GetMarksheetCtl";
 
-
 	public String MARKSHEET_MERIT_LIST_VIEW = PAGE_FOLDER + "/MarksheetMeritListView.jsp";
 	public String MARKSHEET_MERIT_LIST_CTL = APP_CONTEXT + "/MarksheetMeritListCtl";
 
-	
 	public String USER_REGISTRATION_VIEW = PAGE_FOLDER + "/UserRegistrationView.jsp";
 	public String USER_REGISTRATION_CTL = APP_CONTEXT + "/UserRegistrationCtl";
 
@@ -83,9 +87,8 @@ public interface ORSView {
 
 	public String FORGET_PASSWORD_VIEW = PAGE_FOLDER + "/ForgetPasswordView.jsp";
 	public String FORGET_PASSWORD_CTL = APP_CONTEXT + "/ForgetPasswordCtl";
-	
+
 	public String CHANGE_PASSWORD_VIEW = PAGE_FOLDER + "/ChangePasswordView.jsp";
 	public String CHANGE_PASSWORD_CTL = APP_CONTEXT + "/ChangePasswordCtl";
-
 
 }

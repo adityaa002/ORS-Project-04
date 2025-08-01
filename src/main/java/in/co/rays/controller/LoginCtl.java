@@ -20,6 +20,12 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Login functionality Controller. Performs operations for Login like Sign In,
+ * Logout, SignUp
+ * 
+ * @author Aditya
+ */
 @WebServlet(name = "LoginCtl", urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
 
@@ -28,6 +34,12 @@ public class LoginCtl extends BaseCtl {
 	public static final String OP_REGISTER = "Register";
 	public static final String OP_LOG_OUT = "Logout";
 
+	/**
+	 * Validates the input data.
+	 * 
+	 * @param request the HttpServletRequest
+	 * @return boolean true if data is valid, false otherwise
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 		boolean pass = true;
@@ -58,6 +70,12 @@ public class LoginCtl extends BaseCtl {
 		return pass;
 	}
 
+	/**
+	 * Populates bean object from request parameters.
+	 * 
+	 * @param request the HttpServletRequest
+	 * @return populated UserBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
@@ -70,6 +88,14 @@ public class LoginCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Handles HTTP GET requests.
+	 * 
+	 * @param request  the HttpServletRequest
+	 * @param response the HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -89,6 +115,14 @@ public class LoginCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Handles HTTP POST requests.
+	 * 
+	 * @param request  the HttpServletRequest
+	 * @param response the HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -140,6 +174,11 @@ public class LoginCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Returns the view page for this controller.
+	 * 
+	 * @return path of Login view
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.LOGIN_VIEW;

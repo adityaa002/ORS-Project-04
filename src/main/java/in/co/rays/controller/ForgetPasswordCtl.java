@@ -1,3 +1,13 @@
+/**
+ * ForgetPasswordCtl servlet handles the "Forgot Password" functionality.
+ * It validates the user input and initiates the process of sending a reset 
+ * password to the user's registered email address.
+ * 
+ * @author Aditya
+ * @version 1.0
+ * @since 01 Aug 2025
+ */
+
 package in.co.rays.controller;
 
 import java.io.IOException;
@@ -17,9 +27,18 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Servlet implementation class ForgetPasswordCtl
+ */
 @WebServlet(name = "ForgetPasswordCtl", urlPatterns = { "/ForgetPasswordCtl" })
 public class ForgetPasswordCtl extends BaseCtl {
 
+	/**
+	 * Validates the login (email) input for the forget password process.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @return boolean true if validation passes, false otherwise
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 
@@ -36,6 +55,12 @@ public class ForgetPasswordCtl extends BaseCtl {
 		return pass;
 	}
 
+	/**
+	 * Populates a UserBean object with data from the request.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @return a populated UserBean object
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
@@ -46,11 +71,28 @@ public class ForgetPasswordCtl extends BaseCtl {
 		return bean;
 	}
 
+	/**
+	 * Handles GET requests and forwards to the forget password view.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @param response the HttpServletResponse object
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletUtility.forward(getView(), request, response);
 	}
 
+	/**
+	 * Handles POST requests for submitting the forget password form.
+	 * If the login is valid, it triggers email sending for the password.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @param response the HttpServletResponse object
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -76,6 +118,11 @@ public class ForgetPasswordCtl extends BaseCtl {
 		}
 	}
 
+	/**
+	 * Returns the view for the forget password screen.
+	 *
+	 * @return String representing the view path
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.FORGET_PASSWORD_VIEW;

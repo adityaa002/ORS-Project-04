@@ -18,126 +18,157 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * RoleCtl Controller to handle add/update role operations.
+ * 
+ * @author Aditya
+ */
 @WebServlet(name = "RoleCtl", urlPatterns = { "/RoleCtl" })
 public class RoleCtl extends BaseCtl {
 
-	@Override
-	protected boolean validate(HttpServletRequest request) {
-		boolean pass = true;
+    /**
+     * Validates Role form input.
+     * 
+     * @param request HttpServletRequest object
+     * @return boolean true if valid, false otherwise
+     */
+    @Override
+    protected boolean validate(HttpServletRequest request) {
+        boolean pass = true;
 
-		if (DataValidator.isNull(request.getParameter("roleName"))) {
-			request.setAttribute("roleName", PropertyReader.getValue("error.require", "Role Name"));
-			pass = false;
-		} else if (!DataValidator.isName(request.getParameter("roleName"))) {
-			request.setAttribute("roleName", "Invalid Role name");
-			pass = false;
-		}
-		if (DataValidator.isNull(request.getParameter("description"))) {
-			request.setAttribute("description", PropertyReader.getValue("error.require", "Description"));
-			pass = false;
-		}
+        if (DataValidator.isNull(request.getParameter("roleName"))) {
+            request.setAttribute("roleName", PropertyReader.getValue("error.require", "Role Name"));
+            pass = false;
+        } else if (!DataValidator.isName(request.getParameter("roleName"))) {
+            request.setAttribute("roleName", "Invalid Role name");
+            pass = false;
+        }
+        if (DataValidator.isNull(request.getParameter("description"))) {
+            request.setAttribute("description", PropertyReader.getValue("error.require", "Description"));
+            pass = false;
+        }
 
-		return pass;
-	}
+        return pass;
+    }
 
-	@Override
-	protected BaseBean populateBean(HttpServletRequest request) {
+    /**
+     * Populates RoleBean from request parameters.
+     * 
+     * @param request HttpServletRequest object
+     * @return populated RoleBean
+     */
+    @Override
+    protected BaseBean populateBean(HttpServletRequest request) {
 
-		RoleBean bean = new RoleBean();
-		bean.setId(DataUtility.getLong(request.getParameter("id")));
-		bean.setName(DataUtility.getString(request.getParameter("roleName")));
-		bean.setDescription(DataUtility.getString(request.getParameter("description")));
-			
-		System.out.println("bean populated");
-		
-		populateDto(bean, request);
-		return bean;
+        RoleBean bean = new RoleBean();
+        bean.setId(DataUtility.getLong(request.getParameter("id")));
+        bean.setName(DataUtility.getString(request.getParameter("roleName")));
+        bean.setDescription(DataUtility.getString(request.getParameter("description")));
 
-	}
+        System.out.println("bean populated");
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+        populateDto(bean, request);
+        return bean;
+    }
 
-		String op = DataUtility.getString(request.getParameter("operation"));
+    /**
+     * Handles HTTP GET requests. Loads Role data for editing.
+     * 
+     * @param request  HttpServletRequest object
+     * @param response HttpServletResponse object
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		RoleModel model = new RoleModel();
+        String op = DataUtility.getString(request.getParameter("operation"));
 
-		long id = DataUtility.getLong(request.getParameter("id"));
+        RoleModel model = new RoleModel();
 
-		if (id > 0 || op != null) {
-			RoleBean bean;
-			try {
-				bean = model.findByPk(id);
-				ServletUtility.setBean(bean, request);
-			} catch (ApplicationException e) {
-				e.printStackTrace();
-				return;
-			}
-		}
+        long id = DataUtility.getLong(request.getParameter("id"));
 
-		ServletUtility.forward(getView(), request, response);
-	}
+        if (id > 0 || op != null) {
+            RoleBean bean;
+            try {
+                bean = model.findByPk(id);
+                ServletUtility.setBean(bean, request);
+            } catch (ApplicationException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+        ServletUtility.forward(getView(), request, response);
+    }
 
-		String op = DataUtility.getString(request.getParameter("operation"));
+    /**
+     * Handles HTTP POST requests. Performs Save, Update, Cancel, and Reset operations.
+     * 
+     * @param request  HttpServletRequest object
+     * @param response HttpServletResponse object
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		RoleModel model = new RoleModel();
+        String op = DataUtility.getString(request.getParameter("operation"));
 
-		if (OP_SAVE.equalsIgnoreCase(op)) {
-			RoleBean bean = (RoleBean) populateBean(request);
-			try {
-				long pk = model.add(bean);
-				ServletUtility.setBean(bean, request);
-				ServletUtility.setSuccessMessage("Role Added Successfully..!", request);
+        RoleModel model = new RoleModel();
 
-			} catch (ApplicationException e) {
-				e.printStackTrace();
-				return;
-			} catch (DuplicateRecordException e) {
-				ServletUtility.setBean(bean, request);
-				ServletUtility.setErrorMessage("Role already exists..!", request);
+        if (OP_SAVE.equalsIgnoreCase(op)) {
+            RoleBean bean = (RoleBean) populateBean(request);
+            try {
+                long pk = model.add(bean);
+                ServletUtility.setBean(bean, request);
+                ServletUtility.setSuccessMessage("Role Added Successfully..!", request);
 
-				e.printStackTrace();
-			}
-		} else if (OP_UPDATE.equalsIgnoreCase(op)) {
-			RoleBean bean = (RoleBean) populateBean(request);
+            } catch (ApplicationException e) {
+                e.printStackTrace();
+                return;
+            } catch (DuplicateRecordException e) {
+                ServletUtility.setBean(bean, request);
+                ServletUtility.setErrorMessage("Role already exists..!", request);
+                e.printStackTrace();
+            }
+        } else if (OP_UPDATE.equalsIgnoreCase(op)) {
+            RoleBean bean = (RoleBean) populateBean(request);
 
-			try {
-				if (bean.getId() > 0) {
-					System.out.println("in update");
-					model.update(bean);
-				}
-				ServletUtility.setBean(bean, request);
-				ServletUtility.setSuccessMessage("Role Updated successfully", request);
+            try {
+                if (bean.getId() > 0) {
+                    System.out.println("in update");
+                    model.update(bean);
+                }
+                ServletUtility.setBean(bean, request);
+                ServletUtility.setSuccessMessage("Role Updated successfully", request);
 
-			} catch (ApplicationException e) {
-				e.printStackTrace();
-				return;
-			} catch (DuplicateRecordException e) {
-				ServletUtility.setBean(bean, request);
-				ServletUtility.setErrorMessage("Role already exist", request);
-				e.printStackTrace();
-			}
+            } catch (ApplicationException e) {
+                e.printStackTrace();
+                return;
+            } catch (DuplicateRecordException e) {
+                ServletUtility.setBean(bean, request);
+                ServletUtility.setErrorMessage("Role already exist", request);
+                e.printStackTrace();
+            }
 
-		} else if (OP_CANCEL.equalsIgnoreCase(op)) {
-			ServletUtility.redirect(ORSView.ROLE_LIST_CTL, request, response);
-			return;
-		} else if (OP_RESET.equalsIgnoreCase(op)) {
-			ServletUtility.redirect(ORSView.ROLE_CTL, request, response);
-			return;
-		}
+        } else if (OP_CANCEL.equalsIgnoreCase(op)) {
+            ServletUtility.redirect(ORSView.ROLE_LIST_CTL, request, response);
+            return;
+        } else if (OP_RESET.equalsIgnoreCase(op)) {
+            ServletUtility.redirect(ORSView.ROLE_CTL, request, response);
+            return;
+        }
 
-		ServletUtility.forward(getView(), request, response);
+        ServletUtility.forward(getView(), request, response);
+    }
 
-	}
-
-	@Override
-	protected String getView() {
-		return ORSView.ROLE_VIEW;
-	}
+    /**
+     * Returns the view page for Role.
+     * 
+     * @return String path of ROLE_VIEW
+     */
+    @Override
+    protected String getView() {
+        return ORSView.ROLE_VIEW;
+    }
 
 }
