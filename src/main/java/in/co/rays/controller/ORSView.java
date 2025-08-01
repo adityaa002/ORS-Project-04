@@ -12,6 +12,9 @@ public interface ORSView {
 
 	public String APP_CONTEXT = "/Project-04";
 	public String PAGE_FOLDER = "/jsp";
+	
+    public String JAVA_DOC_VIEW = APP_CONTEXT + "/doc/index.html";
+
 
 	public String MY_PROFILE_VIEW = PAGE_FOLDER + "/MyProfileView.jsp";
 	public String MY_PROFILE_CTL = APP_CONTEXT + "/MyProfileCtl";

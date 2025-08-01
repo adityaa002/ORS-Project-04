@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.UserBean;
 import in.co.rays.util.DataUtility;
@@ -14,6 +16,8 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
 public abstract class BaseCtl extends HttpServlet {
+
+	Logger log = Logger.getLogger(BaseCtl.class);
 
 	public static final String OP_SAVE = "Save";
 	public static final String OP_UPDATE = "Update";
@@ -38,7 +42,7 @@ public abstract class BaseCtl extends HttpServlet {
 	}
 
 	protected void preload(HttpServletRequest request) {
-		System.out.println("BaseCtl preload called");
+		log.debug("BaseCtl preload called");
 	}
 
 	protected BaseBean populateBean(HttpServletRequest request) {
@@ -81,8 +85,7 @@ public abstract class BaseCtl extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-		System.out.println("service");
+		log.debug("service method called");
 
 		preload(request);
 
@@ -95,11 +98,13 @@ public abstract class BaseCtl extends HttpServlet {
 				BaseBean bean = populateBean(request);
 				ServletUtility.setBean(bean, request);
 				ServletUtility.forward(getView(), request, response);
-				System.out.println("view: " + getView());
+				
+				log.debug("view: " + getView());
 				return;
 			}
 		}
-		System.out.println("super.service() --->");
+		log.debug("super.service() ---> called");
+
 		super.service(request, response);
 	}
 

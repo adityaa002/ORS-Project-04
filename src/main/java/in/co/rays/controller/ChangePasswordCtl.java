@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.mysql.cj.Session;
 
 import in.co.rays.bean.BaseBean;
@@ -20,153 +22,137 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-/**
- * Controller class to handle Change Password operations.
- * This controller allows users to change their password by validating
- * old password, new password, and confirmation.
- * 
- * @author Aditya
- */
 @WebServlet(name = "ChangePasswordCtl", urlPatterns = { "/ChangePasswordCtl" })
 public class ChangePasswordCtl extends BaseCtl {
 
-    /** Operation constant for changing profile */
-    public static final String OP_CHANGE_MY_PROFILE = "Change My Profile";
+	Logger log = Logger.getLogger(ChangePasswordCtl.class);
 
-    /**
-     * Validates input data for change password operation.
-     * 
-     * @param request HTTP request containing user input.
-     * @return true if input is valid, false otherwise.
-     */
-    @Override
-    protected boolean validate(HttpServletRequest request) {
+	public static final String OP_CHANGE_MY_PROFILE = "Change My Profile";
 
-        boolean pass = true;
+	@Override
+	protected boolean validate(HttpServletRequest request) {
 
-        String op = request.getParameter("operation");
+		log.debug("ChangePasswordCtl validate method started");
 
-        if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {
-            return pass;
-        }
+		boolean pass = true;
 
-        if (DataValidator.isNull(request.getParameter("oldPassword"))) {
-            request.setAttribute("oldPassword", PropertyReader.getValue("error.require", "Old Password"));
-            pass = false;
-        } else if (request.getParameter("oldPassword").equals(request.getParameter("newPassword"))) {
-            request.setAttribute("newPassword", "Old and New passwords should be different");
-            pass = false;
-        }
+		String op = request.getParameter("operation");
 
-        if (DataValidator.isNull(request.getParameter("newPassword"))) {
-            request.setAttribute("newPassword", PropertyReader.getValue("error.require", "New Password"));
-            pass = false;
-        } else if (!DataValidator.isPasswordLength(request.getParameter("newPassword"))) {
-            request.setAttribute("newPassword", "Password should be 8 to 12 characters");
-            pass = false;
-        } else if (!DataValidator.isPassword(request.getParameter("newPassword"))) {
-            request.setAttribute("newPassword", "Must contain uppercase, lowercase, digit & special character");
-            pass = false;
-        }
+		if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {
+			return pass;
+		}
 
-        if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
-            request.setAttribute("confirmPassword", PropertyReader.getValue("error.require", "Confirm Password"));
-            pass = false;
-        }
+		if (DataValidator.isNull(request.getParameter("oldPassword"))) {
+			request.setAttribute("oldPassword", PropertyReader.getValue("error.require", "Old Password"));
+			pass = false;
+		} else if (request.getParameter("oldPassword").equals(request.getParameter("newPassword"))) {
+			request.setAttribute("newPassword", "Old and New passwords should be different");
+			pass = false;
+		}
 
-        if (!request.getParameter("newPassword").equals(request.getParameter("confirmPassword"))
-                && !"".equals(request.getParameter("confirmPassword"))) {
-            request.setAttribute("confirmPassword", "New and confirm passwords not matched");
-            pass = false;
-        }
+		if (DataValidator.isNull(request.getParameter("newPassword"))) {
+			request.setAttribute("newPassword", PropertyReader.getValue("error.require", "New Password"));
+			pass = false;
+		} else if (!DataValidator.isPasswordLength(request.getParameter("newPassword"))) {
+			request.setAttribute("newPassword", "Password should be 8 to 12 characters");
+			pass = false;
+		} else if (!DataValidator.isPassword(request.getParameter("newPassword"))) {
+			request.setAttribute("newPassword", "Must contain uppercase, lowercase, digit & special character");
+			pass = false;
+		}
 
-        return pass;
-    }
+		if (DataValidator.isNull(request.getParameter("confirmPassword"))) {
+			request.setAttribute("confirmPassword", PropertyReader.getValue("error.require", "Confirm Password"));
+			pass = false;
+		}
 
-    /**
-     * Populates UserBean from HTTP request parameters.
-     * 
-     * @param request HTTP request containing form parameters.
-     * @return Populated UserBean object.
-     */
-    @Override
-    protected BaseBean populateBean(HttpServletRequest request) {
+		if (!request.getParameter("newPassword").equals(request.getParameter("confirmPassword"))
+				&& !"".equals(request.getParameter("confirmPassword"))) {
+			request.setAttribute("confirmPassword", "New and confirm passwords not matched");
+			pass = false;
+		}
 
-        UserBean bean = new UserBean();
+		log.debug("ChangePasswordCtl validate method ended");
+		return pass;
+	}
 
-        bean.setPassword(DataUtility.getString(request.getParameter("oldPassword")));
-        bean.setConfirmPassword(DataUtility.getString(request.getParameter("confirmPassword")));
+	@Override
+	protected BaseBean populateBean(HttpServletRequest request) {
 
-        populateDto(bean, request);
+		log.debug("CollegeCtl Method populatebean Started");
 
-        return bean;
-    }
+		UserBean bean = new UserBean();
 
-    /**
-     * Handles GET requests. Forwards request to change password view.
-     * 
-     * @param request  HTTP request object.
-     * @param response HTTP response object.
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ServletUtility.forward(getView(), request, response);
-    }
+		bean.setPassword(DataUtility.getString(request.getParameter("oldPassword")));
+		bean.setConfirmPassword(DataUtility.getString(request.getParameter("confirmPassword")));
 
-    /**
-     * Handles POST requests for change password operation.
-     * Processes the form data and updates the user's password.
-     * 
-     * @param request  HTTP request object.
-     * @param response HTTP response object.
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		populateDto(bean, request);
 
-        String op = DataUtility.getString(request.getParameter("operation"));
-        String newPassword = (String) request.getParameter("newPassword");
+		log.debug("CollegeCtl Method populatebean Ended");
+		return bean;
+	}
 
-        UserBean bean = (UserBean) populateBean(request);
-        UserModel model = new UserModel();
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		log.debug("ChangePasswordCtl doget Method started");
+		
+		ServletUtility.forward(getView(), request, response);
 
-        HttpSession session = request.getSession(true);
-        UserBean user = (UserBean) session.getAttribute("user");
-        long id = user.getId();
+		log.debug("ChangePasswordCtl doget Method Ended");
 
-        if (OP_SAVE.equalsIgnoreCase(op)) {
-            try {
-                boolean flag = model.changePassword(id, bean.getPassword(), newPassword);
-                if (flag == true) {
-                    bean = model.findByLogin(user.getLogin());
-                    session.setAttribute("user", bean);
-                    ServletUtility.setBean(bean, request);
-                    ServletUtility.setSuccessMessage("Password has been changed Successfully", request);
-                }
-            } catch (RecordNotFoundException e) {
-                ServletUtility.setErrorMessage("Old Password is Invalid", request);
-            } catch (ApplicationException e) {
-                e.printStackTrace();
-                // ServletUtility.handleException(e, request, response);
-                return;
-            }
-        } else if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {
-            ServletUtility.redirect(ORSView.MY_PROFILE_CTL, request, response);
-            return;
-        }
-        ServletUtility.forward(ORSView.CHANGE_PASSWORD_VIEW, request, response);
-    }
+	}
 
-    /**
-     * Returns the view page path for Change Password.
-     * 
-     * @return String representing the JSP path.
-     */
-    @Override
-    protected String getView() {
-        return ORSView.CHANGE_PASSWORD_VIEW;
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		log.debug("ChangePasswordCtl dopost Method started");
+
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+		String newPassword = (String) request.getParameter("newPassword");
+
+		UserBean bean = (UserBean) populateBean(request);
+		UserModel model = new UserModel();
+
+		HttpSession session = request.getSession(true);
+		UserBean user = (UserBean) session.getAttribute("user");
+		long id = user.getId();
+
+		if (OP_SAVE.equalsIgnoreCase(op)) {
+			try {
+				boolean flag = model.changePassword(id, bean.getPassword(), newPassword);
+				if (flag == true) {
+					bean = model.findByLogin(user.getLogin());
+					session.setAttribute("user", bean);
+					ServletUtility.setBean(bean, request);
+					ServletUtility.setSuccessMessage("Password has been changed Successfully", request);
+				}
+			} catch (RecordNotFoundException e) {
+				
+				ServletUtility.setErrorMessage("Old Password is Invalid", request);
+				
+			} catch (ApplicationException e) {
+				log.error(e);
+				e.printStackTrace();
+				// ServletUtility.handleException(e, request, response);
+				return;
+			}
+		} else if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {
+			
+			ServletUtility.redirect(ORSView.MY_PROFILE_CTL, request, response);
+			return;
+			
+		}
+		
+		ServletUtility.forward(ORSView.CHANGE_PASSWORD_VIEW, request, response);
+		
+		log.debug("ChangePasswordCtl dopost Method Ended");
+
+	}
+
+	@Override
+	protected String getView() {
+		return ORSView.CHANGE_PASSWORD_VIEW;
+	}
 }

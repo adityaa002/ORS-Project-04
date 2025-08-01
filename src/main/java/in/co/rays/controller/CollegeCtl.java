@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.exception.ApplicationException;
@@ -18,28 +20,19 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-/**
- * CollegeCtl is a Controller to handle Create, Update, and Reset operations
- * for College entities in the system.
- * 
- * It performs form validation, populates CollegeBean, and interacts with
- * the model layer to persist and update college records.
- * 
- * Mapped to URL pattern /CollegeCtl
- * 
- * @author Aditya
- */
+ 
 @WebServlet(name = "CollegeCtl", urlPatterns = { "/CollegeCtl" })
 public class CollegeCtl extends BaseCtl {
 
-    /**
-     * Validates user input fields of College form.
-     * 
-     * @param request HttpServletRequest object
-     * @return true if all fields are valid, false otherwise
-     */
+	Logger log = Logger.getLogger(CollegeCtl.class);
+
+    
     @Override
     protected boolean validate(HttpServletRequest request) {
+    	
+    	log.debug("ChangePasswordCtl validate method started");
+
+    	
         boolean pass = true;
 
         if (DataValidator.isNull(request.getParameter("name"))) {
@@ -67,18 +60,18 @@ public class CollegeCtl extends BaseCtl {
             pass = false;
         }
 
+    	log.debug("ChangePasswordCtl validate method ended");
+
         return pass;
     }
 
-    /**
-     * Populates CollegeBean object from HTTP request.
-     * 
-     * @param request HttpServletRequest object
-     * @return populated CollegeBean
-     */
+     
     @Override
     protected BaseBean populateBean(HttpServletRequest request) {
 
+		log.debug("CollegeCtl Method populatebean Started");
+
+    	
         CollegeBean bean = new CollegeBean();
 
         bean.setId(DataUtility.getLong(request.getParameter("id")));
@@ -90,20 +83,17 @@ public class CollegeCtl extends BaseCtl {
 
         populateDto(bean, request);
 
+		log.debug("CollegeCtl Method populatebean Ended");
         return bean;
     }
 
-    /**
-     * Handles HTTP GET requests for loading a college record for update.
-     * 
-     * @param request  HttpServletRequest
-     * @param response HttpServletResponse
-     * @throws ServletException
-     * @throws IOException
-     */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+		log.debug("CollegeCtl Method doget Started");
+
 
         String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -117,25 +107,24 @@ public class CollegeCtl extends BaseCtl {
                 bean = model.findByPK(id);
                 ServletUtility.setBean(bean, request);
             } catch (Exception e) {
+            	log.error(e);
                 e.printStackTrace();
                 return;
             }
         }
 
         ServletUtility.forward(getView(), request, response);
+		log.debug("CollegeCtl Method doget ended");
+
     }
 
-    /**
-     * Handles HTTP POST requests for Save, Update, Reset, and Cancel operations.
-     * 
-     * @param request  HttpServletRequest
-     * @param response HttpServletResponse
-     * @throws ServletException
-     * @throws IOException
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+		log.debug("CollegeCtl Method doPost Started");
+
 
         String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -150,6 +139,7 @@ public class CollegeCtl extends BaseCtl {
                 ServletUtility.setBean(bean, request);
                 ServletUtility.setSuccessMessage("College added successfully..!", request);
             } catch (ApplicationException e) {
+            	log.error(e);
                 e.printStackTrace();
             } catch (DuplicateRecordException e) {
                 ServletUtility.setBean(bean, request);
@@ -166,6 +156,7 @@ public class CollegeCtl extends BaseCtl {
                 ServletUtility.setBean(bean, request);
                 ServletUtility.setSuccessMessage("College updated successfully", request);
             } catch (ApplicationException e) {
+            	log.error(e);
                 ServletUtility.setBean(bean, request);
                 ServletUtility.setErrorMessage("College name already exist..!", request);
             } catch (DuplicateRecordException e) {
@@ -182,13 +173,12 @@ public class CollegeCtl extends BaseCtl {
         }
 
         ServletUtility.forward(getView(), request, response);
-    }
 
-    /**
-     * Returns the view page path of the College form.
-     * 
-     * @return view page path as String
-     */
+
+		log.debug("CollegeCtl Method doPost ended");
+}
+
+    
     @Override
     protected String getView() {
         return ORSView.COLLEGE_VIEW;

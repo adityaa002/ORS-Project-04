@@ -69,6 +69,8 @@
 	<b>|</b>
 	<a href="FacultyListCtl"><b>Faculty List</b></a>
 	<b>|</b>
+	<a href="<%=ORSView.JAVA_DOC_VIEW%>" target="blank"><b>JavaDoc</b></a>
+	<b>|</b>
 	<a href="LoginCtl?operation=<%=LoginCtl.OP_LOG_OUT%>"><b>Logout</b></a>
 
 	<%
@@ -83,7 +85,7 @@
 		}
 	%>
 	<b>
-	<hr>
+		<hr>
 	</b>
 </body>
 </html>

@@ -426,7 +426,9 @@ public class UserModel {
 		map.put("firstName", userData.getFirstName());
 		map.put("lastName", userData.getLastName());
 		String message = EmailBuilder.getForgetPasswordMessage(map);
+		
 		EmailMessage msg = new EmailMessage();
+		
 		msg.setTo(login);
 		msg.setSubject("Rays ORS Password Reset");
 		msg.setMessage(message);

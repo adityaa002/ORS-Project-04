@@ -24,8 +24,7 @@ import in.co.rays.util.ServletUtility;
  * Login functionality Controller. Performs operations for Login like Sign In,
  * Logout, SignUp
  * 
- * @author Aditya
- */
+  */
 @WebServlet(name = "LoginCtl", urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
 
