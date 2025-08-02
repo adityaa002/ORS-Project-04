@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.exception.ApplicationException;
@@ -30,6 +32,9 @@ import in.co.rays.util.ServletUtility;
  */
 @WebServlet(name = "CourseCtl", urlPatterns = { "/CourseCtl" })
 public class CourseCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(CollegeListCtl.class);
+
 
     /**
      * Loads preloaded data like course durations into request.
@@ -38,6 +43,9 @@ public class CourseCtl extends BaseCtl {
      */
     @Override
     protected void preload(HttpServletRequest request) {
+    	
+    	log.debug("CourseCtl preload method started");
+    	
         HashMap<String, String> map = new LinkedHashMap<String, String>();
         map.put("1 Year", "1 Year");
         map.put("2 Year", "2 Year");
@@ -48,6 +56,9 @@ public class CourseCtl extends BaseCtl {
         map.put("7 Year", "7 Year");
 
         request.setAttribute("map", map);
+        
+    	log.debug("CourseCtl preload method ended");
+
     }
 
     /**
@@ -58,6 +69,10 @@ public class CourseCtl extends BaseCtl {
      */
     @Override
     protected boolean validate(HttpServletRequest request) {
+    	
+    	log.debug("CourseCtl validate method started");
+
+    	
         boolean pass = true;
 
         if (DataValidator.isNull(request.getParameter("name"))) {
@@ -77,6 +92,8 @@ public class CourseCtl extends BaseCtl {
             request.setAttribute("description", PropertyReader.getValue("error.require", "Description"));
             pass = false;
         }
+        
+    	log.debug("CourseCtl validate method ended");
 
         return pass;
     }
@@ -89,6 +106,10 @@ public class CourseCtl extends BaseCtl {
      */
     @Override
     protected BaseBean populateBean(HttpServletRequest request) {
+    	
+    	log.debug("CourseCtl populateBean method started");
+
+    	
         CourseBean bean = new CourseBean();
 
         bean.setId(DataUtility.getInt(request.getParameter("id")));
@@ -97,7 +118,8 @@ public class CourseCtl extends BaseCtl {
         bean.setDescription(DataUtility.getString(request.getParameter("description")));
 
         populateDto(bean, request);
-
+        
+    	log.debug("CourseCtl populateBean method ended");
         return bean;
     }
 
@@ -112,6 +134,9 @@ public class CourseCtl extends BaseCtl {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	log.debug("CourseCtl doget method started");
+
 
         String op = DataUtility.getString(request.getParameter("operation"));
         CourseModel model = new CourseModel();
@@ -125,8 +150,10 @@ public class CourseCtl extends BaseCtl {
                 e.printStackTrace();
             }
         }
-
+        
+    	log.debug("CourseCtl doget method ended");
         ServletUtility.forward(getView(), request, response);
+        
     }
 
     /**
@@ -140,6 +167,9 @@ public class CourseCtl extends BaseCtl {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	log.debug("CourseCtl dopost method started");
+
 
         String op = DataUtility.getString(request.getParameter("operation"));
         CourseModel model = new CourseModel();
@@ -182,7 +212,8 @@ public class CourseCtl extends BaseCtl {
             ServletUtility.redirect(ORSView.COURSE_CTL, request, response);
             return;
         }
-
+        
+    	log.debug("CourseCtl dopost method ended");
         ServletUtility.forward(getView(), request, response);
     }
 
