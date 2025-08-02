@@ -161,7 +161,7 @@ public class LoginCtl extends BaseCtl {
 				}
 
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 			}
 
 		} else if (OP_SIGN_UP.equalsIgnoreCase(op)) {

@@ -120,7 +120,7 @@ public class TimetableCtl extends BaseCtl {
 				bean = model.findByPK(id);
 				ServletUtility.setBean(bean, request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			}
 		}
@@ -163,7 +163,7 @@ public class TimetableCtl extends BaseCtl {
 					ServletUtility.setErrorMessage("Timetable already exist!", request);
 				}
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);
@@ -192,7 +192,7 @@ public class TimetableCtl extends BaseCtl {
 				}
 
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);

@@ -135,7 +135,7 @@ public class ChangePasswordCtl extends BaseCtl {
 			} catch (ApplicationException e) {
 				log.error(e);
 				e.printStackTrace();
-				// ServletUtility.handleException(e, request, response);
+				ServletUtility.handleException(e, request, response);
 				return;
 			}
 		} else if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {

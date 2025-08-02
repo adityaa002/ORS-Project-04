@@ -94,7 +94,7 @@ public class SubjectCtl extends BaseCtl {
 				bean = model.findByPk(id);
 				ServletUtility.setBean(bean, request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			}
 		}
@@ -121,7 +121,7 @@ public class SubjectCtl extends BaseCtl {
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setSuccessMessage("Subject added successfully", request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);
@@ -138,7 +138,7 @@ public class SubjectCtl extends BaseCtl {
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setSuccessMessage("Subject updated successfully", request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);

@@ -204,7 +204,7 @@ public class MarksheetCtl extends BaseCtl {
                 ServletUtility.setBean(bean, request);
                 ServletUtility.setSuccessMessage("Marksheet updated successfully", request);
             } catch (ApplicationException e) {
-                e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
                 return;
             } catch (DuplicateRecordException e) {
                 ServletUtility.setBean(bean, request);

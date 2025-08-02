@@ -142,7 +142,7 @@ public class RoleCtl extends BaseCtl {
                 ServletUtility.setSuccessMessage("Role Updated successfully", request);
 
             } catch (ApplicationException e) {
-                e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
                 return;
             } catch (DuplicateRecordException e) {
                 ServletUtility.setBean(bean, request);

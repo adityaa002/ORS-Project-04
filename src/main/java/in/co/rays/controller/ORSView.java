@@ -13,9 +13,12 @@ public interface ORSView {
 	public String APP_CONTEXT = "/Project-04";
 	public String PAGE_FOLDER = "/jsp";
 	
+	
+	
     public String JAVA_DOC_VIEW = APP_CONTEXT + "/doc/index.html";
 
 
+    
 	public String MY_PROFILE_VIEW = PAGE_FOLDER + "/MyProfileView.jsp";
 	public String MY_PROFILE_CTL = APP_CONTEXT + "/MyProfileCtl";
 
@@ -94,4 +97,8 @@ public interface ORSView {
 	public String CHANGE_PASSWORD_VIEW = PAGE_FOLDER + "/ChangePasswordView.jsp";
 	public String CHANGE_PASSWORD_CTL = APP_CONTEXT + "/ChangePasswordCtl";
 
+	
+	public String ERROR_VIEW = PAGE_FOLDER + "/ErrorView.jsp";
+	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
+	
 }

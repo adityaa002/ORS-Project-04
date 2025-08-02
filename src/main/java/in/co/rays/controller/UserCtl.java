@@ -166,7 +166,7 @@ public class UserCtl extends BaseCtl {
 				UserBean bean = model.findByPk(id);
 				ServletUtility.setBean(bean, request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 			}
 
 		}
@@ -206,7 +206,7 @@ public class UserCtl extends BaseCtl {
 				ServletUtility.setSuccessMessage("Data is successfully updated", request);
 			
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);

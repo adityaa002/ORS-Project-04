@@ -161,7 +161,7 @@ public class StudentCtl extends BaseCtl {
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setSuccessMessage("Student added successfully", request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);
@@ -176,7 +176,7 @@ public class StudentCtl extends BaseCtl {
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setSuccessMessage("Student updated successfully", request);
 			} catch (ApplicationException e) {
-				e.printStackTrace();
+				ServletUtility.handleException(e, request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setBean(bean, request);
