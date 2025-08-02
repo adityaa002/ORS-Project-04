@@ -33,7 +33,7 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "CourseCtl", urlPatterns = { "/CourseCtl" })
 public class CourseCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(CollegeListCtl.class);
+	Logger log = Logger.getLogger(CourseCtl.class);
 
 
     /**
@@ -199,6 +199,7 @@ public class CourseCtl extends BaseCtl {
                 ServletUtility.setBean(bean, request);
                 ServletUtility.setSuccessMessage("Data is successfully updated", request);
             } catch (ApplicationException e) {
+            	ServletUtility.handleException(e, request, response);
                 e.printStackTrace();
             } catch (DuplicateRecordException e) {
                 ServletUtility.setBean(bean, request);

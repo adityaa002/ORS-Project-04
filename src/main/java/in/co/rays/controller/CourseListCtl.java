@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.exception.ApplicationException;
@@ -25,6 +27,9 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "CourseListCtl", urlPatterns = { "/CourseListCtl" })
 public class CourseListCtl extends BaseCtl {
 
+	Logger log = Logger.getLogger(CourseListCtl.class);
+
+	
     /**
      * Loads course data to preload in the request scope.
      *
@@ -32,6 +37,10 @@ public class CourseListCtl extends BaseCtl {
      */
     @Override
     protected void preload(HttpServletRequest request) {
+    	
+    	log.debug("CourseListCtl preload method started");
+
+    	
         CourseModel courseModel = new CourseModel();
         try {
             List<CourseBean> cList = courseModel.list();
@@ -39,6 +48,9 @@ public class CourseListCtl extends BaseCtl {
         } catch (ApplicationException e) {
             e.printStackTrace();
         }
+        
+    	log.debug("CourseListCtl preload method ended");
+
     }
 
     /**
@@ -49,10 +61,17 @@ public class CourseListCtl extends BaseCtl {
      */
     @Override
     protected BaseBean populateBean(HttpServletRequest request) {
+    	
+    	log.debug("CourseListCtl populateBean method started");
+
+    	
         CourseBean bean = new CourseBean();
         bean.setName(DataUtility.getString(request.getParameter("name")));
         bean.setId(DataUtility.getLong(request.getParameter("courseId")));
         bean.setDuration(DataUtility.getString(request.getParameter("duration")));
+        
+    	log.debug("CourseListCtl populateBean method ended");
+
         return bean;
     }
 
@@ -67,6 +86,9 @@ public class CourseListCtl extends BaseCtl {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	log.debug("CourseListCtl doget method started");
+
 
         int pageNo = 1;
         int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -92,6 +114,9 @@ public class CourseListCtl extends BaseCtl {
         } catch (ApplicationException e) {
             e.printStackTrace();
         }
+        
+    	log.debug("CourseListCtl doget method ended");
+
     }
 
     /**
@@ -105,6 +130,9 @@ public class CourseListCtl extends BaseCtl {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	log.debug("CourseListCtl dopost method started");
+
 
         List list = null;
         List next = null;
@@ -173,6 +201,9 @@ public class CourseListCtl extends BaseCtl {
             e.printStackTrace();
             return;
         }
+        
+    	log.debug("CourseListCtl dopost method ended");
+
     }
 
     /**
