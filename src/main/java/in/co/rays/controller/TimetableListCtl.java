@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.TimetableBean;
 import in.co.rays.exception.ApplicationException;
@@ -20,6 +22,9 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "TimetableListCtl", urlPatterns = { "/TimetableListCtl" })
 public class TimetableListCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(TimetableListCtl.class);
+
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -42,6 +47,9 @@ public class TimetableListCtl extends BaseCtl {
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+		log.debug("TimetableListCtl populateBean method started");
+
 
 		TimetableBean bean = new TimetableBean();
 
@@ -50,12 +58,16 @@ public class TimetableListCtl extends BaseCtl {
 		bean.setSubjectId(DataUtility.getLong(request.getParameter("subjectId")));
 
 		bean.setExamDate(DataUtility.getDate(request.getParameter("examDate")));
-
+		
+		log.debug("TimetableListCtl populateBean method ended");
 		return bean;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("TimetableListCtl doget method started");
+
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -82,11 +94,17 @@ public class TimetableListCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			ServletUtility.handleException(e, request, response);
 		}
+		
+		log.debug("TimetableListCtl doget method ended");
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("TimetableListCtl dopost method started");
+
 
 		List list = null;
 		List next = null;
@@ -158,6 +176,8 @@ public class TimetableListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
+		log.debug("TimetableListCtl dopost method ended");
+
 	}
 
 	@Override

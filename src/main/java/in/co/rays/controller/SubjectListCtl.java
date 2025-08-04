@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.SubjectBean;
@@ -20,6 +22,8 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "SubjectListCtl", urlPatterns = { "/SubjectListCtl" })
 public class SubjectListCtl extends BaseCtl {
+
+	Logger log = Logger.getLogger(SubjectListCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -43,6 +47,8 @@ public class SubjectListCtl extends BaseCtl {
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
+		log.debug("SubjectListCtl populateBean method started");
+
 		SubjectBean bean = new SubjectBean();
 
 		bean.setName(DataUtility.getString(request.getParameter("name")));
@@ -51,11 +57,14 @@ public class SubjectListCtl extends BaseCtl {
 		bean.setDescription(DataUtility.getString(request.getParameter("description")));
 		bean.setCourseId(DataUtility.getLong(request.getParameter("courseId")));
 
+		log.debug("SubjectListCtl populateBean method ended");
 		return bean;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		log.debug("SubjectListCtl doget method started");
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -82,11 +91,15 @@ public class SubjectListCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			ServletUtility.handleException(e, request, response);
 		}
+		log.debug("SubjectListCtl doget method ended");
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		log.debug("SubjectListCtl dopost method started");
 
 		List list = null;
 		List next = null;
@@ -158,6 +171,8 @@ public class SubjectListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
+		log.debug("SubjectListCtl dopost method ended");
+
 	}
 
 	@Override
