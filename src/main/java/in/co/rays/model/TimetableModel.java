@@ -349,8 +349,7 @@ public class TimetableModel {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
-	public List<TimetableBean> search(TimetableBean bean, int pageNo, int pageSize) throws ApplicationException {
+ 	public List<TimetableBean> search(TimetableBean bean, int pageNo, int pageSize) throws ApplicationException {
 		StringBuffer sql = new StringBuffer("select * from st_timetable where 1=1");
 
 		if (bean != null) {

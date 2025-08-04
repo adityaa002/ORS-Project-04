@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.bean.UserBean;
@@ -21,6 +23,8 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "UserListCtl", urlPatterns = { "/UserListCtl" })
 public class UserListCtl extends BaseCtl {
+
+	Logger log = Logger.getLogger(UserListCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -36,20 +40,24 @@ public class UserListCtl extends BaseCtl {
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		
+
+		log.debug("UserListCtl populateBean method started");
+
 		UserBean bean = new UserBean();
 
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLogin(DataUtility.getString(request.getParameter("login")));
 		bean.setRoleId(DataUtility.getLong(request.getParameter("roleId")));
 
+		log.debug("UserListCtl populateBean method ended");
 		return bean;
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("in userCtl doget");
+
+		log.debug("UserListCtl doget method started");
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -76,12 +84,15 @@ public class UserListCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			ServletUtility.handleException(e, request, response);
 		}
+		log.debug("UserListCtl doget method ended");
 
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		log.debug("UserListCtl dopost method started");
 
 		List list = null;
 		List next = null;
@@ -155,7 +166,7 @@ public class UserListCtl extends BaseCtl {
 			e.printStackTrace();
 			return;
 		}
-
+		log.debug("UserListCtl dopost method ended");
 	}
 
 	@Override
