@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.bean.UserBean;
@@ -20,11 +22,17 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "UserRegistrationCtl", urlPatterns = { "/UserRegistrationCtl" })
 public class UserRegistrationCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(UserRegistrationCtl.class);
+
 
 	public static final String OP_SIGN_UP = "Sign Up";
 
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+		
+		log.debug("UserRegistrationCtl validate method started");
+
 
 		boolean pass = true;
 
@@ -89,11 +97,14 @@ public class UserRegistrationCtl extends BaseCtl {
 			request.setAttribute("mobileNo", "Invalid Mobile No");
 			pass = false;
 		}
+		log.debug("UserRegistrationCtl validate method started with status :" + pass);
 		return pass;
 	}
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+		log.debug("UserRegistrationCtl populateBean method started");
 
 		UserBean bean = new UserBean();
 
@@ -119,18 +130,28 @@ public class UserRegistrationCtl extends BaseCtl {
 
 		populateDto(bean, request);
 		
+		log.debug("UserRegistrationCtl populateBean method ended");
 		return bean;
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("UserRegistrationCtl doget method started");
+
 		ServletUtility.forward(getView(), request, response);
+		
+		log.debug("UserRegistrationCtl doget method ended");
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("UserRegistrationCtl dopost method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 		UserModel model = new UserModel();
@@ -159,6 +180,8 @@ public class UserRegistrationCtl extends BaseCtl {
 		}else if(OP_RESET.equalsIgnoreCase(op)) {
 			ServletUtility.redirect(ORSView.USER_REGISTRATION_CTL, request, response);
 		}
+		log.debug("UserRegistrationCtl dopost method ended");
+
 	}
 
 	@Override
