@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.StudentBean;
@@ -23,6 +25,9 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "StudentCtl", urlPatterns = { "/StudentCtl" })
 public class StudentCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(StudentCtl .class);
+
 
 	@Override
 	protected void preload(HttpServletRequest request) {

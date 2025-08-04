@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.exception.ApplicationException;
@@ -25,6 +27,9 @@ import in.co.rays.util.ServletUtility;
  */
 @WebServlet(name = "RoleCtl", urlPatterns = { "/RoleCtl" })
 public class RoleCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(RoleCtl.class);
+
 
     /**
      * Validates Role form input.
@@ -34,6 +39,9 @@ public class RoleCtl extends BaseCtl {
      */
     @Override
     protected boolean validate(HttpServletRequest request) {
+    	
+		log.debug("RoleCtl validate method started");
+
         boolean pass = true;
 
         if (DataValidator.isNull(request.getParameter("roleName"))) {
@@ -47,6 +55,8 @@ public class RoleCtl extends BaseCtl {
             request.setAttribute("description", PropertyReader.getValue("error.require", "Description"));
             pass = false;
         }
+        
+		log.debug("RoleCtl validate method ended with status :"+ pass);
 
         return pass;
     }
@@ -60,14 +70,17 @@ public class RoleCtl extends BaseCtl {
     @Override
     protected BaseBean populateBean(HttpServletRequest request) {
 
+		log.debug("RoleCtl populateBean method started");
+
+    	
         RoleBean bean = new RoleBean();
         bean.setId(DataUtility.getLong(request.getParameter("id")));
         bean.setName(DataUtility.getString(request.getParameter("roleName")));
         bean.setDescription(DataUtility.getString(request.getParameter("description")));
 
-        System.out.println("bean populated");
-
         populateDto(bean, request);
+		log.debug("RoleCtl populateBean method ended");
+
         return bean;
     }
 
@@ -80,6 +93,9 @@ public class RoleCtl extends BaseCtl {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+		log.debug("RoleCtl doget method started");
+
 
         String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -99,6 +115,9 @@ public class RoleCtl extends BaseCtl {
         }
 
         ServletUtility.forward(getView(), request, response);
+        
+		log.debug("RoleCtl doget method ended");
+
     }
 
     /**
@@ -110,6 +129,9 @@ public class RoleCtl extends BaseCtl {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+		log.debug("RoleCtl dopost method started");
+
 
         String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -159,6 +181,9 @@ public class RoleCtl extends BaseCtl {
         }
 
         ServletUtility.forward(getView(), request, response);
+        
+		log.debug("RoleCtl dopost method ended");
+
     }
 
     /**

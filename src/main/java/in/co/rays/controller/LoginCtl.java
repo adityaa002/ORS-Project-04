@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.bean.UserBean;
@@ -27,6 +29,9 @@ import in.co.rays.util.ServletUtility;
   */
 @WebServlet(name = "LoginCtl", urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(LoginCtl.class);
+	
 
 	public static final String OP_SIGN_IN = "Sign In";
 	public static final String OP_SIGN_UP = "Sign Up";
@@ -41,6 +46,10 @@ public class LoginCtl extends BaseCtl {
 	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+		
+    	log.debug("LoginCtl validate method started");
+
+		
 		boolean pass = true;
 
 		String op = DataUtility.getString(request.getParameter("operation"));
@@ -66,7 +75,9 @@ public class LoginCtl extends BaseCtl {
 			request.setAttribute("password", "Invalid password");
 		}
 
+		log.debug("LoginCtl validate method ended");
 		return pass;
+
 	}
 
 	/**
@@ -78,11 +89,16 @@ public class LoginCtl extends BaseCtl {
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
+		log.debug("LoginCtl populateBean method started");
+
+		
 		UserBean bean = new UserBean();
 
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
 		bean.setLogin(DataUtility.getString(request.getParameter("loginId")));
 		bean.setPassword(DataUtility.getString(request.getParameter("password")));
+		
+		log.debug("LoginCtl populateBean method ended");
 		return bean;
 
 	}
@@ -98,6 +114,9 @@ public class LoginCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("LoginCtl doget method started");
+
 
 		HttpSession session = request.getSession();
 
@@ -111,6 +130,7 @@ public class LoginCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("LoginCtl doget method ended");
 
 	}
 
@@ -125,7 +145,9 @@ public class LoginCtl extends BaseCtl {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("in do post method");
+		
+		log.debug("LoginCtl dopost method started");
+		
 		HttpSession session = request.getSession();
 
 		String op = DataUtility.getString(request.getParameter("operation"));
@@ -170,6 +192,7 @@ public class LoginCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("LoginCtl dopost method ended");
 
 	}
 

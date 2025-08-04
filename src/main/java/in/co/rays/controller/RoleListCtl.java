@@ -17,6 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.bean.UserBean;
@@ -31,6 +33,9 @@ import in.co.rays.util.ServletUtility;
  */
 @WebServlet(name = "RoleListCtl", urlPatterns = { "/RoleListCtl" })
 public class RoleListCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(RoleListCtl.class);
+
 
     /**
      * Preloads the list of roles for the view.
@@ -56,9 +61,15 @@ public class RoleListCtl extends BaseCtl {
      */
     @Override
     protected BaseBean populateBean(HttpServletRequest request) {
+    	
+		log.debug("RoleListCtl populateBean method started");
+
+    	
         RoleBean bean = new RoleBean();
         bean.setId(DataUtility.getLong(request.getParameter("roleId")));
         bean.setName(DataUtility.getString(request.getParameter("name")));
+        
+		log.debug("RoleListCtl populateBean method ended");
         return bean;
     }
 
@@ -71,6 +82,9 @@ public class RoleListCtl extends BaseCtl {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+		log.debug("RoleListCtl doget method started");
+
 
         int pageNo = 1;
         int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -98,6 +112,8 @@ public class RoleListCtl extends BaseCtl {
         }
 
         ServletUtility.forward(getView(), request, response);
+		log.debug("RoleListCtl doget method ended");
+
     }
 
     /**
@@ -110,6 +126,9 @@ public class RoleListCtl extends BaseCtl {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+		log.debug("RoleListCtl dopost method started");
+
 
         List list = null;
         List next = null;
@@ -181,6 +200,9 @@ public class RoleListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
             return;
         }
+        
+		log.debug("RoleListCtl dopost method ended");
+
     }
 
     /**

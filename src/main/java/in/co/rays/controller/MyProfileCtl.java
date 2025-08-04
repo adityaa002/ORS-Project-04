@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
@@ -19,13 +21,15 @@ import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
 /**
- * Controller to handle My Profile functionality including
- * viewing and updating user profile data.
+ * Controller to handle My Profile functionality including viewing and updating
+ * user profile data.
  * 
  * @author Aditya
  */
 @WebServlet(name = "MyProfileCtl", urlPatterns = { "/MyProfileCtl" })
 public class MyProfileCtl extends BaseCtl {
+
+	Logger log = Logger.getLogger(MyProfileCtl.class);
 
 	/** Operation for changing the password from profile view */
 	public static final String OP_CHANGE_MY_PASSWORD = "Change Password";
@@ -38,6 +42,8 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+
+		log.debug("MyProfileCtl validate method started");
 
 		boolean pass = true;
 
@@ -84,7 +90,9 @@ public class MyProfileCtl extends BaseCtl {
 			pass = false;
 		}
 
+		log.debug("MyProfileCtl validate method ended with status :" + pass);
 		return pass;
+
 	}
 
 	/**
@@ -95,6 +103,9 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+		log.debug("MyProfileCtl populateBean method started");
+
 
 		UserBean bean = new UserBean();
 
@@ -113,13 +124,14 @@ public class MyProfileCtl extends BaseCtl {
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 
 		populateDto(bean, request);
-
+		
+		log.debug("MyProfileCtl populateBean method ended");
 		return bean;
 	}
 
 	/**
-	 * Handles HTTP GET request to pre-fill the profile form
-	 * with current logged-in user data.
+	 * Handles HTTP GET request to pre-fill the profile form with current logged-in
+	 * user data.
 	 * 
 	 * @param request  HttpServletRequest object
 	 * @param response HttpServletResponse object
@@ -128,6 +140,9 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("MyProfileCtl doget method started");
+
 
 		HttpSession session = request.getSession(true);
 		UserBean user = (UserBean) session.getAttribute("user");
@@ -146,11 +161,13 @@ public class MyProfileCtl extends BaseCtl {
 			}
 		}
 		ServletUtility.forward(getView(), request, response);
+		log.debug("MyProfileCtl doget method ended");
+
 	}
 
 	/**
-	 * Handles HTTP POST request to update the user profile
-	 * or redirect to Change Password controller.
+	 * Handles HTTP POST request to update the user profile or redirect to Change
+	 * Password controller.
 	 * 
 	 * @param request  HttpServletRequest object
 	 * @param response HttpServletResponse object
@@ -159,6 +176,9 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("MyProfileCtl dopost method started");
+
 
 		HttpSession session = request.getSession(true);
 
@@ -195,6 +215,9 @@ public class MyProfileCtl extends BaseCtl {
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);
+		
+		log.debug("MyProfileCtl dopost method ended");
+
 	}
 
 	/**
