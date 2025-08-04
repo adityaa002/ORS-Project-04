@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.MarksheetBean;
 import in.co.rays.bean.StudentBean;
@@ -21,213 +23,238 @@ import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
 /**
- * MarksheetCtl servlet class to handle create/update/view operations on marksheet.
+ * MarksheetCtl servlet class to handle create/update/view operations on
+ * marksheet.
  * 
- * @author 
+ * @author
  */
 @WebServlet(name = "MarksheetCtl", urlPatterns = { "/MarksheetCtl" })
 public class MarksheetCtl extends BaseCtl {
 
-    /**
-     * Preloads student list to populate dropdown.
-     *
-     * @param request the HTTP request
-     */
-    @Override
-    protected void preload(HttpServletRequest request) {
-        StudentModel model = new StudentModel();
-        try {
-            List<StudentBean> stList = model.list();
-            request.setAttribute("stList", stList);
-        } catch (ApplicationException e) {
-            e.printStackTrace();
-        }
-    }
+	Logger log = Logger.getLogger(MarksheetCtl.class);
 
-    /**
-     * Validates input fields for marksheet.
-     *
-     * @param request the HTTP request
-     * @return true if all fields are valid, false otherwise
-     */
-    @Override
-    protected boolean validate(HttpServletRequest request) {
-        boolean pass = true;
+	/**
+	 * Preloads student list to populate dropdown.
+	 *
+	 * @param request the HTTP request
+	 */
+	@Override
+	protected void preload(HttpServletRequest request) {
+		
+ 
+		StudentModel model = new StudentModel();
+		try {
+			List<StudentBean> stList = model.list();
+			request.setAttribute("stList", stList);
+		} catch (ApplicationException e) {
+			e.printStackTrace();
+		}
+ 
+	}
 
-        if (DataValidator.isNull(request.getParameter("studentId"))) {
-            request.setAttribute("studentId", PropertyReader.getValue("error.require", "Student Name"));
-            pass = false;
-        }
+	/**
+	 * Validates input fields for marksheet.
+	 *
+	 * @param request the HTTP request
+	 * @return true if all fields are valid, false otherwise
+	 */
+	@Override
+	protected boolean validate(HttpServletRequest request) {
+		
+		log.debug("MarksheetCtl validate method started");
+		
+		boolean pass = true;
 
-        if (DataValidator.isNull(request.getParameter("rollNo"))) {
-            request.setAttribute("rollNo", PropertyReader.getValue("error.require", "Roll Number"));
-            pass = false;
-        } else if (!DataValidator.isRollNo(request.getParameter("rollNo"))) {
-            request.setAttribute("rollNo", "Roll No is invalid");
-            pass = false;
-        }
+		if (DataValidator.isNull(request.getParameter("studentId"))) {
+			request.setAttribute("studentId", PropertyReader.getValue("error.require", "Student Name"));
+			pass = false;
+		}
 
-        if (DataValidator.isNull(request.getParameter("physics"))) {
-            request.setAttribute("physics", PropertyReader.getValue("error.require", "Marks"));
-            pass = false;
-        } else if (!DataValidator.isInteger(request.getParameter("physics"))) {
-            request.setAttribute("physics", PropertyReader.getValue("error.integer", "Marks"));
-            pass = false;
-        } else if (DataUtility.getInt(request.getParameter("physics")) > 100
-                || DataUtility.getInt(request.getParameter("physics")) < 0) {
-            request.setAttribute("physics", "Marks should be in 0 to 100");
-            pass = false;
-        }
+		if (DataValidator.isNull(request.getParameter("rollNo"))) {
+			request.setAttribute("rollNo", PropertyReader.getValue("error.require", "Roll Number"));
+			pass = false;
+		} else if (!DataValidator.isRollNo(request.getParameter("rollNo"))) {
+			request.setAttribute("rollNo", "Roll No is invalid");
+			pass = false;
+		}
 
-        if (DataValidator.isNull(request.getParameter("chemistry"))) {
-            request.setAttribute("chemistry", PropertyReader.getValue("error.require", "Marks"));
-            pass = false;
-        } else if (!DataValidator.isInteger(request.getParameter("chemistry"))) {
-            request.setAttribute("chemistry", PropertyReader.getValue("error.integer", "Marks"));
-            pass = false;
-        } else if (DataUtility.getInt(request.getParameter("chemistry")) > 100
-                || DataUtility.getInt(request.getParameter("chemistry")) < 0) {
-            request.setAttribute("chemistry", "Marks should be in 0 to 100");
-            pass = false;
-        }
+		if (DataValidator.isNull(request.getParameter("physics"))) {
+			request.setAttribute("physics", PropertyReader.getValue("error.require", "Marks"));
+			pass = false;
+		} else if (!DataValidator.isInteger(request.getParameter("physics"))) {
+			request.setAttribute("physics", PropertyReader.getValue("error.integer", "Marks"));
+			pass = false;
+		} else if (DataUtility.getInt(request.getParameter("physics")) > 100
+				|| DataUtility.getInt(request.getParameter("physics")) < 0) {
+			request.setAttribute("physics", "Marks should be in 0 to 100");
+			pass = false;
+		}
 
-        if (DataValidator.isNull(request.getParameter("maths"))) {
-            request.setAttribute("maths", PropertyReader.getValue("error.require", "Marks"));
-            pass = false;
-        } else if (!DataValidator.isInteger(request.getParameter("maths"))) {
-            request.setAttribute("maths", PropertyReader.getValue("error.integer", "Marks"));
-            pass = false;
-        } else if (DataUtility.getInt(request.getParameter("maths")) > 100
-                || DataUtility.getInt(request.getParameter("maths")) < 0) {
-            request.setAttribute("maths", "Marks should be in 0 to 100");
-            pass = false;
-        }
+		if (DataValidator.isNull(request.getParameter("chemistry"))) {
+			request.setAttribute("chemistry", PropertyReader.getValue("error.require", "Marks"));
+			pass = false;
+		} else if (!DataValidator.isInteger(request.getParameter("chemistry"))) {
+			request.setAttribute("chemistry", PropertyReader.getValue("error.integer", "Marks"));
+			pass = false;
+		} else if (DataUtility.getInt(request.getParameter("chemistry")) > 100
+				|| DataUtility.getInt(request.getParameter("chemistry")) < 0) {
+			request.setAttribute("chemistry", "Marks should be in 0 to 100");
+			pass = false;
+		}
 
-        return pass;
-    }
+		if (DataValidator.isNull(request.getParameter("maths"))) {
+			request.setAttribute("maths", PropertyReader.getValue("error.require", "Marks"));
+			pass = false;
+		} else if (!DataValidator.isInteger(request.getParameter("maths"))) {
+			request.setAttribute("maths", PropertyReader.getValue("error.integer", "Marks"));
+			pass = false;
+		} else if (DataUtility.getInt(request.getParameter("maths")) > 100
+				|| DataUtility.getInt(request.getParameter("maths")) < 0) {
+			request.setAttribute("maths", "Marks should be in 0 to 100");
+			pass = false;
+		}
+		log.debug("MarksheetCtl validate method ended with status " + pass);
 
-    /**
-     * Populates a MarksheetBean from the request parameters.
-     *
-     * @param request the HTTP request
-     * @return the populated MarksheetBean
-     */
-    @Override
-    protected BaseBean populateBean(HttpServletRequest request) {
+		return pass;
+	}
 
-        MarksheetBean bean = new MarksheetBean();
+	/**
+	 * Populates a MarksheetBean from the request parameters.
+	 *
+	 * @param request the HTTP request
+	 * @return the populated MarksheetBean
+	 */
+	@Override
+	protected BaseBean populateBean(HttpServletRequest request) {
+		
+		log.debug("MarksheetCtl populateBean method started");
 
-        bean.setId(DataUtility.getLong(request.getParameter("id")));
-        bean.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
-        bean.setName(DataUtility.getString(request.getParameter("name")));
 
-        if (request.getParameter("physics") != null && request.getParameter("physics").length() != 0) {
-            bean.setPhysics(DataUtility.getInt(request.getParameter("physics")));
-        }
-        if (request.getParameter("chemistry") != null && request.getParameter("chemistry").length() != 0) {
-            bean.setChemistry(DataUtility.getInt(request.getParameter("chemistry")));
-        }
-        if (request.getParameter("maths") != null && request.getParameter("maths").length() != 0) {
-            bean.setMaths(DataUtility.getInt(request.getParameter("maths")));
-        }
+		MarksheetBean bean = new MarksheetBean();
 
-        bean.setStudentId(DataUtility.getLong(request.getParameter("studentId")));
+		bean.setId(DataUtility.getLong(request.getParameter("id")));
+		bean.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
+		bean.setName(DataUtility.getString(request.getParameter("name")));
 
-        populateDto(bean, request);
+		if (request.getParameter("physics") != null && request.getParameter("physics").length() != 0) {
+			bean.setPhysics(DataUtility.getInt(request.getParameter("physics")));
+		}
+		if (request.getParameter("chemistry") != null && request.getParameter("chemistry").length() != 0) {
+			bean.setChemistry(DataUtility.getInt(request.getParameter("chemistry")));
+		}
+		if (request.getParameter("maths") != null && request.getParameter("maths").length() != 0) {
+			bean.setMaths(DataUtility.getInt(request.getParameter("maths")));
+		}
 
-        return bean;
-    }
+		bean.setStudentId(DataUtility.getLong(request.getParameter("studentId")));
 
-    /**
-     * Handles HTTP GET requests. Loads a marksheet if ID is given.
-     *
-     * @param request  the HTTP request
-     * @param response the HTTP response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		populateDto(bean, request);
+		
+		log.debug("MarksheetCtl populateBean method ended");
 
-        String op = DataUtility.getString(request.getParameter("operation"));
-        long id = DataUtility.getLong(request.getParameter("id"));
+		return bean;
+	}
 
-        MarksheetModel model = new MarksheetModel();
+	/**
+	 * Handles HTTP GET requests. Loads a marksheet if ID is given.
+	 *
+	 * @param request  the HTTP request
+	 * @param response the HTTP response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		log.debug("MarksheetCtl doget method started");
 
-        if (id > 0 || op != null) {
-            try {
-                MarksheetBean bean = model.findByPk(id);
-                ServletUtility.setBean(bean, request);
-            } catch (ApplicationException e) {
-                e.printStackTrace();
-                return;
-            }
-        }
 
-        ServletUtility.forward(getView(), request, response);
-    }
+		String op = DataUtility.getString(request.getParameter("operation"));
+		long id = DataUtility.getLong(request.getParameter("id"));
 
-    /**
-     * Handles HTTP POST requests to save, update, reset, or cancel a marksheet.
-     *
-     * @param request  the HTTP request
-     * @param response the HTTP response
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		MarksheetModel model = new MarksheetModel();
 
-        String op = DataUtility.getString(request.getParameter("operation"));
+		if (id > 0 || op != null) {
+			try {
+				MarksheetBean bean = model.findByPk(id);
+				ServletUtility.setBean(bean, request);
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+				return;
+			}
+		}
 
-        MarksheetModel model = new MarksheetModel();
+		ServletUtility.forward(getView(), request, response);
+		log.debug("MarksheetCtl doget method ended");
 
-        if (OP_SAVE.equalsIgnoreCase(op)) {
-            MarksheetBean bean = (MarksheetBean) populateBean(request);
-            try {
-                long pk = model.add(bean);
-                ServletUtility.setBean(bean, request);
-                ServletUtility.setSuccessMessage("Marksheet added successfully", request);
-            } catch (ApplicationException e) {
-                e.printStackTrace();
-                return;
-            } catch (DuplicateRecordException e) {
-                ServletUtility.setBean(bean, request);
-                ServletUtility.setErrorMessage("Roll No already exists", request);
-            }
-        } else if (OP_UPDATE.equalsIgnoreCase(op)) {
-            MarksheetBean bean = (MarksheetBean) populateBean(request);
-            try {
-                if (bean.getId() > 0) {
-                    model.update(bean);
-                }
-                ServletUtility.setBean(bean, request);
-                ServletUtility.setSuccessMessage("Marksheet updated successfully", request);
-            } catch (ApplicationException e) {
+	}
+
+	/**
+	 * Handles HTTP POST requests to save, update, reset, or cancel a marksheet.
+	 *
+	 * @param request  the HTTP request
+	 * @param response the HTTP response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		log.debug("MarksheetCtl dopost method started");
+
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		MarksheetModel model = new MarksheetModel();
+
+		if (OP_SAVE.equalsIgnoreCase(op)) {
+			MarksheetBean bean = (MarksheetBean) populateBean(request);
+			try {
+				long pk = model.add(bean);
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setSuccessMessage("Marksheet added successfully", request);
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+				return;
+			} catch (DuplicateRecordException e) {
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setErrorMessage("Roll No already exists", request);
+			}
+		} else if (OP_UPDATE.equalsIgnoreCase(op)) {
+			MarksheetBean bean = (MarksheetBean) populateBean(request);
+			try {
+				if (bean.getId() > 0) {
+					model.update(bean);
+				}
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setSuccessMessage("Marksheet updated successfully", request);
+			} catch (ApplicationException e) {
 				ServletUtility.handleException(e, request, response);
-                return;
-            } catch (DuplicateRecordException e) {
-                ServletUtility.setBean(bean, request);
-                ServletUtility.setErrorMessage("Roll No already exists", request);
-            }
-        } else if (OP_CANCEL.equalsIgnoreCase(op)) {
-            ServletUtility.redirect(ORSView.MARKSHEET_LIST_CTL, request, response);
-            return;
-        } else if (OP_RESET.equalsIgnoreCase(op)) {
-            ServletUtility.redirect(ORSView.MARKSHEET_CTL, request, response);
-            return;
-        }
+				return;
+			} catch (DuplicateRecordException e) {
+				ServletUtility.setBean(bean, request);
+				ServletUtility.setErrorMessage("Roll No already exists", request);
+			}
+		} else if (OP_CANCEL.equalsIgnoreCase(op)) {
+			ServletUtility.redirect(ORSView.MARKSHEET_LIST_CTL, request, response);
+			return;
+		} else if (OP_RESET.equalsIgnoreCase(op)) {
+			ServletUtility.redirect(ORSView.MARKSHEET_CTL, request, response);
+			return;
+		}
 
-        ServletUtility.forward(getView(), request, response);
-    }
+		ServletUtility.forward(getView(), request, response);
+		log.debug("MarksheetCtl dopost method ended");
 
-    /**
-     * Returns the view page for this controller.
-     *
-     * @return the view path
-     */
-    @Override
-    protected String getView() {
-        return ORSView.MARKSHEET_VIEW;
-    }
+	}
+
+	/**
+	 * Returns the view page for this controller.
+	 *
+	 * @return the view path
+	 */
+	@Override
+	protected String getView() {
+		return ORSView.MARKSHEET_VIEW;
+	}
 }

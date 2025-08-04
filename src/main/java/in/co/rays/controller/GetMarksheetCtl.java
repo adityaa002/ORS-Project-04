@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.MarksheetBean;
 import in.co.rays.exception.ApplicationException;
@@ -24,95 +26,113 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "GetMarksheetCtl", urlPatterns = { "/GetMarksheetCtl" })
 public class GetMarksheetCtl extends BaseCtl {
 
-    /**
-     * Validates the input data from request.
-     *
-     * @param request the HttpServletRequest object
-     * @return boolean indicating whether the input is valid
-     */
-    @Override
-    protected boolean validate(HttpServletRequest request) {
+	Logger log = Logger.getLogger(GetMarksheetCtl.class);
 
-        boolean pass = true;
+	/**
+	 * Validates the input data from request.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @return boolean indicating whether the input is valid
+	 */
+	@Override
+	protected boolean validate(HttpServletRequest request) {
 
-        if (DataValidator.isNull(request.getParameter("rollNo"))) {
-            request.setAttribute("rollNo", PropertyReader.getValue("error.require", "Roll Number"));
-            pass = false;
-        }
+		log.debug("GetMarksheetCtl validate method started");
 
-        return pass;
-    }
+		boolean pass = true;
 
-    /**
-     * Populates a MarksheetBean object from the request parameters.
-     *
-     * @param request the HttpServletRequest object
-     * @return populated MarksheetBean
-     */
-    @Override
-    protected BaseBean populateBean(HttpServletRequest request) {
+		if (DataValidator.isNull(request.getParameter("rollNo"))) {
+			request.setAttribute("rollNo", PropertyReader.getValue("error.require", "Roll Number"));
+			pass = false;
+		}
 
-        MarksheetBean bean = new MarksheetBean();
+		log.debug("GetMarksheetCtl validate method ended");
 
-        bean.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
+		return pass;
+	}
 
-        return bean;
-    }
+	/**
+	 * Populates a MarksheetBean object from the request parameters.
+	 *
+	 * @param request the HttpServletRequest object
+	 * @return populated MarksheetBean
+	 */
+	@Override
+	protected BaseBean populateBean(HttpServletRequest request) {
 
-    /**
-     * Handles GET requests and forwards to the appropriate view.
-     *
-     * @param request  the HttpServletRequest object
-     * @param response the HttpServletResponse object
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        ServletUtility.forward(getView(), request, response);
-    }
+		log.debug("GetMarksheetCtl populateBean method started");
 
-    /**
-     * Handles POST requests for retrieving the marksheet based on roll number.
-     *
-     * @param request  the HttpServletRequest object
-     * @param response the HttpServletResponse object
-     * @throws ServletException
-     * @throws IOException
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+		MarksheetBean bean = new MarksheetBean();
 
-        String op = DataUtility.getString(request.getParameter("operation"));
+		bean.setRollNo(DataUtility.getString(request.getParameter("rollNo")));
 
-        MarksheetModel model = new MarksheetModel();
+		log.debug("GetMarksheetCtl populateBean method ended");
+		return bean;
+	}
 
-        MarksheetBean bean = (MarksheetBean) populateBean(request);
+	/**
+	 * Handles GET requests and forwards to the appropriate view.
+	 *
+	 * @param request  the HttpServletRequest object
+	 * @param response the HttpServletResponse object
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		log.debug("GetMarksheetCtl doget method started");
 
-        if (OP_GO.equalsIgnoreCase(op)) {
-            try {
-                bean = model.findByRollNo(bean.getRollNo());
-                if (bean != null) {
-                    ServletUtility.setBean(bean, request);
-                } else {
-                    ServletUtility.setErrorMessage("RollNo Does Not exists", request);
-                }
-            } catch (ApplicationException e) {
-                e.printStackTrace();
-                //ServletUtility.handleException(e, request, response);
-                return;
-            }
-        }
-        ServletUtility.forward(getView(), request, response);
-    }
+		ServletUtility.forward(getView(), request, response);
+		
+		log.debug("GetMarksheetCtl doget method ended");
+	}
 
-    /**
-     * Returns the view page for this controller.
-     *
-     * @return the view name
-     */
-    @Override
-    protected String getView() {
-        return ORSView.GET_MARKSHEET_VIEW;
-    }
+	/**
+	 * Handles POST requests for retrieving the marksheet based on roll number.
+	 *
+	 * @param request  the HttpServletRequest object
+	 * @param response the HttpServletResponse object
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+    	log.debug("GetMarksheetCtl dopost method started");
+
+
+		String op = DataUtility.getString(request.getParameter("operation"));
+
+		MarksheetModel model = new MarksheetModel();
+
+		MarksheetBean bean = (MarksheetBean) populateBean(request);
+
+		if (OP_GO.equalsIgnoreCase(op)) {
+			try {
+				bean = model.findByRollNo(bean.getRollNo());
+				if (bean != null) {
+					ServletUtility.setBean(bean, request);
+				} else {
+					ServletUtility.setErrorMessage("RollNo Does Not exists", request);
+				}
+			} catch (ApplicationException e) {
+				e.printStackTrace();
+				// ServletUtility.handleException(e, request, response);
+				return;
+			}
+		}
+		ServletUtility.forward(getView(), request, response);
+    	log.debug("GetMarksheetCtl dopost method ended");
+
+	}
+
+	/**
+	 * Returns the view page for this controller.
+	 *
+	 * @return the view name
+	 */
+	@Override
+	protected String getView() {
+		return ORSView.GET_MARKSHEET_VIEW;
+	}
 }

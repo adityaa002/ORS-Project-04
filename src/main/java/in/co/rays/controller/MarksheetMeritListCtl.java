@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.MarksheetBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.model.MarksheetModel;
@@ -23,9 +25,15 @@ import in.co.rays.util.ServletUtility;
  */
 @WebServlet(name = "MarksheetMeritListCtl", urlPatterns = { "/MarksheetMeritListCtl" })
 public class MarksheetMeritListCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(MarksheetMeritListCtl.class);
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("MarksheetMeritListCtl doget method started");
+
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -50,10 +58,15 @@ public class MarksheetMeritListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
+		log.debug("MarksheetMeritListCtl doget method ended");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("MarksheetMeritListCtl dopost method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -61,6 +74,9 @@ public class MarksheetMeritListCtl extends BaseCtl {
 			ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
 			return;
 		}
+		
+		log.debug("MarksheetMeritListCtl dopost method ended");
+
 	}
 
 	@Override

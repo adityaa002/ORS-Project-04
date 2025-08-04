@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.FacultyBean;
@@ -34,6 +36,8 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "FacultyCtl", urlPatterns = { "/FacultyCtl" })
 public class FacultyCtl extends BaseCtl {
 
+	Logger log =Logger.getLogger(FacultyCtl.class);
+	
 	/**
 	 * Preloads college, course, and subject data for dropdowns on Faculty form.
 	 *
@@ -41,6 +45,8 @@ public class FacultyCtl extends BaseCtl {
 	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
+		
+    	log.debug("FacultyCtl preload method started");
 
 		CollegeModel collegeModel = new CollegeModel();
 		SubjectModel subjectModel = new SubjectModel();
@@ -60,6 +66,8 @@ public class FacultyCtl extends BaseCtl {
 			e.printStackTrace();
 			return;
 		}
+    	log.debug("FacultyCtl preload method ended");
+
 	}
 
 	/**
@@ -70,6 +78,9 @@ public class FacultyCtl extends BaseCtl {
 	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+		
+    	log.debug("FacultyCtl validate method started");
+
 
 		boolean pass = true;
 
@@ -127,6 +138,8 @@ public class FacultyCtl extends BaseCtl {
 			request.setAttribute("subjectId", PropertyReader.getValue("error.require", "Subject Name"));
 			pass = false;
 		}
+		
+    	log.debug("FacultyCtl validate method ended");
 
 		return pass;
 	}
@@ -139,6 +152,9 @@ public class FacultyCtl extends BaseCtl {
 	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+    	log.debug("FacultyCtl populateBean method started");
+
 
 		FacultyBean bean = new FacultyBean();
 
@@ -155,6 +171,8 @@ public class FacultyCtl extends BaseCtl {
 
 		populateDto(bean, request);
 
+    	log.debug("FacultyCtl populateBean method ended");
+
 		return bean;
 	}
 
@@ -169,6 +187,9 @@ public class FacultyCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+    	log.debug("FacultyCtl doget method started");
+
+		
 		String op = DataUtility.getString(request.getParameter("operation"));
 		long id = DataUtility.getLong(request.getParameter("id"));
 
@@ -184,6 +205,8 @@ public class FacultyCtl extends BaseCtl {
 			}
 		}
 		ServletUtility.forward(getView(), request, response);
+    	log.debug("FacultyCtl doget method ended");
+
 	}
 
 	/**
@@ -197,6 +220,9 @@ public class FacultyCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+    	log.debug("FacultyCtl dopost method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -241,7 +267,10 @@ public class FacultyCtl extends BaseCtl {
 			ServletUtility.redirect(ORSView.FACULTY_CTL, request, response);
 			return;
 		}
+		
 		ServletUtility.forward(getView(), request, response);
+    	log.debug("FacultyCtl dopost method ended`");
+
 	}
 
 	/**

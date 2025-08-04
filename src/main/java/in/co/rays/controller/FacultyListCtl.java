@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.FacultyBean;
 import in.co.rays.exception.ApplicationException;
@@ -27,6 +29,8 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "FacultyListCtl", urlPatterns = { "/FacultyListCtl" })
 public class FacultyListCtl extends BaseCtl {
 
+	Logger log = Logger.getLogger(FacultyListCtl.class);
+
 	/**
 	 * Populates FacultyBean object from request parameters.
 	 * 
@@ -36,11 +40,17 @@ public class FacultyListCtl extends BaseCtl {
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+    	log.debug("FacultyListCtl populateBean method started");
+
+		
 		FacultyBean bean = new FacultyBean();
 
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
 		bean.setEmail(DataUtility.getString(request.getParameter("email")));
+
+    	log.debug("FacultyListCtl populateBean method ended");
 
 		return bean;
 	}
@@ -57,6 +67,9 @@ public class FacultyListCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+    	log.debug("FacultyListCtl doget method started");
+
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -85,6 +98,9 @@ public class FacultyListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+    	log.debug("FacultyListCtl doget method ended");
+
 
 	}
 
@@ -100,6 +116,9 @@ public class FacultyListCtl extends BaseCtl {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+    	log.debug("FacultyListCtl dopost method started");
+
 
 		List list = null;
 		List next = null;
@@ -172,6 +191,9 @@ public class FacultyListCtl extends BaseCtl {
 			e.printStackTrace();
 		}
 		ServletUtility.forward(getView(), request, response);
+		
+    	log.debug("FacultyListCtl dopost method ended");
+
 	}
 
 	/**
