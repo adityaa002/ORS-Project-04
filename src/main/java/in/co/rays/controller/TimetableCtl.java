@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.TimetableBean;
 import in.co.rays.exception.ApplicationException;
@@ -22,9 +24,13 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "TimetableCtl", urlPatterns = { "/TimetableCtl" })
 public class TimetableCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(TimetableCtl.class);
+
 
 	@Override
 	protected void preload(HttpServletRequest request) {
+		
 
 		SubjectModel subjectModel = new SubjectModel();
 		CourseModel courseModel = new CourseModel();
@@ -44,6 +50,9 @@ public class TimetableCtl extends BaseCtl {
 
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+		
+		log.debug("TimetableCtl validate method started");
+
 
 		boolean pass = true;
 
@@ -78,11 +87,16 @@ public class TimetableCtl extends BaseCtl {
 			pass = false;
 		}
 
+		log.debug("TimetableCtl validate method ended with status : "+ pass);
+
 		return pass;
 	}
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+		log.debug("TimetableCtl populateBean method started");
+
 
 		TimetableBean bean = new TimetableBean();
 
@@ -101,12 +115,16 @@ public class TimetableCtl extends BaseCtl {
 		bean.setSubjectId(DataUtility.getLong(request.getParameter("subjectId")));
 
 		populateDto(bean, request);
-
+		
+		log.debug("TimetableCtl populateBean method ended");
 		return bean;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("TimetableCtl doget method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -126,10 +144,15 @@ public class TimetableCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("TimetableCtl doget method ended");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("TimetableCtl dopost method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -207,6 +230,8 @@ public class TimetableCtl extends BaseCtl {
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);
+		log.debug("TimetableCtl dopost method ended");
+
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.SubjectBean;
@@ -23,31 +25,7 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "SubjectCtl", urlPatterns = { "/SubjectCtl" })
 public class SubjectCtl extends BaseCtl {
 
-	/**
-	 * @author Aditya
-	 * 
-	 */
-	@Override
-	protected boolean validate(HttpServletRequest request) {
-
-		boolean pass = true;
-
-		if (DataValidator.isNull(request.getParameter("name"))) {
-			request.setAttribute("name", PropertyReader.getValue("error.require", "Subject Name"));
-			pass = false;
-		}
-		if (DataValidator.isNull(request.getParameter("courseId"))) {
-			request.setAttribute("courseId", PropertyReader.getValue("error.require", "Course Name"));
-			pass = false;
-		}
-		if (DataValidator.isNull(request.getParameter("description"))) {
-			request.setAttribute("description", PropertyReader.getValue("error.require", "Description"));
-			pass = false;
-		}
-
-		return pass;
-	}
-
+	Logger log = Logger.getLogger(SubjectCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -64,7 +42,33 @@ public class SubjectCtl extends BaseCtl {
 	}
 
 	@Override
+	protected boolean validate(HttpServletRequest request) {
+
+		log.debug("SubjectCtl validate method started");
+
+		boolean pass = true;
+
+		if (DataValidator.isNull(request.getParameter("name"))) {
+			request.setAttribute("name", PropertyReader.getValue("error.require", "Subject Name"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("courseId"))) {
+			request.setAttribute("courseId", PropertyReader.getValue("error.require", "Course Name"));
+			pass = false;
+		}
+		if (DataValidator.isNull(request.getParameter("description"))) {
+			request.setAttribute("description", PropertyReader.getValue("error.require", "Description"));
+			pass = false;
+		}
+
+		log.debug("SubjectCtl validate method ended");
+		return pass;
+	}
+
+	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+
+		log.debug("SubjectCtl populateBean method started");
 
 		SubjectBean bean = new SubjectBean();
 
@@ -74,6 +78,7 @@ public class SubjectCtl extends BaseCtl {
 		bean.setDescription(DataUtility.getString(request.getParameter("description")));
 
 		populateDto(bean, request);
+		log.debug("SubjectCtl populateBean method ended");
 
 		return bean;
 	}
@@ -81,6 +86,9 @@ public class SubjectCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("SubjectCtl doget method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -100,11 +108,15 @@ public class SubjectCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("SubjectCtl doget method ended");
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("SubjectCtl dopost method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -153,6 +165,8 @@ public class SubjectCtl extends BaseCtl {
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);
+		log.debug("SubjectCtl dopost method ended");
+
 	}
 
 	@Override

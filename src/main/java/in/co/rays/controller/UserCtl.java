@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.RoleBean;
 import in.co.rays.bean.UserBean;
@@ -24,6 +26,9 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "UserCtl", urlPatterns = { "/UserCtl" })
 public class UserCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(UserCtl.class);
+
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -40,6 +45,9 @@ public class UserCtl extends BaseCtl {
 
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+		
+		log.debug("UserCtl validate method started");
+
 
 		boolean pass = true;
 
@@ -118,11 +126,15 @@ public class UserCtl extends BaseCtl {
 			pass = false;
 		}
 
+		log.debug("UserCtl validate method ended with status :"+ pass);
 		return pass;
 	}
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		
+		log.debug("UserCtl populateBean method started");
+
 
 		UserBean bean = new UserBean();
 
@@ -147,12 +159,17 @@ public class UserCtl extends BaseCtl {
 		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		populateDto(bean, request);
+		
+		log.debug("UserCtl populateBean method ended");
 		return bean;
 
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("UserCtl doget method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -172,10 +189,15 @@ public class UserCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("UserCtl doget method ended");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("UserCtl dopost method started");
+
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -220,6 +242,8 @@ public class UserCtl extends BaseCtl {
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);
+		log.debug("UserCtl dopost method ended");
+
 	}
 
 	@Override
