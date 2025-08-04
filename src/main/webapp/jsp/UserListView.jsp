@@ -76,8 +76,8 @@
 
 			<table border="1" style="width: 100%; border: groove;">
 				<tr style="background-color: #e1e6f1e3;">
+				
 					<th width="2%"><input type="checkbox" id="selectall" /></th>
-
 					<th width="5%">S.No</th>
 					<th width="13%">First Name</th>
 					<th width="13%">Last Name</th>
@@ -100,8 +100,8 @@
 				%>
 
 				<tr>
-					<td style="text-align: center;"><input type="checkbox"
-						name="ids" value="<%=bean.getId()%>"
+					<td style="text-align: center;"><input type="checkbox" 
+						name="ids" class="case" value="<%=bean.getId()%>"
 						<%=(user.getId() == bean.getId() || bean.getRoleId() == RoleBean.ADMIN) ? "disabled" : ""%>>
 					</td>
 					<td style="text-align: center;"><%=index++%></td>

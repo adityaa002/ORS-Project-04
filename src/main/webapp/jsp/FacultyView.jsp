@@ -12,7 +12,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Faculty</title>
+<link rel="icon" type="image/png"
+	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
 </head>
 <body>
 	<form action="<%=ORSView.FACULTY_CTL%>" method="post">
@@ -82,10 +84,11 @@
 				</tr>
 				<tr>
 					<th align="left">Date of Birth<span style="color: red">*</span></th>
-					<td><input type="date" name="dob"
-						value="<%=DataUtility.getStringData(bean.getDob())%>"></td>
+					<td><input type="text" id="udate" name="dob"
+					    placeholder="Select Date of Birth"
+						value="<%=DataUtility.getDateString(bean.getDob())%>"></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("dob", request)%></font></td>
-				</tr>
+				</tr>		
 				<tr>
 					<th align="left">Gender<span style="color: red">*</span></th>
 					<td>
