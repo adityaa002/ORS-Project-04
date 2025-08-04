@@ -11,7 +11,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Course List</title>
+<link rel="icon" type="image/png"
+	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
 </head>
 <body>
 	<%@include file="Header.jsp"%>
@@ -81,7 +83,7 @@
 				%>
 
 				<tr>
-					<td align="center"><input type="checkbox" name="ids"
+					<td align="center"><input type="checkbox" name="ids" class="case"
 						value="<%=bean.getId()%>"></td>
 					<td align="center"><%=index++%></td>
 					<td align="center"><%=bean.getName()%></td>

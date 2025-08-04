@@ -24,7 +24,8 @@ import in.co.rays.util.ServletUtility;
 
 /**
  * FacultyCtl is a controller to handle add/update operations on Faculty data.
- * It validates input, populates beans, and calls the model layer for business logic.
+ * It validates input, populates beans, and calls the model layer for business
+ * logic.
  * 
  * @author Aditya
  * @version 1.0
@@ -186,7 +187,8 @@ public class FacultyCtl extends BaseCtl {
 	}
 
 	/**
-	 * Handles HTTP POST request. Processes save, update, reset, and cancel operations.
+	 * Handles HTTP POST request. Processes save, update, reset, and cancel
+	 * operations.
 	 *
 	 * @param request  the HTTP request
 	 * @param response the HTTP response
