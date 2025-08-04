@@ -25,9 +25,8 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "StudentCtl", urlPatterns = { "/StudentCtl" })
 public class StudentCtl extends BaseCtl {
-	
-	Logger log = Logger.getLogger(StudentCtl .class);
 
+	Logger log = Logger.getLogger(StudentCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -52,6 +51,9 @@ public class StudentCtl extends BaseCtl {
 
 	@Override
 	protected boolean validate(HttpServletRequest request) {
+
+		log.debug("StudentCtl validate method started");
+
 		boolean pass = true;
 
 		if (DataValidator.isNull(request.getParameter("firstName"))) {
@@ -105,11 +107,15 @@ public class StudentCtl extends BaseCtl {
 			pass = false;
 		}
 
+		log.debug("StudentCtl validate method ended with status :" + pass);
+
 		return pass;
 	}
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+
+		log.debug("StudentCtl populateBean method started");
 
 		StudentBean bean = new StudentBean();
 
@@ -123,12 +129,15 @@ public class StudentCtl extends BaseCtl {
 		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		populateDto(bean, request);
+		log.debug("StudentCtl populateBean method ended");
 		return bean;
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		log.debug("StudentCtl doget method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -149,11 +158,15 @@ public class StudentCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("StudentCtl doget method ended");
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		log.debug("StudentCtl dopost method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -195,6 +208,8 @@ public class StudentCtl extends BaseCtl {
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);
+		log.debug("StudentCtl dopost method ended");
+
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.StudentBean;
 import in.co.rays.bean.UserBean;
@@ -20,9 +22,13 @@ import in.co.rays.util.ServletUtility;
 
 @WebServlet(name = "StudentListCtl", urlPatterns = { "/StudentListCtl" })
 public class StudentListCtl extends BaseCtl {
+	
+	Logger log = Logger.getLogger(StudentListCtl.class);
+
 
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
+		log.debug("StudentListCtl populateBean method started");
 
 		StudentBean bean = new StudentBean();
 
@@ -30,6 +36,7 @@ public class StudentListCtl extends BaseCtl {
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
 		bean.setEmail(DataUtility.getString(request.getParameter("email")));
 
+		log.debug("StudentListCtl populateBean method ended");
 		return bean;
 
 	}
@@ -37,6 +44,9 @@ public class StudentListCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("StudentListCtl doget method started");
+
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -66,11 +76,16 @@ public class StudentListCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
+		log.debug("StudentListCtl doget method ended");
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		log.debug("StudentListCtl dopost method started");
+
 
 		List list = null;
 		List next = null;
@@ -141,6 +156,8 @@ public class StudentListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
+		log.debug("StudentListCtl dopost method ended");
+
 	}
 
 	@Override
