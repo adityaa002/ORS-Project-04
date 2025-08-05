@@ -28,10 +28,10 @@ import in.co.rays.util.ServletUtility;
  * 
  * @author
  */
-@WebServlet(name = "MarksheetCtl", urlPatterns = { "/MarksheetCtl" })
+@WebServlet(name = "MarksheetCtl", urlPatterns = { "/ctl/MarksheetCtl" })
 public class MarksheetCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(MarksheetCtl.class);
+	private static Logger log  = Logger.getLogger(MarksheetCtl.class);
 
 	/**
 	 * Preloads student list to populate dropdown.
@@ -113,7 +113,7 @@ public class MarksheetCtl extends BaseCtl {
 			request.setAttribute("maths", "Marks should be in 0 to 100");
 			pass = false;
 		}
-		log.debug("MarksheetCtl validate method ended with status " + pass);
+		log.debug("MarksheetCtl validate method ended with status : " + pass);
 
 		return pass;
 	}

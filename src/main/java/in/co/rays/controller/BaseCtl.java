@@ -17,7 +17,7 @@ import in.co.rays.util.ServletUtility;
 
 public abstract class BaseCtl extends HttpServlet {
 
-	Logger log = Logger.getLogger(BaseCtl.class);
+	private static Logger log  = Logger.getLogger(BaseCtl.class);
 
 	public static final String OP_SAVE = "Save";
 	public static final String OP_UPDATE = "Update";
@@ -85,7 +85,7 @@ public abstract class BaseCtl extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("service method called");
+		log.debug("BaseCtl service method called");
 
 		preload(request);
 

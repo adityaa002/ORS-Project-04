@@ -35,7 +35,7 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "ForgetPasswordCtl", urlPatterns = { "/ForgetPasswordCtl" })
 public class ForgetPasswordCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(ForgetPasswordCtl.class);
+	private static Logger log = Logger.getLogger(ForgetPasswordCtl.class);
 
 	/**
 	 * Validates the login (email) input for the forget password process.
@@ -58,7 +58,7 @@ public class ForgetPasswordCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("ForgetPasswordCtl validate method ended");
+		log.debug("ForgetPasswordCtl validate method ended with status : "+pass);
 
 		return pass;
 	}

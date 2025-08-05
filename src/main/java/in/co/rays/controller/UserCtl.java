@@ -24,10 +24,10 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet(name = "UserCtl", urlPatterns = { "/UserCtl" })
+@WebServlet(name = "UserCtl", urlPatterns = { "/ctl/UserCtl" })
 public class UserCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(UserCtl.class);
+	private static Logger log  = Logger.getLogger(UserCtl.class);
 
 
 	@Override
@@ -126,7 +126,7 @@ public class UserCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("UserCtl validate method ended with status :"+ pass);
+		log.debug("UserCtl validate method ended with status : "+ pass);
 		return pass;
 	}
 

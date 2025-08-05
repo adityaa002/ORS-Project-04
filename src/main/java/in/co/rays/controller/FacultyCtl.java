@@ -33,10 +33,10 @@ import in.co.rays.util.ServletUtility;
  * @version 1.0
  * @since 2025-08-01
  */
-@WebServlet(name = "FacultyCtl", urlPatterns = { "/FacultyCtl" })
+@WebServlet(name = "FacultyCtl", urlPatterns = { "/ctl/FacultyCtl" })
 public class FacultyCtl extends BaseCtl {
 
-	Logger log =Logger.getLogger(FacultyCtl.class);
+	private static Logger log  =Logger.getLogger(FacultyCtl.class);
 	
 	/**
 	 * Preloads college, course, and subject data for dropdowns on Faculty form.
@@ -139,7 +139,7 @@ public class FacultyCtl extends BaseCtl {
 			pass = false;
 		}
 		
-    	log.debug("FacultyCtl validate method ended");
+    	log.debug("FacultyCtl validate method ended with status : "+pass);
 
 		return pass;
 	}

@@ -30,10 +30,10 @@ import in.co.rays.util.ServletUtility;
  * @version 1.0
  * @since 1.0
  */
-@WebServlet(name = "CourseCtl", urlPatterns = { "/CourseCtl" })
+@WebServlet(name = "CourseCtl", urlPatterns = { "/ctl/CourseCtl" })
 public class CourseCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(CourseCtl.class);
+	private static Logger log  = Logger.getLogger(CourseCtl.class);
 
 
     /**
@@ -93,7 +93,7 @@ public class CourseCtl extends BaseCtl {
             pass = false;
         }
         
-    	log.debug("CourseCtl validate method ended");
+    	log.debug("CourseCtl validate method ended with status : "+pass);
 
         return pass;
     }

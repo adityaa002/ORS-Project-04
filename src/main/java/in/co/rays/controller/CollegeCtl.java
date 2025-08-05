@@ -21,10 +21,10 @@ import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
  
-@WebServlet(name = "CollegeCtl", urlPatterns = { "/CollegeCtl" })
+@WebServlet(name = "CollegeCtl", urlPatterns = { "/ctl/CollegeCtl" })
 public class CollegeCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(CollegeCtl.class);
+	private static Logger log  = Logger.getLogger(CollegeCtl.class);
 
     
     @Override
@@ -60,7 +60,7 @@ public class CollegeCtl extends BaseCtl {
             pass = false;
         }
 
-    	log.debug("ChangePasswordCtl validate method ended");
+    	log.debug("CollegeCtl validate method ended  with status : "+pass);
 
         return pass;
     }

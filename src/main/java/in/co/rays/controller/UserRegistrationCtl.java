@@ -23,7 +23,7 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "UserRegistrationCtl", urlPatterns = { "/UserRegistrationCtl" })
 public class UserRegistrationCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(UserRegistrationCtl.class);
+	private static Logger log  = Logger.getLogger(UserRegistrationCtl.class);
 
 
 	public static final String OP_SIGN_UP = "Sign Up";
@@ -97,7 +97,7 @@ public class UserRegistrationCtl extends BaseCtl {
 			request.setAttribute("mobileNo", "Invalid Mobile No");
 			pass = false;
 		}
-		log.debug("UserRegistrationCtl validate method started with status :" + pass);
+		log.debug("UserRegistrationCtl validate method ended with status : " + pass);
 		return pass;
 	}
 

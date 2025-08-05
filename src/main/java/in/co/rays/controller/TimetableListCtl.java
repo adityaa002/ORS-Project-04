@@ -20,10 +20,10 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet(name = "TimetableListCtl", urlPatterns = { "/TimetableListCtl" })
+@WebServlet(name = "TimetableListCtl", urlPatterns = { "/ctl/TimetableListCtl" })
 public class TimetableListCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(TimetableListCtl.class);
+	private static Logger log  = Logger.getLogger(TimetableListCtl.class);
 
 
 	@Override

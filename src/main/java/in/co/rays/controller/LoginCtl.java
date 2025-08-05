@@ -30,7 +30,7 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "LoginCtl", urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(LoginCtl.class);
+	private static Logger log = Logger.getLogger(LoginCtl.class);
 	
 
 	public static final String OP_SIGN_IN = "Sign In";
@@ -75,7 +75,7 @@ public class LoginCtl extends BaseCtl {
 			request.setAttribute("password", "Invalid password");
 		}
 
-		log.debug("LoginCtl validate method ended");
+		log.debug("LoginCtl validate method ended with status : " +pass);
 		return pass;
 
 	}

@@ -23,10 +23,10 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet(name = "StudentCtl", urlPatterns = { "/StudentCtl" })
+@WebServlet(name = "StudentCtl", urlPatterns = { "/ctl/StudentCtl" })
 public class StudentCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(StudentCtl.class);
+	private static Logger log  = Logger.getLogger(StudentCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {
@@ -107,7 +107,7 @@ public class StudentCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("StudentCtl validate method ended with status :" + pass);
+		log.debug("StudentCtl validate method ended with status : " + pass);
 
 		return pass;
 	}

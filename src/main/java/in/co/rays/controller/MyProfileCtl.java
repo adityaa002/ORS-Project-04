@@ -26,10 +26,10 @@ import in.co.rays.util.ServletUtility;
  * 
  * @author Aditya
  */
-@WebServlet(name = "MyProfileCtl", urlPatterns = { "/MyProfileCtl" })
+@WebServlet(name = "MyProfileCtl", urlPatterns = { "/ctl/MyProfileCtl" })
 public class MyProfileCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(MyProfileCtl.class);
+	private static Logger log  = Logger.getLogger(MyProfileCtl.class);
 
 	/** Operation for changing the password from profile view */
 	public static final String OP_CHANGE_MY_PASSWORD = "Change Password";
@@ -90,7 +90,7 @@ public class MyProfileCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("MyProfileCtl validate method ended with status :" + pass);
+		log.debug("MyProfileCtl validate method ended with status : " + pass);
 		return pass;
 
 	}
