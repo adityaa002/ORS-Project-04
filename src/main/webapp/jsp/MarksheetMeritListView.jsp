@@ -91,5 +91,6 @@
             <input type="hidden" name="pageSize" value="<%=pageSize%>">
         </form>
     </div>
+    <%@include file="Footer.jsp" %>
 </body>
 </html>

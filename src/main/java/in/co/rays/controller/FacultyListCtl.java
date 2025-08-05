@@ -26,10 +26,10 @@ import in.co.rays.util.ServletUtility;
  * @version 1.0
  * @since 1 Aug 2025
  */
-@WebServlet(name = "FacultyListCtl", urlPatterns = { "/FacultyListCtl" })
+@WebServlet(name = "FacultyListCtl", urlPatterns = { "/ctl/FacultyListCtl" })
 public class FacultyListCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(FacultyListCtl.class);
+	private static Logger log  = Logger.getLogger(FacultyListCtl.class);
 
 	/**
 	 * Populates FacultyBean object from request parameters.

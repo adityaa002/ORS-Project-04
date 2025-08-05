@@ -18,10 +18,10 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet(name = "CollegeListCtl", urlPatterns = { "/CollegeListCtl" })
+@WebServlet(name = "CollegeListCtl", urlPatterns = { "/ctl/CollegeListCtl" })
 public class CollegeListCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(CollegeListCtl.class);
+	private static Logger log  = Logger.getLogger(CollegeListCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {

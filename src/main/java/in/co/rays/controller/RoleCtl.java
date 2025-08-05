@@ -25,10 +25,10 @@ import in.co.rays.util.ServletUtility;
  * 
  * @author Aditya
  */
-@WebServlet(name = "RoleCtl", urlPatterns = { "/RoleCtl" })
+@WebServlet(name = "RoleCtl", urlPatterns = { "/ctl/RoleCtl" })
 public class RoleCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(RoleCtl.class);
+	private static Logger log  = Logger.getLogger(RoleCtl.class);
 
 
     /**
@@ -56,7 +56,7 @@ public class RoleCtl extends BaseCtl {
             pass = false;
         }
         
-		log.debug("RoleCtl validate method ended with status :"+ pass);
+		log.debug("RoleCtl validate method ended with status : "+ pass);
 
         return pass;
     }

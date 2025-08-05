@@ -14,7 +14,7 @@ import in.co.rays.util.ServletUtility;
 @WebServlet(name = "WelcomeCtl", urlPatterns = { "/WelcomeCtl" })
 public class WelcomeCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(WelcomeCtl.class);
+	private static Logger log  = Logger.getLogger(WelcomeCtl.class);
 
 	
 	@Override

@@ -11,10 +11,10 @@ import org.apache.log4j.Logger;
 
 import in.co.rays.util.ServletUtility;
 
-@WebServlet("/ErrorCtl")
+@WebServlet("/ctl/ErrorCtl")
 public class ErrorCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(ErrorCtl.class);
+	private static Logger log  = Logger.getLogger(ErrorCtl.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

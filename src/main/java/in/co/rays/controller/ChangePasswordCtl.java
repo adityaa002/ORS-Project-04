@@ -22,7 +22,7 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet(name = "ChangePasswordCtl", urlPatterns = { "/ChangePasswordCtl" })
+@WebServlet(name = "ChangePasswordCtl", urlPatterns = { "/ctl/ChangePasswordCtl" })
 public class ChangePasswordCtl extends BaseCtl {
 
 	Logger log = Logger.getLogger(ChangePasswordCtl.class);
@@ -72,7 +72,7 @@ public class ChangePasswordCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("ChangePasswordCtl validate method ended");
+		log.debug("ChangePasswordCtl validate method ended with status : " + pass);
 		return pass;
 	}
 
@@ -94,9 +94,9 @@ public class ChangePasswordCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		log.debug("ChangePasswordCtl doget Method started");
-		
+
 		ServletUtility.forward(getView(), request, response);
 
 		log.debug("ChangePasswordCtl doget Method Ended");
@@ -105,9 +105,8 @@ public class ChangePasswordCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("ChangePasswordCtl dopost Method started");
 
+		log.debug("ChangePasswordCtl dopost Method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 		String newPassword = (String) request.getParameter("newPassword");
@@ -129,9 +128,9 @@ public class ChangePasswordCtl extends BaseCtl {
 					ServletUtility.setSuccessMessage("Password has been changed Successfully", request);
 				}
 			} catch (RecordNotFoundException e) {
-				
+
 				ServletUtility.setErrorMessage("Old Password is Invalid", request);
-				
+
 			} catch (ApplicationException e) {
 				log.error(e);
 				e.printStackTrace();
@@ -139,14 +138,14 @@ public class ChangePasswordCtl extends BaseCtl {
 				return;
 			}
 		} else if (OP_CHANGE_MY_PROFILE.equalsIgnoreCase(op)) {
-			
+
 			ServletUtility.redirect(ORSView.MY_PROFILE_CTL, request, response);
 			return;
-			
+
 		}
-		
+
 		ServletUtility.forward(ORSView.CHANGE_PASSWORD_VIEW, request, response);
-		
+
 		log.debug("ChangePasswordCtl dopost Method Ended");
 
 	}

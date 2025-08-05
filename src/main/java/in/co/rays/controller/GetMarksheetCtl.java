@@ -23,10 +23,10 @@ import in.co.rays.util.ServletUtility;
  *
  * @author Aditya
  */
-@WebServlet(name = "GetMarksheetCtl", urlPatterns = { "/GetMarksheetCtl" })
+@WebServlet(name = "GetMarksheetCtl", urlPatterns = { "/ctl/GetMarksheetCtl" })
 public class GetMarksheetCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(GetMarksheetCtl.class);
+	private static Logger log  = Logger.getLogger(GetMarksheetCtl.class);
 
 	/**
 	 * Validates the input data from request.
@@ -46,7 +46,7 @@ public class GetMarksheetCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("GetMarksheetCtl validate method ended");
+		log.debug("GetMarksheetCtl validate method ended with status : "+pass);
 
 		return pass;
 	}

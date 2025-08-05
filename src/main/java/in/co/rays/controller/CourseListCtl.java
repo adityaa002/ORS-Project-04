@@ -24,10 +24,10 @@ import in.co.rays.util.ServletUtility;
  * @author Aditya
  * @version 1.0
  */
-@WebServlet(name = "CourseListCtl", urlPatterns = { "/CourseListCtl" })
+@WebServlet(name = "CourseListCtl", urlPatterns = { "/ctl/CourseListCtl" })
 public class CourseListCtl extends BaseCtl {
 
-	Logger log = Logger.getLogger(CourseListCtl.class);
+	private static Logger log  = Logger.getLogger(CourseListCtl.class);
 
 	
     /**

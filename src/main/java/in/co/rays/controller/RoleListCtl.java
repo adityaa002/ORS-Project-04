@@ -31,10 +31,10 @@ import in.co.rays.util.ServletUtility;
 /**
  * Servlet implementation class RoleListCtl
  */
-@WebServlet(name = "RoleListCtl", urlPatterns = { "/RoleListCtl" })
+@WebServlet(name = "RoleListCtl", urlPatterns = { "/ctl/RoleListCtl" })
 public class RoleListCtl extends BaseCtl {
 	
-	Logger log = Logger.getLogger(RoleListCtl.class);
+	private static Logger log  = Logger.getLogger(RoleListCtl.class);
 
 
     /**

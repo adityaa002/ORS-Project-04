@@ -32,7 +32,17 @@
 				<font color="green" size="5px"><%=ServletUtility.getSuccessMessage(request)%></font>
 				<font color="red" size="5px"><%=ServletUtility.getErrorMessage(request)%></font>
 			</div>
-			<br>
+			<br> <input type="hidden" name="id" value="<%=bean.getId()%>">
+			<input type="hidden" name="createdBy"
+				value="<%=bean.getCreatedBy()%>"> <input type="hidden"
+				name="modifiedBy" value="<%=bean.getModifiedBy()%>"> <input
+				type="hidden" name="createdDatetime"
+				value="<%=DataUtility.getTimestamp(bean.getCreatedDatetime())%>">
+			<input type="hidden" name="modifiedDatetime"
+				value="<%=DataUtility.getTimestamp(bean.getModifiedDatetime())%>">
+			<%
+				String uri = (String) request.getAttribute("uri");
+			%>
 
 			<table>
 				<tr>
@@ -63,12 +73,14 @@
 
 
 			</table>
-				<h3><a href="<%=ORSView.FORGET_PASSWORD_CTL%>">forget your password?</a></h3>
+			<h3>
+				<a href="<%=ORSView.FORGET_PASSWORD_CTL%>">forget your password?</a>
+			</h3>
 
 
 		</div>
 
 	</form>
-
+<%@include file="Footer.jsp" %>
 </body>
 </html>
