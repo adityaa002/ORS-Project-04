@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
@@ -16,7 +18,12 @@ import in.co.rays.util.JDBCDataSource;
 
 public class CourseModel {
 
+	private static Logger log = Logger.getLogger(CourseModel.class);
+
 	public Integer nextPK() throws DatabaseException {
+
+		log.debug("CourseModel nextPk method started");
+
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -32,10 +39,16 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+
+		log.debug("CourseModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(CourseBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("CourseModel add method started");
+
 		Connection conn = null;
 		int pk = 0;
 
@@ -71,10 +84,15 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("CourseModel add method ended");
+
 		return pk;
 	}
 
 	public void delete(CourseBean bean) throws ApplicationException {
+
+		log.debug("CourseModel delete  method started");
+
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -95,9 +113,14 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("CourseModel delete  method ended");
+
 	}
 
 	public CourseBean findByName(String name) throws ApplicationException {
+
+		log.debug("CourseModel findByName method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_course where name = ?");
 		CourseBean bean = null;
 		Connection conn = null;
@@ -124,10 +147,15 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("CourseModel findByName method ended");
+
 		return bean;
 	}
 
 	public CourseBean findByPK(long pk) throws ApplicationException {
+
+		log.debug("CourseModel findByPK method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_course where id = ?");
 		CourseBean bean = null;
 		Connection conn = null;
@@ -153,10 +181,15 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("CourseModel findByPK method ended");
+
 		return bean;
 	}
 
 	public void update(CourseBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("CourseModel update method started");
+
 		Connection conn = null;
 
 		CourseBean duplicateCourse = findByName(bean.getName());
@@ -190,13 +223,21 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+
+		log.debug("CourseModel update method ended");
+
 	}
 
 	public List<CourseBean> list() throws ApplicationException {
+		log.debug("CourseModel list method called");
+
 		return search(null, 0, 0);
 	}
 
 	public List<CourseBean> search(CourseBean bean, int pageNo, int pageSize) throws ApplicationException {
+
+		log.debug("CourseModel search method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_course where 1=1");
 
 		if (bean != null) {
@@ -243,6 +284,8 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("CourseModel search method ended");
+
 		return list;
 	}
 }

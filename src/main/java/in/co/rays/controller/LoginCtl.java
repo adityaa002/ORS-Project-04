@@ -180,6 +180,8 @@ public class LoginCtl extends BaseCtl {
 					ServletUtility.setBean(bean, request);
 					ServletUtility.setErrorMessage("Invalid credential", request);
 					ServletUtility.forward(getView(), request, response);
+					return;
+
 				}
 
 			} catch (ApplicationException e) {

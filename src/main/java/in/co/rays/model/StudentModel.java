@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.StudentBean;
 import in.co.rays.exception.ApplicationException;
@@ -15,7 +17,11 @@ import in.co.rays.util.JDBCDataSource;
 
 public class StudentModel {
 
+	private static Logger log = Logger.getLogger(StudentModel.class);
+
 	public Integer nextPk() throws DatabaseException {
+
+		log.debug("StudentModel nextPk method started");
 
 		Connection conn = null;
 		int pk = 0;
@@ -33,10 +39,14 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("StudentModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(StudentBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("StudentModel add method started");
 
 		Connection conn = null;
 
@@ -84,10 +94,14 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("StudentModel add method ended");
+
 		return pk;
 	}
 
 	public void delete(StudentBean bean) throws ApplicationException {
+
+		log.debug("StudentModel delete method started");
 
 		Connection conn = null;
 
@@ -110,9 +124,13 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("StudentModel delete method ended");
+
 	}
 
 	public StudentBean findByEmailId(String Email) throws ApplicationException {
+
+		log.debug("StudentModel findByEmailId method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_student where email = ?");
 		StudentBean bean = null;
@@ -145,10 +163,14 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("StudentModel findByEmailId method ended");
+
 		return bean;
 	}
 
 	public StudentBean findByPk(long pk) throws ApplicationException {
+
+		log.debug("StudentModel findByPk method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_student where id = ?");
 		StudentBean bean = null;
@@ -181,10 +203,15 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+
+		log.debug("StudentModel findByPk method ended");
+
 		return bean;
 	}
 
 	public void update(StudentBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("StudentModel update method started");
 
 		Connection conn = null;
 
@@ -230,13 +257,18 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("StudentModel update method ended");
+
 	}
 
 	public List<StudentBean> list() throws ApplicationException {
+		log.debug("StudentModel list method called");
+
 		return search(null, 0, 0);
 	}
 
 	public List<StudentBean> search(StudentBean bean, int pageNo, int pageSize) throws ApplicationException {
+		log.debug("StudentModel search method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_student where 1 = 1");
 
@@ -301,5 +333,8 @@ public class StudentModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("StudentModel search method ended");
+
 		return list;
-	}}
+	}
+}
