@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.SubjectBean;
 import in.co.rays.exception.ApplicationException;
@@ -16,7 +18,12 @@ import in.co.rays.util.JDBCDataSource;
 
 public class SubjectModel {
 
+	private static Logger log = Logger.getLogger(SubjectModel.class);
+
 	public Integer nextPk() throws DatabaseException {
+
+		log.debug("SubjectModel nextPk method started");
+
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -33,10 +40,15 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(SubjectBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("SubjectModel add method started");
+
 		Connection conn = null;
 		int pk = 0;
 
@@ -77,10 +89,14 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel add method ended");
+
 		return pk;
 	}
 
 	public void update(SubjectBean bean) throws ApplicationException, DuplicateRecordException {
+		log.debug("SubjectModel update method started");
+
 		Connection conn = null;
 		CourseModel courseModel = new CourseModel();
 		CourseBean courseBean = courseModel.findByPK(bean.getCourseId());
@@ -113,9 +129,14 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel update method ended");
+
 	}
 
 	public void delete(SubjectBean bean) throws ApplicationException {
+
+		log.debug("SubjectModel delete method started");
+
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -135,9 +156,13 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel delete method ended");
+
 	}
 
 	public SubjectBean findByPk(long pk) throws ApplicationException {
+		log.debug("SubjectModel findByPk method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_subject where id = ?");
 		SubjectBean bean = null;
 		Connection conn = null;
@@ -165,10 +190,14 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel findByPk method ended");
 		return bean;
+
 	}
 
 	public SubjectBean findByName(String name) throws ApplicationException {
+		log.debug("SubjectModel findByName method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_subject where name = ?");
 		SubjectBean bean = null;
 		Connection conn = null;
@@ -197,14 +226,20 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel findByName method ended");
 		return bean;
+
 	}
 
 	public List<SubjectBean> list() throws ApplicationException {
+		log.debug("SubjectModel list method called");
+
 		return search(null, 0, 0);
 	}
 
 	public List<SubjectBean> search(SubjectBean bean, int pageNo, int pageSize) throws ApplicationException {
+		log.debug("SubjectModel search method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_subject where 1=1");
 
 		if (bean != null) {
@@ -230,7 +265,7 @@ public class SubjectModel {
 			pageNo = (pageNo - 1) * pageSize;
 			sql.append(" limit " + pageNo + ", " + pageSize);
 		}
-		
+
 		System.out.println("subject model query ==> " + sql.toString());
 
 		ArrayList<SubjectBean> list = new ArrayList<SubjectBean>();
@@ -259,6 +294,8 @@ public class SubjectModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("SubjectModel search method ended");
+
 		return list;
 	}
 }

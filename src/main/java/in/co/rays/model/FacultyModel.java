@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.CollegeBean;
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.FacultyBean;
@@ -16,7 +18,12 @@ import in.co.rays.util.JDBCDataSource;
 
 public class FacultyModel {
 
+	private static Logger log = Logger.getLogger(FacultyModel.class);
+
 	public Integer nextPk() throws Exception {
+
+		log.debug("FacultyModel nextPk method started");
+
 		int pk = 0;
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_faculty");
@@ -25,10 +32,14 @@ public class FacultyModel {
 			pk = rs.getInt(1);
 		}
 		JDBCDataSource.closeConnection(conn);
+		log.debug("FacultyModel nextPk method ended");
+
 		return pk + 1;
 	}
 
-	public long add(FacultyBean bean) throws Exception  {
+	public long add(FacultyBean bean) throws Exception {
+
+		log.debug("FacultyModel add method started");
 
 		CollegeModel collegeModel = new CollegeModel();
 		CollegeBean collegeBean = collegeModel.findByPK(bean.getCollegeId());
@@ -78,10 +89,15 @@ public class FacultyModel {
 		JDBCDataSource.closeConnection(conn);
 
 		System.out.println("data inserted : " + i);
+
+		log.debug("FacultyModel add method ended");
+
 		return pk;
 	}
 
 	public void update(FacultyBean bean) throws Exception {
+
+		log.debug("FacultyModel update method started");
 
 		CollegeModel collegeModel = new CollegeModel();
 		CollegeBean collegeBean = collegeModel.findByPK(bean.getCollegeId());
@@ -129,10 +145,13 @@ public class FacultyModel {
 		JDBCDataSource.closeConnection(conn);
 
 		System.out.println("data updated => " + i);
+		log.debug("FacultyModel update method ended");
 
 	}
 
 	public void delete(FacultyBean bean) throws Exception {
+
+		log.debug("FacultyModel delete method started");
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -145,10 +164,13 @@ public class FacultyModel {
 		JDBCDataSource.closeConnection(conn);
 
 		System.out.println("data deleted :" + i);
+		log.debug("FacultyModel delete method ended");
 
 	}
 
 	public FacultyBean findByPk(long id) throws Exception {
+
+		log.debug("FacultyModel findByPk method started");
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -181,10 +203,14 @@ public class FacultyModel {
 			bean.setModifiedDatetime(rs.getTimestamp(17));
 		}
 		JDBCDataSource.closeConnection(conn);
+		log.debug("FacultyModel findByPk method ended");
+
 		return bean;
 	}
 
 	public FacultyBean findByEmail(String email) throws Exception {
+
+		log.debug("FacultyModel findByEmail method started");
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -217,10 +243,13 @@ public class FacultyModel {
 			bean.setModifiedDatetime(rs.getTimestamp(17));
 		}
 		JDBCDataSource.closeConnection(conn);
+		log.debug("FacultyModel findByEmail method ended");
+
 		return bean;
 	}
 
 	public List search(FacultyBean bean, int pageNo, int pageSize) throws Exception {
+		log.debug("FacultyModel search method started");
 
 		Connection conn = JDBCDataSource.getConnection();
 
@@ -270,6 +299,8 @@ public class FacultyModel {
 			list.add(bean);
 		}
 		JDBCDataSource.closeConnection(conn);
+		log.debug("FacultyModel search method ended");
+
 		return list;
 	}
 

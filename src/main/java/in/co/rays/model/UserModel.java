@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
@@ -19,7 +21,12 @@ import in.co.rays.util.JDBCDataSource;
 
 public class UserModel {
 
+	private static Logger log = Logger.getLogger(UserModel.class);
+
 	public Integer nextPk() {
+
+		log.debug("UserModel nextPk method started");
+
 		Connection conn = null;
 		int pk = 0;
 
@@ -36,10 +43,14 @@ public class UserModel {
 		} catch (Exception e) {
 			e.getMessage();
 		}
+		log.debug("UserModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(UserBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("UserModel add method started");
 
 		Connection conn = null;
 		int pk = 0;
@@ -83,10 +94,14 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel add method ended");
+
 		return pk;
 	}
 
 	public void update(UserBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("UserModel update method started");
 
 		Connection conn = null;
 		UserBean existBean = findByLogin(bean.getLogin());
@@ -129,9 +144,13 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel update method ended");
+
 	}
 
 	public void delete(UserBean bean) throws ApplicationException {
+
+		log.debug("UserModel delete method started");
 
 		Connection conn = null;
 
@@ -153,9 +172,13 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel delete method ended");
+
 	}
 
 	public UserBean findByLogin(String login) throws ApplicationException {
+
+		log.debug("UserModel findByLogin method started");
 
 		Connection conn = null;
 		UserBean bean = null;
@@ -194,11 +217,14 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel findByLogin method ended");
+
 		return bean;
 
 	}
 
 	public UserBean findByPk(long id) throws ApplicationException {
+		log.debug("UserModel findByPk method started");
 
 		Connection conn = null;
 		UserBean bean = null;
@@ -237,10 +263,14 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel findByPk method ended");
+
 		return bean;
 	}
 
 	public UserBean authenticate(String login, String password) throws ApplicationException {
+
+		log.debug("UserModel authenticate method started");
 
 		UserBean bean = null;
 		Connection conn = null;
@@ -274,10 +304,13 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel authenticate method ended");
+
 		return bean;
 	}
 
 	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {
+		log.debug("UserModel search method started");
 
 		Connection conn = null;
 		ArrayList<UserBean> list = new ArrayList<UserBean>();
@@ -346,14 +379,19 @@ public class UserModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("UserModel search method ended");
+
 		return list;
 	}
 
 	public List<UserBean> list() throws ApplicationException {
+		log.debug("UserModel list method called");
+
 		return search(null, 0, 0);
 	}
 
 	public long registerUser(UserBean bean) throws ApplicationException, DuplicateRecordException {
+		log.debug("UserModel registerUser method started");
 
 		long pk = add(bean);
 
@@ -371,11 +409,14 @@ public class UserModel {
 
 		EmailUtility.sendMail(msg);
 
+		log.debug("UserModel registerUser method ended");
 		return pk;
 	}
 
 	public boolean changePassword(Long id, String oldPassword, String newPassword)
 			throws RecordNotFoundException, ApplicationException {
+
+		log.debug("UserModel changePassword method started");
 
 		boolean flag = false;
 		UserBean beanExist = null;
@@ -408,10 +449,14 @@ public class UserModel {
 		msg.setMessageType(EmailMessage.HTML_MSG);
 
 		EmailUtility.sendMail(msg);
+		log.debug("UserModel changePassword method ended");
 
 		return flag;
 	}
+
 	public boolean forgetPassword(String login) throws ApplicationException, RecordNotFoundException {
+		log.debug("UserModel forgetPassword method started");
+
 		UserBean userData = findByLogin(login);
 		boolean flag = false;
 
@@ -426,15 +471,16 @@ public class UserModel {
 		map.put("firstName", userData.getFirstName());
 		map.put("lastName", userData.getLastName());
 		String message = EmailBuilder.getForgetPasswordMessage(map);
-		
+
 		EmailMessage msg = new EmailMessage();
-		
+
 		msg.setTo(login);
 		msg.setSubject("Rays ORS Password Reset");
 		msg.setMessage(message);
 		msg.setMessageType(EmailMessage.HTML_MSG);
 		EmailUtility.sendMail(msg);
 		flag = true;
+		log.debug("UserModel forgetPassword method ended");
 
 		return flag;
 	}

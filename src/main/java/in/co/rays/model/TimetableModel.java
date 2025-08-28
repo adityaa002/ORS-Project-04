@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.SubjectBean;
 import in.co.rays.bean.TimetableBean;
@@ -17,7 +19,11 @@ import in.co.rays.util.JDBCDataSource;
 
 public class TimetableModel {
 
+	private static Logger log = Logger.getLogger(TimetableModel.class);
+
 	public Integer nextPK() throws DatabaseException {
+		log.debug("TimetableModel nextPk method started");
+
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -33,10 +39,14 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(TimetableBean bean) throws ApplicationException, DuplicateRecordException {
+		log.debug("TimetableModel add method started");
+
 		Connection conn = null;
 		int pk = 0;
 
@@ -81,10 +91,15 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel add method ended");
 		return pk;
+
 	}
 
 	public void delete(TimetableBean bean) throws ApplicationException {
+
+		log.debug("TimetableModel delete method started");
+
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -105,10 +120,15 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel delete method ended");
+
 	}
 
 	public TimetableBean checkByExamTime(Long courseId, Long subjectId, String semester, Date examDate, String examTime,
 			String description) throws ApplicationException {
+
+		log.debug("TimetableModel checkByExamTime method started");
+
 		StringBuffer sql = new StringBuffer(
 				"select * from st_timetable where course_id = ? and subject_id = ? and semester = ? and exam_date = ? and exam_time = ? and description = ?");
 		TimetableBean bean = null;
@@ -147,10 +167,15 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel checkByExamTime method ended");
+
 		return bean;
 	}
 
 	public TimetableBean checkByCourseName(Long courseId, Date examDate) throws ApplicationException {
+
+		log.debug("TimetableModel checkByCourseName method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_timetable where course_id = ? and exam_date = ?");
 		TimetableBean bean = null;
 		Connection conn = null;
@@ -185,10 +210,14 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel checkByCourseName method ended");
+
 		return bean;
 	}
 
 	public TimetableBean checkBySubjectName(Long courseId, Long subjectId, Date examDate) throws ApplicationException {
+		log.debug("TimetableModel checkBySubjectName method started");
+
 		StringBuffer sql = new StringBuffer(
 				"select * from st_timetable where course_id = ? and subject_id = ? and exam_date = ?");
 		TimetableBean bean = null;
@@ -225,11 +254,15 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel checkBySubjectName method ended");
+
 		return bean;
 	}
 
 	public TimetableBean checkBySemester(Long courseId, Long subjectId, String semester, Date examDate)
 			throws ApplicationException {
+		log.debug("TimetableModel checkBySemester method started");
+
 		StringBuffer sql = new StringBuffer(
 				"select * from st_timetable where course_id = ? and subject_id = ? and semester = ? and exam_date = ?");
 		TimetableBean bean = null;
@@ -265,10 +298,15 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel checkBySemester method ended");
+
 		return bean;
 	}
 
 	public TimetableBean findByPK(long pk) throws ApplicationException {
+
+		log.debug("TimetableModel findByPK method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_timetable where id = ?");
 		TimetableBean bean = null;
 		Connection conn = null;
@@ -299,10 +337,13 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel findByPK method ended");
+
 		return bean;
 	}
 
 	public void update(TimetableBean bean) throws ApplicationException, DuplicateRecordException {
+		log.debug("TimetableModel update method started");
 
 		Connection conn = null;
 
@@ -347,9 +388,13 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel update method ended");
+
 	}
 
- 	public List<TimetableBean> search(TimetableBean bean, int pageNo, int pageSize) throws ApplicationException {
+	public List<TimetableBean> search(TimetableBean bean, int pageNo, int pageSize) throws ApplicationException {
+		log.debug("TimetableModel search method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_timetable where 1=1");
 
 		if (bean != null) {
@@ -416,5 +461,9 @@ public class TimetableModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("TimetableModel search method ended");
+
 		return list;
-	}}
+
+	}
+}

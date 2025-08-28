@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.RoleBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
@@ -14,7 +16,12 @@ import in.co.rays.util.JDBCDataSource;
 
 public class RoleModel {
 
+	private static Logger log = Logger.getLogger(RoleModel.class);
+
 	public Integer nextPk() throws SQLException {
+
+		log.debug("RoleModel nextPk method started");
+
 		int pk = 0;
 
 		Connection conn = JDBCDataSource.getConnection();
@@ -26,10 +33,14 @@ public class RoleModel {
 			pk = rs.getInt(1);
 		}
 		JDBCDataSource.closeConnection(conn);
+		log.debug("RoleModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(RoleBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("RoleModel add method started");
 
 		Connection conn = null;
 		int pk = 0;
@@ -66,9 +77,14 @@ public class RoleModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("RoleModel add method ended");
+
 		return pk;
 	}
+
 	public void update(RoleBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("RoleModel update method started");
 
 		Connection conn = null;
 
@@ -92,7 +108,7 @@ public class RoleModel {
 			pstmt.setLong(7, bean.getId());
 			pstmt.executeUpdate();
 			conn.commit();
-			
+
 			System.out.println("record updated for " + bean.getName());
 			pstmt.close();
 		} catch (Exception e) {
@@ -105,9 +121,13 @@ public class RoleModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("RoleModel update method ended");
+
 	}
 
 	public void delete(RoleBean bean) throws ApplicationException {
+
+		log.debug("RoleModel delete method started");
 
 		Connection conn = null;
 
@@ -129,9 +149,13 @@ public class RoleModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("RoleModel delete method ended");
+
 	}
 
 	public RoleBean findByPk(long pk) throws ApplicationException {
+
+		log.debug("RoleModel findByPk method started");
 
 		RoleBean bean = null;
 		Connection conn = null;
@@ -159,10 +183,15 @@ public class RoleModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("RoleModel findByPk method ended");
+
 		return bean;
 	}
 
 	public RoleBean findByName(String name) throws ApplicationException {
+
+		log.debug("RoleModel findByName method started");
+
 		StringBuffer sql = new StringBuffer("select * from st_role where name = ?");
 		RoleBean bean = null;
 		Connection conn = null;
@@ -187,10 +216,14 @@ public class RoleModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("RoleModel findByName method ended");
+
 		return bean;
 	}
 
 	public List<RoleBean> search(RoleBean bean, int pageNo, int pageSize) throws ApplicationException {
+
+		log.debug("RoleModel search method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_role where 1=1");
 
@@ -235,10 +268,14 @@ public class RoleModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("RoleModel search method ended");
 		return list;
+
 	}
 
 	public List list() throws Exception {
+		log.debug("RoleModel list method called");
+
 		return search(null, 0, 0);
 	}
 }

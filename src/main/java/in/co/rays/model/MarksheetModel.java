@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import in.co.rays.bean.MarksheetBean;
 import in.co.rays.bean.StudentBean;
 import in.co.rays.bean.UserBean;
@@ -16,7 +18,12 @@ import in.co.rays.util.JDBCDataSource;
 
 public class MarksheetModel {
 
+	private static Logger log = Logger.getLogger(MarksheetModel.class);
+
 	public Integer nextPk() throws DatabaseException {
+
+		log.debug("MarksheetModel nextPk method started");
+
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -34,10 +41,14 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel nextPk method ended");
+
 		return pk + 1;
 	}
 
 	public long add(MarksheetBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("MarksheetModel add method started");
 
 		Connection conn = null;
 
@@ -84,10 +95,14 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel add method ended");
+
 		return pk;
 	}
 
 	public void delete(MarksheetBean bean) throws ApplicationException {
+
+		log.debug("MarksheetModel delete method started");
 
 		Connection conn = null;
 
@@ -110,9 +125,13 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel delete method ended");
+
 	}
 
 	public MarksheetBean findByRollNo(String rollNo) throws ApplicationException {
+
+		log.debug("MarksheetModel findByRollNo method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_marksheet where roll_no = ?");
 		MarksheetBean bean = null;
@@ -143,10 +162,14 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel findByRollNo method ended");
 		return bean;
+
 	}
 
 	public MarksheetBean findByPk(long pk) throws ApplicationException {
+
+		log.debug("MarksheetModel findByPk method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_marksheet where id = ?");
 		MarksheetBean bean = null;
@@ -177,10 +200,14 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel findByPk method ended");
+
 		return bean;
 	}
 
 	public void update(MarksheetBean bean) throws ApplicationException, DuplicateRecordException {
+
+		log.debug("MarksheetModel update method started");
 
 		Connection conn = null;
 
@@ -224,13 +251,19 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel update method ended");
+
 	}
-	
+
 	public List<MarksheetBean> list() throws ApplicationException {
+		log.debug("MarksheetModel list method ended");
+
 		return search(null, 0, 0);
 	}
 
 	public List<MarksheetBean> search(MarksheetBean bean, int pageNo, int pageSize) throws ApplicationException {
+
+		log.debug("MarksheetModel search method started");
 
 		StringBuffer sql = new StringBuffer("select * from st_marksheet where 1=1");
 
@@ -287,6 +320,8 @@ public class MarksheetModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
+		log.debug("MarksheetModel search method ended");
+
 		return list;
 	}
 

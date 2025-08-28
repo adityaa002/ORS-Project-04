@@ -4,6 +4,8 @@ package in.co.rays.controller;
  * ORSView interface defines constants for all the view (JSP) pages and their
  * corresponding controller (Servlet) paths used in the application.
  * 
+ *In Interface all variables are automatically public static final.
+ * 
  * This acts as a centralized place to manage view/controller mappings, ensuring
  * consistency and easier maintenance.
  * 
@@ -97,4 +99,10 @@ public interface ORSView {
 	public String ERROR_VIEW = PAGE_FOLDER + "/ErrorView.jsp";
 	public String ERROR_CTL = APP_CONTEXT + "/ctl/ErrorCtl";
 
+	public String PATIENT_VIEW = PAGE_FOLDER + "/PatientView.jsp";
+	public String PATIENT_CTL = APP_CONTEXT + "/PatientCtl";
+	
+	public String PATIENT_LIST_VIEW = PAGE_FOLDER + "/PatientListView.jsp";
+	public String PATIENT_LIST_CTL = APP_CONTEXT + "/PatientListCtl";
+	
 }
