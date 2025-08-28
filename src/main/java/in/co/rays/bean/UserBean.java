@@ -2,6 +2,15 @@ package in.co.rays.bean;
 
 import java.util.Date;
 
+/**
+ * The {@code UserBean} class represents a user entity within the system. 
+ * It stores user-related information such as personal details, 
+ * login credentials, role, and contact information.
+ * 
+ * @author YourName
+ * @version 1.0
+ * @since 2025
+ */
 public class UserBean extends BaseBean {
 
 	private String firstName;

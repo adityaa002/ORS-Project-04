@@ -1,5 +1,14 @@
 package in.co.rays.bean;
 
+/**
+ * CourseBean represents a course entity in the system.
+ * It extends {@link BaseBean} and includes attributes such as
+ * name, duration, and description.
+ *
+ * @author   Aditya
+ * @version  1.0
+ * @since    2025
+ */
 public class CourseBean extends BaseBean {
 
 	private String name;

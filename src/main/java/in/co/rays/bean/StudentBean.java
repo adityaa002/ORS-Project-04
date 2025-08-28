@@ -2,6 +2,19 @@ package in.co.rays.bean;
 
 import java.util.Date;
 
+/**
+ * StudentBean represents a student entity in the system.
+ * It extends {@link BaseBean} and includes student-related
+ * attributes such as first name, last name, date of birth,
+ * gender, mobile number, email, and associated college details.
+ *
+ * This bean is typically used to transfer student-related data
+ * between different layers of the application.
+ *
+ * @author   Aditya
+ * @version  1.0
+ * @since    2025
+ */
 public class StudentBean extends BaseBean {
 
 	private String firstName;

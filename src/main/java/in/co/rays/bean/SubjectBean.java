@@ -1,5 +1,17 @@
 package in.co.rays.bean;
 
+/**
+ * SubjectBean represents the subject entity in the system.
+ * It extends {@link BaseBean} and holds details of a subject 
+ * such as its name, associated course, course name, and description.
+ *
+ * This bean is mainly used to encapsulate and transfer 
+ * subject-related data across different layers of the application.
+ *
+ * @author   Aditya
+ * @version  1.0
+ * @since    2025
+ */
 public class SubjectBean extends BaseBean {
 
 	private String name;

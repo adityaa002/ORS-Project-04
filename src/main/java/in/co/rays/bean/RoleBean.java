@@ -1,5 +1,19 @@
 package in.co.rays.bean;
 
+/**
+ * RoleBean represents a role entity in the system. It extends {@link BaseBean}
+ * and defines role-related attributes such as name and description.
+ *
+ * The class also provides predefined constants for common roles like ADMIN,
+ * STUDENT, COLLEGE, KIOSK, and FACULTY.
+ *
+ * This bean is typically used to transfer role-related data between different
+ * layers of the application.
+ *
+ * @author Aditya
+ * @version 1.0
+ * @since 2025
+ */
 public class RoleBean extends BaseBean {
 
 	public static final int ADMIN = 1;
@@ -26,20 +40,14 @@ public class RoleBean extends BaseBean {
 	public void setDescription(String description) {
 		this.description = description;
 	}
- 
-	 
+
 	public String getKey() {
-		// TODO Auto-generated method stub
 		return id + "";
 	}
 
-	 
 	public String getValue() {
- 
+
 		return name;
 	}
-	
-	 
-	 
-	
+
 }
