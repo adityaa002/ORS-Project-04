@@ -1,5 +1,17 @@
 package in.co.rays.bean;
 
+/**
+ * MarksheetBean represents a student's marksheet entity in the system.
+ * It extends {@link BaseBean} and includes attributes such as roll number,
+ * student ID, name, and subject marks for Physics, Chemistry, and Maths.
+ *
+ * This bean is used to transfer marksheet-related data between
+ * different layers of the application.
+ *
+ * @author   Aditya
+ * @version  1.0
+ * @since    2025
+ */
 public class MarksheetBean extends BaseBean {
 
 	private String rollNo;

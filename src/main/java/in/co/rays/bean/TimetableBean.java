@@ -2,6 +2,21 @@ package in.co.rays.bean;
 
 import java.util.Date;
 
+/**
+ * TimetableBean represents the timetable entity in the system.
+ * It extends {@link BaseBean} and stores details about exam schedules,
+ * including semester, exam date, time, course, subject, and description.
+ * 
+ * This bean is mainly used to encapsulate and transfer timetable-related
+ * information across different layers of the application.
+ * 
+ * Example usage includes managing and retrieving exam schedules for
+ * different courses and subjects.
+ * 
+ * @author   Aditya
+ * @version  1.0
+ * @since    2025
+ */
 public class TimetableBean extends BaseBean {
 
 	private String semester;
@@ -78,13 +93,11 @@ public class TimetableBean extends BaseBean {
 	}
 
 	public String getKey() {
-		// TODO Auto-generated method stub
-		return null;
+ 		return null;
 	}
 
 	public String getValue() {
-		// TODO Auto-generated method stub
-		return null;
+ 		return null;
 	}
 
 }

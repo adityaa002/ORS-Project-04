@@ -2,6 +2,16 @@ package in.co.rays.bean;
 
 import java.util.Date;
 
+/**
+ * FacultyBean represents a faculty entity in the system. 
+ * It extends {@link BaseBean} and holds faculty-related attributes 
+ * such as personal details, contact information, and associated 
+ * college, course, and subject details.
+ *
+ * @author   Aditya
+ * @version  1.0
+ * @since    2025
+ */
 public class FacultyBean extends BaseBean {
 
 	private String firstName;
