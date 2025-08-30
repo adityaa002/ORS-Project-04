@@ -21,11 +21,24 @@ import in.co.rays.util.PropertyReader;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * UserListCtl manages displaying, searching, pagination, and deletion of users.
+ * It preloads roles and supports filtering by name, login, and role.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "UserListCtl", urlPatterns = { "/ctl/UserListCtl" })
 public class UserListCtl extends BaseCtl {
 
 	private static Logger log  = Logger.getLogger(UserListCtl.class);
 
+	/**
+	 * Preloads role list for filtering in the user list page.
+	 *
+	 * @param request HttpServletRequest
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
 		RoleModel roleModel = new RoleModel();
@@ -35,16 +48,19 @@ public class UserListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * Populates UserBean from request parameters for search and list operations.
+	 *
+	 * @param request HttpServletRequest
+	 * @return populated UserBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-
 		log.debug("UserListCtl populateBean method started");
 
 		UserBean bean = new UserBean();
-
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLogin(DataUtility.getString(request.getParameter("login")));
 		bean.setRoleId(DataUtility.getLong(request.getParameter("roleId")));
@@ -53,10 +69,17 @@ public class UserListCtl extends BaseCtl {
 		return bean;
 	}
 
+	/**
+	 * Handles GET requests to display paginated user list with optional filters.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("UserListCtl doget method started");
 
 		int pageNo = 1;
@@ -77,21 +100,28 @@ public class UserListCtl extends BaseCtl {
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.setBean(bean, request);
 			ServletUtility.setList(list, request);
-
 			request.setAttribute("nextListSize", next.size());
+
 			ServletUtility.forward(getView(), request, response);
 
 		} catch (ApplicationException e) {
 			ServletUtility.handleException(e, request, response);
 		}
-		log.debug("UserListCtl doget method ended");
 
+		log.debug("UserListCtl doget method ended");
 	}
 
+	/**
+	 * Handles POST requests for search, pagination, new, delete, reset, and back operations.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("UserListCtl dopost method started");
 
 		List list = null;
@@ -110,9 +140,7 @@ public class UserListCtl extends BaseCtl {
 		String[] ids = request.getParameterValues("ids");
 
 		try {
-
 			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
-
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
 				} else if (OP_NEXT.equalsIgnoreCase(op)) {
@@ -120,11 +148,9 @@ public class UserListCtl extends BaseCtl {
 				} else if (OP_PREVIOUS.equalsIgnoreCase(op)) {
 					pageNo--;
 				}
-
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.USER_CTL, request, response);
 				return;
-
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
 				pageNo = 1;
 				if (ids != null && ids.length > 0) {
@@ -140,7 +166,6 @@ public class UserListCtl extends BaseCtl {
 			} else if (OP_RESET.equals(op)) {
 				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
-
 			} else if (OP_BACK.equalsIgnoreCase(op)) {
 				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
@@ -166,9 +191,15 @@ public class UserListCtl extends BaseCtl {
 			e.printStackTrace();
 			return;
 		}
+
 		log.debug("UserListCtl dopost method ended");
 	}
 
+	/**
+	 * Returns the view page for user list.
+	 *
+	 * @return String representing the view path
+	 */
 	@Override
 	protected String getView() {
 		System.out.println("getView");

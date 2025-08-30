@@ -18,11 +18,24 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Controller for handling College List operations such as 
+ * searching, pagination, and deletion of records.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "CollegeListCtl", urlPatterns = { "/ctl/CollegeListCtl" })
 public class CollegeListCtl extends BaseCtl {
 
-	private static Logger log  = Logger.getLogger(CollegeListCtl.class);
+	private static Logger log = Logger.getLogger(CollegeListCtl.class);
 
+	/**
+	 * Preloads the list of colleges into the request scope.
+	 * 
+	 * @param request HttpServletRequest
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
 
@@ -43,6 +56,12 @@ public class CollegeListCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Populates CollegeBean from request parameters.
+	 * 
+	 * @param request HttpServletRequest
+	 * @return CollegeBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
@@ -104,6 +123,14 @@ public class CollegeListCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Handles HTTP POST requests for search, navigation, deletion, and redirection.
+	 * 
+	 * @param request  HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -189,6 +216,11 @@ public class CollegeListCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Returns the view page for College list.
+	 * 
+	 * @return String - view path
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.COLLEGE_LIST_VIEW;

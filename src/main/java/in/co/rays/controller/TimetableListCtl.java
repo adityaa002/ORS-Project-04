@@ -20,15 +20,26 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * TimetableListCtl handles searching, listing, deleting, and navigating timetable records.
+ * It supports pagination and filtering by course, subject, and exam date.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "TimetableListCtl", urlPatterns = { "/ctl/TimetableListCtl" })
 public class TimetableListCtl extends BaseCtl {
 	
 	private static Logger log  = Logger.getLogger(TimetableListCtl.class);
 
-
+	/**
+	 * Preloads subjects and courses for timetable filtering.
+	 *
+	 * @param request HttpServletRequest
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
-
 		SubjectModel subjectModel = new SubjectModel();
 		CourseModel courseModel = new CourseModel();
 
@@ -38,36 +49,42 @@ public class TimetableListCtl extends BaseCtl {
 
 			List courseList = courseModel.list();
 			request.setAttribute("courseList", courseList);
-
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 			return;
 		}
 	}
 
+	/**
+	 * Populates TimetableBean from request parameters for searching or filtering.
+	 *
+	 * @param request HttpServletRequest
+	 * @return populated TimetableBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		
 		log.debug("TimetableListCtl populateBean method started");
 
-
 		TimetableBean bean = new TimetableBean();
-
 		bean.setCourseId(DataUtility.getLong(request.getParameter("courseId")));
-
 		bean.setSubjectId(DataUtility.getLong(request.getParameter("subjectId")));
-
 		bean.setExamDate(DataUtility.getDate(request.getParameter("examDate")));
-		
+
 		log.debug("TimetableListCtl populateBean method ended");
 		return bean;
 	}
 
+	/**
+	 * Handles GET request to display the list of timetable records with pagination.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		log.debug("TimetableListCtl doget method started");
-
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -94,17 +111,22 @@ public class TimetableListCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			ServletUtility.handleException(e, request, response);
 		}
-		
-		log.debug("TimetableListCtl doget method ended");
 
+		log.debug("TimetableListCtl doget method ended");
 	}
 
+	/**
+	 * Handles POST request for searching, deleting, pagination, resetting, or navigating timetable records.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		log.debug("TimetableListCtl dopost method started");
-
 
 		List list = null;
 		List next = null;
@@ -124,7 +146,6 @@ public class TimetableListCtl extends BaseCtl {
 		try {
 
 			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
-
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
 				} else if (OP_NEXT.equalsIgnoreCase(op)) {
@@ -177,9 +198,13 @@ public class TimetableListCtl extends BaseCtl {
 			return;
 		}
 		log.debug("TimetableListCtl dopost method ended");
-
 	}
 
+	/**
+	 * Returns the view page for displaying timetable list.
+	 *
+	 * @return String representing the view path
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.TIMETABLE_LIST_VIEW;

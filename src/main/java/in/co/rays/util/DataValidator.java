@@ -3,8 +3,23 @@ package in.co.rays.util;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Utility class for validating various types of data such as String, numbers, 
+ * email, name, roll number, password, phone number, and dates.
+ * Provides methods to check nullity, data formats, and specific constraints.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class DataValidator {
 
+	/**
+	 * Checks if a string is null or empty after trimming.
+	 *
+	 * @param val input string
+	 * @return true if null or empty, false otherwise
+	 */
 	public static boolean isNull(String val) {
 		if (val == null || val.trim().length() == 0) {
 			return true;
@@ -13,10 +28,22 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Checks if a string is not null or empty.
+	 *
+	 * @param val input string
+	 * @return true if not null or empty, false otherwise
+	 */
 	public static boolean isNotNull(String val) {
 		return !isNull(val);
 	}
 
+	/**
+	 * Checks if a string represents a valid integer.
+	 *
+	 * @param val input string
+	 * @return true if valid integer, false otherwise
+	 */
 	public static boolean isInteger(String val) {
 
 		if (isNotNull(val)) {
@@ -31,6 +58,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Checks if a string represents a valid long number.
+	 *
+	 * @param val input string
+	 * @return true if valid long, false otherwise
+	 */
 	public static boolean isLong(String val) {
 		if (isNotNull(val)) {
 			try {
@@ -44,6 +77,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Validates an email address format.
+	 *
+	 * @param val input string
+	 * @return true if valid email, false otherwise
+	 */
 	public static boolean isEmail(String val) {
 
 		String emailreg = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
@@ -60,6 +99,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Validates a name format.
+	 *
+	 * @param val input string
+	 * @return true if valid name, false otherwise
+	 */
 	public static boolean isName(String val) {
 
 		String namereg = "^[^-\\s][\\p{L} .'-]+$";
@@ -75,6 +120,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Validates a roll number format.
+	 *
+	 * @param val input string
+	 * @return true if valid roll number, false otherwise
+	 */
 	public static boolean isRollNo(String val) {
 
 		String rollreg = "[a-zA-Z]{2}[0-9]{3}";
@@ -90,6 +141,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Validates a password format with constraints on numbers, letters, special characters, and length.
+	 *
+	 * @param val input string
+	 * @return true if valid password, false otherwise
+	 */
 	public static boolean isPassword(String val) {
 
 		String passreg = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,12}";
@@ -106,6 +163,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Checks if password length is between 8 and 12 characters.
+	 *
+	 * @param val input string
+	 * @return true if valid length, false otherwise
+	 */
 	public static boolean isPasswordLength(String val) {
 
 		if (isNotNull(val) && val.length() >= 8 && val.length() <= 12) {
@@ -115,6 +178,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Validates phone number format starting with 6-9 and 10 digits long.
+	 *
+	 * @param val input string
+	 * @return true if valid phone number, false otherwise
+	 */
 	public static boolean isPhoneNo(String val) {
 
 		String phonereg = "^[6-9][0-9]{9}$";
@@ -131,6 +200,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Checks if phone number length is exactly 10 digits.
+	 *
+	 * @param val input string
+	 * @return true if length is 10, false otherwise
+	 */
 	public static boolean isPhoneLength(String val) {
 
 		if (isNotNull(val) && val.length() == 10) {
@@ -140,6 +215,12 @@ public class DataValidator {
 		}
 	}
 
+	/**
+	 * Validates if a string represents a valid date using DataUtility.
+	 *
+	 * @param val input string
+	 * @return true if valid date, false otherwise
+	 */
 	public static boolean isDate(String val) {
 
 		Date d = null;
@@ -149,6 +230,12 @@ public class DataValidator {
 		return d != null;
 	}
 
+	/**
+	 * Checks if a date falls on Sunday.
+	 *
+	 * @param val input string representing a date
+	 * @return true if the date is Sunday, false otherwise
+	 */
 	public static boolean isSunday(String val) {
 
 		Calendar cal = Calendar.getInstance();

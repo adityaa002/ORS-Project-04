@@ -8,6 +8,14 @@ import java.util.ResourceBundle;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+/**
+ * JDBCDataSource manages database connections using C3P0 connection pooling.
+ * Provides methods to get and close connections safely.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public final class JDBCDataSource {
 
 	private static JDBCDataSource jds = null;
@@ -16,6 +24,10 @@ public final class JDBCDataSource {
 
 	private static ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.bundle.System");
 
+	/**
+	 * Private constructor initializes the C3P0 connection pool with properties from
+	 * resource bundle.
+	 */
 	private JDBCDataSource() {
 		try {
 			cpds = new ComboPooledDataSource();
@@ -31,6 +43,11 @@ public final class JDBCDataSource {
 		}
 	}
 
+	/**
+	 * Returns the singleton instance of JDBCDataSource.
+	 * 
+	 * @return JDBCDataSource instance
+	 */
 	public static JDBCDataSource getInstance() {
 		if (jds == null) {
 			jds = new JDBCDataSource();
@@ -38,6 +55,11 @@ public final class JDBCDataSource {
 		return jds;
 	}
 
+	/**
+	 * Retrieves a database connection from the pool.
+	 * 
+	 * @return Connection object, or null if connection fails
+	 */
 	public static Connection getConnection() {
 		try {
 			return getInstance().cpds.getConnection();
@@ -46,6 +68,13 @@ public final class JDBCDataSource {
 		}
 	}
 
+	/**
+	 * Closes the database resources: ResultSet, Statement, and Connection.
+	 * 
+	 * @param conn Connection to close
+	 * @param stmt Statement to close
+	 * @param rs   ResultSet to close
+	 */
 	public static void closeConnection(Connection conn, Statement stmt, ResultSet rs) {
 		try {
 			if (rs != null) {
@@ -62,10 +91,21 @@ public final class JDBCDataSource {
 		}
 	}
 
+	/**
+	 * Closes the database resources: Statement and Connection.
+	 * 
+	 * @param conn Connection to close
+	 * @param stmt Statement to close
+	 */
 	public static void closeConnection(Connection conn, Statement stmt) {
 		closeConnection(conn, stmt, null);
 	}
 
+	/**
+	 * Closes the database Connection.
+	 * 
+	 * @param conn Connection to close
+	 */
 	public static void closeConnection(Connection conn) {
 		closeConnection(conn, null);
 	}

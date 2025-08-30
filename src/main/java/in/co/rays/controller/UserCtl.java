@@ -24,12 +24,24 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * UserCtl manages adding, updating, and displaying user details.
+ * It validates input, checks for duplicates, and preloads role data.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "UserCtl", urlPatterns = { "/ctl/UserCtl" })
 public class UserCtl extends BaseCtl {
 	
 	private static Logger log  = Logger.getLogger(UserCtl.class);
 
-
+	/**
+	 * Preloads roles for user creation and update forms.
+	 *
+	 * @param request HttpServletRequest
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
 		RoleModel model = new RoleModel();
@@ -40,14 +52,17 @@ public class UserCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * Validates user input fields such as name, login, password, dob, mobile, and role.
+	 *
+	 * @param request HttpServletRequest
+	 * @return true if validation passes, false otherwise
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
-		
 		log.debug("UserCtl validate method started");
-
 
 		boolean pass = true;
 
@@ -130,82 +145,82 @@ public class UserCtl extends BaseCtl {
 		return pass;
 	}
 
+	/**
+	 * Populates UserBean from request parameters for add or update operations.
+	 *
+	 * @param request HttpServletRequest
+	 * @return populated UserBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		
 		log.debug("UserCtl populateBean method started");
-
 
 		UserBean bean = new UserBean();
 
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
-
 		bean.setRoleId(DataUtility.getLong(request.getParameter("roleId")));
- 
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
-
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
-
 		bean.setLogin(DataUtility.getString(request.getParameter("login")));
-
 		bean.setPassword(DataUtility.getString(request.getParameter("password")));
-
 		bean.setConfirmPassword(DataUtility.getString(request.getParameter("confirmPassword")));
-
 		bean.setGender(DataUtility.getString(request.getParameter("gender")));
-
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
-
 		bean.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		populateDto(bean, request);
-		
+
 		log.debug("UserCtl populateBean method ended");
 		return bean;
-
 	}
 
+	/**
+	 * Handles GET requests to fetch and display user details by ID.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		log.debug("UserCtl doget method started");
-
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		UserModel model = new UserModel();
-
 		long id = DataUtility.getLong(request.getParameter("id"));
 
 		if (id > 0 || op != null) {
-
 			try {
 				UserBean bean = model.findByPk(id);
 				ServletUtility.setBean(bean, request);
 			} catch (ApplicationException e) {
 				ServletUtility.handleException(e, request, response);
 			}
-
 		}
 
 		ServletUtility.forward(getView(), request, response);
 		log.debug("UserCtl doget method ended");
-
 	}
 
+	/**
+	 * Handles POST requests to add, update, reset, or cancel user operations.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		log.debug("UserCtl dopost method started");
 
-
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		UserModel model = new UserModel();
 
 		if (OP_SAVE.equalsIgnoreCase(op)) {
 			UserBean bean = (UserBean) populateBean(request);
-
 			try {
 				long pk = model.add(bean);
 				ServletUtility.setBean(bean, request);
@@ -219,14 +234,12 @@ public class UserCtl extends BaseCtl {
 			}
 		} else if (OP_UPDATE.equalsIgnoreCase(op)) {
 			UserBean bean = (UserBean) populateBean(request);
-
 			try {
 				if (bean.getId() > 0) {
 					model.update(bean);
 				}
 				ServletUtility.setBean(bean, request);
 				ServletUtility.setSuccessMessage("Data is successfully updated", request);
-			
 			} catch (ApplicationException e) {
 				ServletUtility.handleException(e, request, response);
 				return;
@@ -241,11 +254,16 @@ public class UserCtl extends BaseCtl {
 			ServletUtility.redirect(ORSView.USER_CTL, request, response);
 			return;
 		}
+
 		ServletUtility.forward(getView(), request, response);
 		log.debug("UserCtl dopost method ended");
-
 	}
 
+	/**
+	 * Returns the view page for user form.
+	 *
+	 * @return String representing the view path
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.USER_VIEW;

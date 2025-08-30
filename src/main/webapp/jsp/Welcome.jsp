@@ -25,7 +25,7 @@
 					if (beanUserBean.getRoleId() == RoleBean.STUDENT) {
 			%>
 			<h2>
-				<a href="#">Click here to view your marksheet</a>
+				<a href="<%=ORSView.GET_MARKSHEET_CTL%>">Click here to view your marksheet</a>
 			</h2>
 			<%
 				}

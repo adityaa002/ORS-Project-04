@@ -14,10 +14,23 @@ import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * Model class for handling Role operations including CRUD and search functionality.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class RoleModel {
 
 	private static Logger log = Logger.getLogger(RoleModel.class);
 
+	/**
+	 * Returns the next primary key for the role table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws SQLException if a database error occurs
+	 */
 	public Integer nextPk() throws SQLException {
 
 		log.debug("RoleModel nextPk method started");
@@ -38,6 +51,14 @@ public class RoleModel {
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new role record to the database.
+	 * 
+	 * @param bean RoleBean containing details
+	 * @return primary key of inserted record
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if role already exists
+	 */
 	public long add(RoleBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("RoleModel add method started");
@@ -82,6 +103,13 @@ public class RoleModel {
 		return pk;
 	}
 
+	/**
+	 * Updates an existing role record.
+	 * 
+	 * @param bean RoleBean containing updated details
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if role already exists
+	 */
 	public void update(RoleBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("RoleModel update method started");
@@ -125,6 +153,12 @@ public class RoleModel {
 
 	}
 
+	/**
+	 * Deletes a role record.
+	 * 
+	 * @param bean RoleBean containing ID
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public void delete(RoleBean bean) throws ApplicationException {
 
 		log.debug("RoleModel delete method started");
@@ -153,6 +187,13 @@ public class RoleModel {
 
 	}
 
+	/**
+	 * Finds a role by primary key.
+	 * 
+	 * @param pk Primary key to search
+	 * @return RoleBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public RoleBean findByPk(long pk) throws ApplicationException {
 
 		log.debug("RoleModel findByPk method started");
@@ -188,6 +229,13 @@ public class RoleModel {
 		return bean;
 	}
 
+	/**
+	 * Finds a role by name.
+	 * 
+	 * @param name Role name to search
+	 * @return RoleBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public RoleBean findByName(String name) throws ApplicationException {
 
 		log.debug("RoleModel findByName method started");
@@ -221,6 +269,15 @@ public class RoleModel {
 		return bean;
 	}
 
+	/**
+	 * Searches role records based on given criteria.
+	 * 
+	 * @param bean     RoleBean with search filters
+	 * @param pageNo   Page number for pagination
+	 * @param pageSize Number of records per page
+	 * @return List of RoleBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<RoleBean> search(RoleBean bean, int pageNo, int pageSize) throws ApplicationException {
 
 		log.debug("RoleModel search method started");
@@ -273,6 +330,12 @@ public class RoleModel {
 
 	}
 
+	/**
+	 * Returns all role records.
+	 * 
+	 * @return List of RoleBean
+	 * @throws Exception if a database error occurs
+	 */
 	public List list() throws Exception {
 		log.debug("RoleModel list method called");
 

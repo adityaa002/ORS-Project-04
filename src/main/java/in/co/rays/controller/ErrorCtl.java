@@ -11,11 +11,21 @@ import org.apache.log4j.Logger;
 
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Error Controller to handle system errors and forward to the error view.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet("/ctl/ErrorCtl")
 public class ErrorCtl extends BaseCtl {
 
 	private static Logger log  = Logger.getLogger(ErrorCtl.class);
 
+	/**
+	 * Handles GET requests and forwards to the error view.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -27,6 +37,9 @@ public class ErrorCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Handles POST requests and forwards to the error view.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -38,6 +51,11 @@ public class ErrorCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Returns the error view path.
+	 * 
+	 * @return ERROR_VIEW constant
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.ERROR_VIEW;

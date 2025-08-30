@@ -16,14 +16,25 @@ import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * FacultyModel handles database operations for FacultyBean including add, update, delete, findByPk, findByEmail, and search.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class FacultyModel {
 
 	private static Logger log = Logger.getLogger(FacultyModel.class);
 
+	/**
+	 * Returns next primary key for Faculty table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws Exception if database error occurs
+	 */
 	public Integer nextPk() throws Exception {
-
 		log.debug("FacultyModel nextPk method started");
-
 		int pk = 0;
 		Connection conn = JDBCDataSource.getConnection();
 		PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_faculty");
@@ -33,14 +44,18 @@ public class FacultyModel {
 		}
 		JDBCDataSource.closeConnection(conn);
 		log.debug("FacultyModel nextPk method ended");
-
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new faculty record.
+	 * 
+	 * @param bean FacultyBean object
+	 * @return primary key of inserted record
+	 * @throws Exception if database error occurs or duplicate email exists
+	 */
 	public long add(FacultyBean bean) throws Exception {
-
 		log.debug("FacultyModel add method started");
-
 		CollegeModel collegeModel = new CollegeModel();
 		CollegeBean collegeBean = collegeModel.findByPK(bean.getCollegeId());
 		bean.setCollegeName(collegeBean.getName());
@@ -91,14 +106,17 @@ public class FacultyModel {
 		System.out.println("data inserted : " + i);
 
 		log.debug("FacultyModel add method ended");
-
 		return pk;
 	}
 
+	/**
+	 * Updates an existing faculty record.
+	 * 
+	 * @param bean FacultyBean object
+	 * @throws Exception if database error occurs or duplicate email exists
+	 */
 	public void update(FacultyBean bean) throws Exception {
-
 		log.debug("FacultyModel update method started");
-
 		CollegeModel collegeModel = new CollegeModel();
 		CollegeBean collegeBean = collegeModel.findByPK(bean.getCollegeId());
 		bean.setCollegeName(collegeBean.getName());
@@ -146,42 +164,39 @@ public class FacultyModel {
 
 		System.out.println("data updated => " + i);
 		log.debug("FacultyModel update method ended");
-
 	}
 
+	/**
+	 * Deletes a faculty record.
+	 * 
+	 * @param bean FacultyBean object
+	 * @throws Exception if database error occurs
+	 */
 	public void delete(FacultyBean bean) throws Exception {
-
 		log.debug("FacultyModel delete method started");
-
 		Connection conn = JDBCDataSource.getConnection();
-
 		PreparedStatement pstmt = conn.prepareStatement("delete from st_faculty where id = ?");
-
 		pstmt.setLong(1, bean.getId());
-
 		int i = pstmt.executeUpdate();
-
 		JDBCDataSource.closeConnection(conn);
-
 		System.out.println("data deleted :" + i);
 		log.debug("FacultyModel delete method ended");
-
 	}
 
+	/**
+	 * Finds a faculty by primary key.
+	 * 
+	 * @param id primary key
+	 * @return FacultyBean object if found, else null
+	 * @throws Exception if database error occurs
+	 */
 	public FacultyBean findByPk(long id) throws Exception {
-
 		log.debug("FacultyModel findByPk method started");
-
 		Connection conn = JDBCDataSource.getConnection();
-
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_faculty where id = ?");
-
 		pstmt.setLong(1, id);
-
 		ResultSet rs = pstmt.executeQuery();
-
 		FacultyBean bean = null;
-
 		while (rs.next()) {
 			bean = new FacultyBean();
 			bean.setId(rs.getLong(1));
@@ -204,24 +219,23 @@ public class FacultyModel {
 		}
 		JDBCDataSource.closeConnection(conn);
 		log.debug("FacultyModel findByPk method ended");
-
 		return bean;
 	}
 
+	/**
+	 * Finds a faculty by email.
+	 * 
+	 * @param email email address
+	 * @return FacultyBean object if found, else null
+	 * @throws Exception if database error occurs
+	 */
 	public FacultyBean findByEmail(String email) throws Exception {
-
 		log.debug("FacultyModel findByEmail method started");
-
 		Connection conn = JDBCDataSource.getConnection();
-
 		PreparedStatement pstmt = conn.prepareStatement("select * from st_faculty where email = ?");
-
 		pstmt.setString(1, email);
-
 		ResultSet rs = pstmt.executeQuery();
-
 		FacultyBean bean = null;
-
 		while (rs.next()) {
 			bean = new FacultyBean();
 			bean.setId(rs.getLong(1));
@@ -244,15 +258,21 @@ public class FacultyModel {
 		}
 		JDBCDataSource.closeConnection(conn);
 		log.debug("FacultyModel findByEmail method ended");
-
 		return bean;
 	}
 
+	/**
+	 * Searches faculty records based on criteria.
+	 * 
+	 * @param bean     FacultyBean with search criteria
+	 * @param pageNo   page number for pagination
+	 * @param pageSize number of records per page
+	 * @return List of FacultyBean matching criteria
+	 * @throws Exception if database error occurs
+	 */
 	public List search(FacultyBean bean, int pageNo, int pageSize) throws Exception {
 		log.debug("FacultyModel search method started");
-
 		Connection conn = JDBCDataSource.getConnection();
-
 		StringBuffer sql = new StringBuffer("select * from st_faculty where 1=1");
 
 		if (bean != null) {
@@ -270,13 +290,10 @@ public class FacultyModel {
 		}
 
 		System.out.println("sql query " + sql.toString());
-
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-
 		ResultSet rs = pstmt.executeQuery();
 
 		List list = new ArrayList();
-
 		while (rs.next()) {
 			bean = new FacultyBean();
 			bean.setId(rs.getLong(1));
@@ -300,7 +317,6 @@ public class FacultyModel {
 		}
 		JDBCDataSource.closeConnection(conn);
 		log.debug("FacultyModel search method ended");
-
 		return list;
 	}
 

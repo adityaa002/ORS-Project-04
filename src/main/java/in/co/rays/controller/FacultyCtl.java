@@ -31,7 +31,7 @@ import in.co.rays.util.ServletUtility;
  * 
  * @author Aditya
  * @version 1.0
- * @since 2025-08-01
+ * @since 2025
  */
 @WebServlet(name = "FacultyCtl", urlPatterns = { "/ctl/FacultyCtl" })
 public class FacultyCtl extends BaseCtl {

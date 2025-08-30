@@ -5,7 +5,7 @@
  * 
  * @author Aditya
  * @version 1.0
- * @since 01 Aug 2025
+ * @since 2025
  */
 
 package in.co.rays.controller;
@@ -38,10 +38,10 @@ public class ForgetPasswordCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(ForgetPasswordCtl.class);
 
 	/**
-	 * Validates the login (email) input for the forget password process.
+	 * Validates the email input for forget password.
 	 *
-	 * @param request the HttpServletRequest object
-	 * @return boolean true if validation passes, false otherwise
+	 * @param request HttpServletRequest
+	 * @return true if valid, false otherwise
 	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
@@ -58,16 +58,16 @@ public class ForgetPasswordCtl extends BaseCtl {
 			pass = false;
 		}
 
-		log.debug("ForgetPasswordCtl validate method ended with status : "+pass);
+		log.debug("ForgetPasswordCtl validate method ended with status : " + pass);
 
 		return pass;
 	}
 
 	/**
-	 * Populates a UserBean object with data from the request.
+	 * Populates UserBean with request data.
 	 *
-	 * @param request the HttpServletRequest object
-	 * @return a populated UserBean object
+	 * @param request HttpServletRequest
+	 * @return UserBean object
 	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
@@ -84,10 +84,10 @@ public class ForgetPasswordCtl extends BaseCtl {
 	}
 
 	/**
-	 * Handles GET requests and forwards to the forget password view.
+	 * Handles GET request and forwards to view.
 	 *
-	 * @param request  the HttpServletRequest object
-	 * @param response the HttpServletResponse object
+	 * @param request  HttpServletRequest
+	 * @param response HttpServletResponse
 	 * @throws ServletException
 	 * @throws IOException
 	 */
@@ -97,24 +97,22 @@ public class ForgetPasswordCtl extends BaseCtl {
 		log.debug("ForgetPasswordCtl doget method started");
 
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("ForgetPasswordCtl doget method ended");
 	}
 
 	/**
-	 * Handles POST requests for submitting the forget password form. If the login
-	 * is valid, it triggers email sending for the password.
+	 * Handles POST request for forget password operation.
 	 *
-	 * @param request  the HttpServletRequest object
-	 * @param response the HttpServletResponse object
+	 * @param request  HttpServletRequest
+	 * @param response HttpServletResponse
 	 * @throws ServletException
 	 * @throws IOException
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-    	log.debug("ForgetPasswordCtl dopost method started");
 
+		log.debug("ForgetPasswordCtl dopost method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -136,15 +134,15 @@ public class ForgetPasswordCtl extends BaseCtl {
 			}
 			ServletUtility.forward(getView(), request, response);
 		}
-		
-    	log.debug("ForgetPasswordCtl dopost method ended");
+
+		log.debug("ForgetPasswordCtl dopost method ended");
 
 	}
 
 	/**
-	 * Returns the view for the forget password screen.
+	 * Returns view for forget password screen.
 	 *
-	 * @return String representing the view path
+	 * @return view path
 	 */
 	@Override
 	protected String getView() {

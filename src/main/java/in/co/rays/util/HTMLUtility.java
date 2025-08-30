@@ -7,8 +7,24 @@ import java.util.Set;
 import in.co.rays.bean.DropdownListBean;
 import in.co.rays.model.RoleModel;
 
+/**
+ * Utility class to generate HTML select (dropdown) elements.
+ * Supports creation of dropdowns from both HashMap and List data sources.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class HTMLUtility {
 
+	/**
+	 * Generates an HTML select element from a HashMap of options.
+	 * 
+	 * @param name        the name attribute of the select element
+	 * @param selectedVal the currently selected value
+	 * @param map         HashMap containing key-value pairs for options
+	 * @return HTML string representing the select element
+	 */
 	public static String getList(String name, String selectedVal, HashMap<String, String> map) {
 
 		StringBuffer sb = new StringBuffer(
@@ -31,14 +47,15 @@ public class HTMLUtility {
 		return sb.toString();
 	}
 
+	/**
+	 * Generates an HTML select element from a List of DropdownListBean objects.
+	 * 
+	 * @param name        the name attribute of the select element
+	 * @param selectedVal the currently selected value
+	 * @param list        List of DropdownListBean containing key-value pairs
+	 * @return HTML string representing the select element
+	 */
 	public static String getList(String name, String selectedVal, List list) {
-
-//		BaseBean bean = (BaseBean) list.get(0);
-
-//		System.out.println("my key => " + bean.getKey());
-//		System.out.println("my value => " + bean.getValue());
-
-		// Collections.sort(list);
 
 		List<DropdownListBean> dd = (List<DropdownListBean>) list;
 
@@ -63,6 +80,9 @@ public class HTMLUtility {
 		return sb.toString();
 	}
 
+	/**
+	 * Test method for generating an HTML select from a HashMap.
+	 */
 	public static void testGetListByMap() {
 
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -75,11 +95,14 @@ public class HTMLUtility {
 		System.out.println(htmlSelectFromMap);
 	}
 
+	/**
+	 * Test method for generating an HTML select from a List.
+	 * 
+	 * @throws Exception if list retrieval fails
+	 */
 	public static void testGetListByList() throws Exception {
 
-	RoleModel model = new RoleModel();
-	
-
+		RoleModel model = new RoleModel();
 		List<DropdownListBean> list = model.list();
 		String selectedValue = "1";
 
@@ -88,6 +111,12 @@ public class HTMLUtility {
 		System.out.println(htmlSelectFromList);
 	}
 
+	/**
+	 * Main method to execute test cases.
+	 * 
+	 * @param args command line arguments
+	 * @throws Exception if any test method fails
+	 */
 	public static void main(String[] args) throws Exception {
 
 		//testGetListByMap();

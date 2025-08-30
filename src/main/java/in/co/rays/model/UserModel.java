@@ -19,19 +19,31 @@ import in.co.rays.util.EmailMessage;
 import in.co.rays.util.EmailUtility;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * UserModel handles all database operations related to UserBean such as add,
+ * update, delete, search, authentication, registration, and password
+ * management.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class UserModel {
 
 	private static Logger log = Logger.getLogger(UserModel.class);
 
+	/**
+	 * Returns next primary key for user table.
+	 * 
+	 * @return next primary key as Integer
+	 */
 	public Integer nextPk() {
-
 		log.debug("UserModel nextPk method started");
 
 		Connection conn = null;
 		int pk = 0;
 
 		try {
-
 			conn = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_user");
 			ResultSet rs = pstmt.executeQuery();
@@ -48,8 +60,15 @@ public class UserModel {
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new user to the database.
+	 * 
+	 * @param bean UserBean containing user details
+	 * @return primary key of newly added user
+	 * @throws ApplicationException     if database error occurs
+	 * @throws DuplicateRecordException if login ID already exists
+	 */
 	public long add(UserBean bean) throws ApplicationException, DuplicateRecordException {
-
 		log.debug("UserModel add method started");
 
 		Connection conn = null;
@@ -99,8 +118,14 @@ public class UserModel {
 		return pk;
 	}
 
+	/**
+	 * Updates an existing user in the database.
+	 * 
+	 * @param bean UserBean containing updated user details
+	 * @throws ApplicationException     if database error occurs
+	 * @throws DuplicateRecordException if login ID conflicts with another user
+	 */
 	public void update(UserBean bean) throws ApplicationException, DuplicateRecordException {
-
 		log.debug("UserModel update method started");
 
 		Connection conn = null;
@@ -148,8 +173,13 @@ public class UserModel {
 
 	}
 
+	/**
+	 * Deletes a user from the database.
+	 * 
+	 * @param bean UserBean containing the ID to delete
+	 * @throws ApplicationException if database error occurs
+	 */
 	public void delete(UserBean bean) throws ApplicationException {
-
 		log.debug("UserModel delete method started");
 
 		Connection conn = null;
@@ -176,8 +206,14 @@ public class UserModel {
 
 	}
 
+	/**
+	 * Finds a user by login ID.
+	 * 
+	 * @param login login ID of the user
+	 * @return UserBean if found, null otherwise
+	 * @throws ApplicationException if database error occurs
+	 */
 	public UserBean findByLogin(String login) throws ApplicationException {
-
 		log.debug("UserModel findByLogin method started");
 
 		Connection conn = null;
@@ -206,7 +242,6 @@ public class UserModel {
 				bean.setModifiedBy(rs.getString(11));
 				bean.setCreatedDatetime(rs.getTimestamp(12));
 				bean.setModifiedDatetime(rs.getTimestamp(13));
-
 			}
 
 			conn.commit();
@@ -223,6 +258,13 @@ public class UserModel {
 
 	}
 
+	/**
+	 * Finds a user by primary key.
+	 * 
+	 * @param id primary key of user
+	 * @return UserBean if found, null otherwise
+	 * @throws ApplicationException if database error occurs
+	 */
 	public UserBean findByPk(long id) throws ApplicationException {
 		log.debug("UserModel findByPk method started");
 
@@ -268,8 +310,15 @@ public class UserModel {
 		return bean;
 	}
 
+	/**
+	 * Authenticates a user using login and password.
+	 * 
+	 * @param login    user's login ID
+	 * @param password user's password
+	 * @return UserBean if authentication is successful, null otherwise
+	 * @throws ApplicationException if database error occurs
+	 */
 	public UserBean authenticate(String login, String password) throws ApplicationException {
-
 		log.debug("UserModel authenticate method started");
 
 		UserBean bean = null;
@@ -309,6 +358,15 @@ public class UserModel {
 		return bean;
 	}
 
+	/**
+	 * Searches users based on criteria and pagination.
+	 * 
+	 * @param bean     UserBean containing search criteria
+	 * @param pageNo   page number (1-based)
+	 * @param pageSize number of records per page
+	 * @return List of UserBean matching criteria
+	 * @throws ApplicationException if database error occurs
+	 */
 	public List<UserBean> search(UserBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("UserModel search method started");
 
@@ -384,12 +442,26 @@ public class UserModel {
 		return list;
 	}
 
+	/**
+	 * Lists all users.
+	 * 
+	 * @return List of UserBean
+	 * @throws ApplicationException if database error occurs
+	 */
 	public List<UserBean> list() throws ApplicationException {
 		log.debug("UserModel list method called");
 
 		return search(null, 0, 0);
 	}
 
+	/**
+	 * Registers a new user and sends registration email.
+	 * 
+	 * @param bean UserBean containing user details
+	 * @return primary key of newly registered user
+	 * @throws ApplicationException     if database error occurs
+	 * @throws DuplicateRecordException if login ID already exists
+	 */
 	public long registerUser(UserBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("UserModel registerUser method started");
 
@@ -413,6 +485,16 @@ public class UserModel {
 		return pk;
 	}
 
+	/**
+	 * Changes the password of a user and sends a notification email.
+	 *
+	 * @param id          the user ID
+	 * @param oldPassword the current password
+	 * @param newPassword the new password to set
+	 * @return true if password changed successfully
+	 * @throws RecordNotFoundException if user not found or old password mismatch
+	 * @throws ApplicationException    if a database or email error occurs
+	 */
 	public boolean changePassword(Long id, String oldPassword, String newPassword)
 			throws RecordNotFoundException, ApplicationException {
 
@@ -454,6 +536,14 @@ public class UserModel {
 		return flag;
 	}
 
+	/**
+	 * Handles forgotten password by sending the password to the registered email.
+	 *
+	 * @param login the login ID of the user
+	 * @return true if email sent successfully
+	 * @throws ApplicationException    if a database or email error occurs
+	 * @throws RecordNotFoundException if the login ID does not exist
+	 */
 	public boolean forgetPassword(String login) throws ApplicationException, RecordNotFoundException {
 		log.debug("UserModel forgetPassword method started");
 
@@ -462,7 +552,6 @@ public class UserModel {
 
 		if (userData == null) {
 			throw new RecordNotFoundException("Email ID does not exists !");
-
 		}
 
 		HashMap<String, String> map = new HashMap<String, String>();

@@ -4,6 +4,15 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Utility class for data conversions and date/time operations.
+ * Provides methods to convert between String, int, long, Date, and Timestamp.
+ * Also provides current timestamp and formatting utilities.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class DataUtility {
 
 	public static final String APP_DATE_FORMAT = "dd-MM-yyyy";
@@ -14,6 +23,12 @@ public class DataUtility {
 
 	private static final SimpleDateFormat timeFormatter = new SimpleDateFormat(APP_TIME_FORMAT);
 
+	/**
+	 * Trims a string if it is not null.
+	 *
+	 * @param val input string
+	 * @return trimmed string or original value if null
+	 */
 	public static String getString(String val) {
 		if (DataValidator.isNotNull(val)) {
 			return val.trim();
@@ -22,6 +37,12 @@ public class DataUtility {
 		}
 	}
 
+	/**
+	 * Converts an Object to String.
+	 *
+	 * @param val input object
+	 * @return string representation of the object, or empty string if null
+	 */
 	public static String getStringData(Object val) {
 		if (val != null) {
 			return val.toString();
@@ -30,6 +51,12 @@ public class DataUtility {
 		}
 	}
 
+	/**
+	 * Converts a string to integer.
+	 *
+	 * @param val input string
+	 * @return integer value or 0 if invalid
+	 */
 	public static int getInt(String val) {
 		if (DataValidator.isInteger(val)) {
 			return Integer.parseInt(val);
@@ -38,6 +65,12 @@ public class DataUtility {
 		}
 	}
 
+	/**
+	 * Converts a string to long.
+	 *
+	 * @param val input string
+	 * @return long value or 0 if invalid
+	 */
 	public static long getLong(String val) {
 		if (DataValidator.isLong(val)) {
 			return Long.parseLong(val);
@@ -46,6 +79,12 @@ public class DataUtility {
 		}
 	}
 
+	/**
+	 * Converts a string to Date using APP_DATE_FORMAT.
+	 *
+	 * @param val input string
+	 * @return Date object or null if parsing fails
+	 */
 	public static Date getDate(String val) {
 		Date date = null;
 		try {
@@ -56,6 +95,12 @@ public class DataUtility {
 		return date;
 	}
 
+	/**
+	 * Converts a Date to string using APP_DATE_FORMAT.
+	 *
+	 * @param date input Date
+	 * @return formatted date string or empty string if error
+	 */
 	public static String getDateString(Date date) {
 		try {
 			return formatter.format(date);
@@ -64,10 +109,23 @@ public class DataUtility {
 		return "";
 	}
 
+	/**
+	 * Placeholder method to adjust a Date by a number of days.
+	 *
+	 * @param date input Date
+	 * @param day  number of days to adjust
+	 * @return null (not implemented)
+	 */
 	public static Date getDate(Date date, int day) {
 		return null;
 	}
 
+	/**
+	 * Converts a string to Timestamp using APP_TIME_FORMAT.
+	 *
+	 * @param val input string
+	 * @return Timestamp object or null if parsing fails
+	 */
 	public static Timestamp getTimestamp(String val) {
 
 		Timestamp timeStamp = null;
@@ -79,6 +137,12 @@ public class DataUtility {
 		return timeStamp;
 	}
 
+	/**
+	 * Converts a long value to Timestamp.
+	 *
+	 * @param l input long value
+	 * @return Timestamp object or null if error
+	 */
 	public static Timestamp getTimestamp(long l) {
 
 		Timestamp timeStamp = null;
@@ -90,6 +154,11 @@ public class DataUtility {
 		return timeStamp;
 	}
 
+	/**
+	 * Returns current Timestamp.
+	 *
+	 * @return current Timestamp object
+	 */
 	public static Timestamp getCurrentTimestamp() {
 		Timestamp timeStamp = null;
 		try {
@@ -100,6 +169,12 @@ public class DataUtility {
 
 	}
 
+	/**
+	 * Converts a Timestamp to long.
+	 *
+	 * @param tm input Timestamp
+	 * @return time in milliseconds or 0 if error
+	 */
 	public static long getTimestamp(Timestamp tm) {
 		try {
 			return tm.getTime();

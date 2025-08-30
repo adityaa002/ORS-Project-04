@@ -3,7 +3,6 @@ package in.co.rays.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,17 +14,28 @@ import in.co.rays.exception.DatabaseException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * CollegeModel handles database operations for CollegeBean including add, delete,
+ * update, findByName, findByPK, search, and list methods.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class CollegeModel {
 
 	private static Logger log = Logger.getLogger(CollegeModel.class);
 
+	/**
+	 * Returns next primary key of college table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws DatabaseException if database error occurs
+	 */
 	public Integer nextPK() throws DatabaseException {
-
 		log.debug("CollegeModel nextPk method started");
-
 		Connection conn = null;
 		int pk = 0;
-
 		try {
 			conn = JDBCDataSource.getConnection();
 			PreparedStatement pstmt = conn.prepareStatement("select max(id) from st_college");
@@ -41,18 +51,22 @@ public class CollegeModel {
 		}
 		log.debug("CollegeModel nextPk method ended");
 		return pk + 1;
-
 	}
 
+	/**
+	 * Adds a new college record.
+	 * 
+	 * @param bean CollegeBean object
+	 * @return primary key of inserted record
+	 * @throws ApplicationException        if application error occurs
+	 * @throws DuplicateRecordException    if duplicate college name exists
+	 */
 	public long add(CollegeBean bean) throws ApplicationException, DuplicateRecordException {
-
 		log.debug("CollegeModel add method started");
-
 		Connection conn = null;
 		int pk = 0;
 
 		CollegeBean duplicateCollegeName = findByName(bean.getName());
-
 		if (duplicateCollegeName != null) {
 			throw new DuplicateRecordException("College Name already exists");
 		}
@@ -88,15 +102,17 @@ public class CollegeModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CollegeModel add method ended");
-
 		return pk;
-
 	}
 
+	/**
+	 * Deletes a college record.
+	 * 
+	 * @param bean CollegeBean object
+	 * @throws ApplicationException if deletion fails
+	 */
 	public void delete(CollegeBean bean) throws ApplicationException {
-
 		log.debug("CollegeModel delete method started");
-
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -117,15 +133,18 @@ public class CollegeModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CollegeModel delete method ended");
-
 	}
 
+	/**
+	 * Finds a college by name.
+	 * 
+	 * @param name College name
+	 * @return CollegeBean object if found, else null
+	 * @throws ApplicationException if database error occurs
+	 */
 	public CollegeBean findByName(String name) throws ApplicationException {
-
 		log.debug("CollegeModel findByName method started");
-
 		StringBuffer sql = new StringBuffer("select * from st_college where name = ?");
-
 		CollegeBean bean = null;
 		Connection conn = null;
 
@@ -154,16 +173,19 @@ public class CollegeModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CollegeModel findByName method ended");
-
 		return bean;
 	}
 
+	/**
+	 * Finds a college by primary key.
+	 * 
+	 * @param pk primary key
+	 * @return CollegeBean object if found, else null
+	 * @throws ApplicationException if database error occurs
+	 */
 	public CollegeBean findByPK(long pk) throws ApplicationException {
-
 		log.debug("CollegeModel findByPk method started");
-
 		StringBuffer sql = new StringBuffer("select * from st_college where id = ?");
-
 		CollegeBean bean = null;
 		Connection conn = null;
 
@@ -192,16 +214,19 @@ public class CollegeModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CollegeModel findByPk method ended");
-
 		return bean;
 	}
 
+	/**
+	 * Updates a college record.
+	 * 
+	 * @param bean CollegeBean object
+	 * @throws ApplicationException        if database error occurs
+	 * @throws DuplicateRecordException    if college name already exists
+	 */
 	public void update(CollegeBean bean) throws ApplicationException, DuplicateRecordException {
-
 		log.debug("CollegeModel update method started");
-
 		Connection conn = null;
-
 		CollegeBean beanExist = findByName(bean.getName());
 
 		if (beanExist != null && beanExist.getId() != bean.getId()) {
@@ -237,20 +262,30 @@ public class CollegeModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CollegeModel update method ended");
-
 	}
 
+	/**
+	 * Returns a list of all colleges.
+	 * 
+	 * @return List of CollegeBean
+	 * @throws ApplicationException if database error occurs
+	 */
 	public List list() throws ApplicationException {
 		log.debug("CollegeModel list method called");
-
 		return search(null, 0, 0);
-
 	}
 
+	/**
+	 * Searches colleges based on criteria.
+	 * 
+	 * @param bean     CollegeBean with search criteria
+	 * @param pageNo   page number for pagination
+	 * @param pageSize number of records per page
+	 * @return List of CollegeBean matching criteria
+	 * @throws ApplicationException if database error occurs
+	 */
 	public List<CollegeBean> search(CollegeBean bean, int pageNo, int pageSize) throws ApplicationException {
-
 		log.debug("CollegeModel search method started");
-
 		StringBuffer sql = new StringBuffer("select * from st_college where 1 = 1");
 
 		if (bean != null) {
@@ -307,8 +342,6 @@ public class CollegeModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CollegeModel search method ended");
-
 		return list;
-
 	}
 }

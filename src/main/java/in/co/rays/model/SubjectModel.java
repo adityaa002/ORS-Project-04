@@ -16,10 +16,23 @@ import in.co.rays.exception.DatabaseException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * Model class for handling Subject operations including CRUD and search functionality.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class SubjectModel {
 
 	private static Logger log = Logger.getLogger(SubjectModel.class);
 
+	/**
+	 * Returns the next primary key for the subject table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws DatabaseException if a database error occurs
+	 */
 	public Integer nextPk() throws DatabaseException {
 
 		log.debug("SubjectModel nextPk method started");
@@ -45,6 +58,14 @@ public class SubjectModel {
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new subject record to the database.
+	 * 
+	 * @param bean SubjectBean containing details
+	 * @return primary key of inserted record
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if subject name already exists
+	 */
 	public long add(SubjectBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("SubjectModel add method started");
@@ -94,6 +115,13 @@ public class SubjectModel {
 		return pk;
 	}
 
+	/**
+	 * Updates a subject record.
+	 * 
+	 * @param bean SubjectBean containing updated details
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if subject name already exists
+	 */
 	public void update(SubjectBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("SubjectModel update method started");
 
@@ -133,6 +161,12 @@ public class SubjectModel {
 
 	}
 
+	/**
+	 * Deletes a subject record.
+	 * 
+	 * @param bean SubjectBean containing ID
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public void delete(SubjectBean bean) throws ApplicationException {
 
 		log.debug("SubjectModel delete method started");
@@ -160,6 +194,13 @@ public class SubjectModel {
 
 	}
 
+	/**
+	 * Finds a subject by primary key.
+	 * 
+	 * @param pk primary key to search
+	 * @return SubjectBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public SubjectBean findByPk(long pk) throws ApplicationException {
 		log.debug("SubjectModel findByPk method started");
 
@@ -195,6 +236,13 @@ public class SubjectModel {
 
 	}
 
+	/**
+	 * Finds a subject by name.
+	 * 
+	 * @param name subject name to search
+	 * @return SubjectBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public SubjectBean findByName(String name) throws ApplicationException {
 		log.debug("SubjectModel findByName method started");
 
@@ -231,12 +279,27 @@ public class SubjectModel {
 
 	}
 
+	/**
+	 * Returns all subject records.
+	 * 
+	 * @return List of SubjectBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<SubjectBean> list() throws ApplicationException {
 		log.debug("SubjectModel list method called");
 
 		return search(null, 0, 0);
 	}
 
+	/**
+	 * Searches subject records based on given criteria.
+	 * 
+	 * @param bean     SubjectBean with search filters
+	 * @param pageNo   page number for pagination
+	 * @param pageSize number of records per page
+	 * @return List of SubjectBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<SubjectBean> search(SubjectBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("SubjectModel search method started");
 

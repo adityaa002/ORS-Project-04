@@ -15,10 +15,23 @@ import in.co.rays.exception.DatabaseException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * Model class for handling Student operations including CRUD and search functionality.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class StudentModel {
 
 	private static Logger log = Logger.getLogger(StudentModel.class);
 
+	/**
+	 * Returns the next primary key for the student table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws DatabaseException if a database error occurs
+	 */
 	public Integer nextPk() throws DatabaseException {
 
 		log.debug("StudentModel nextPk method started");
@@ -44,6 +57,14 @@ public class StudentModel {
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new student record to the database.
+	 * 
+	 * @param bean StudentBean containing details
+	 * @return primary key of inserted record
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if email already exists
+	 */
 	public long add(StudentBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("StudentModel add method started");
@@ -99,6 +120,12 @@ public class StudentModel {
 		return pk;
 	}
 
+	/**
+	 * Deletes a student record.
+	 * 
+	 * @param bean StudentBean containing ID
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public void delete(StudentBean bean) throws ApplicationException {
 
 		log.debug("StudentModel delete method started");
@@ -128,6 +155,13 @@ public class StudentModel {
 
 	}
 
+	/**
+	 * Finds a student by email.
+	 * 
+	 * @param Email email to search
+	 * @return StudentBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public StudentBean findByEmailId(String Email) throws ApplicationException {
 
 		log.debug("StudentModel findByEmailId method started");
@@ -168,6 +202,13 @@ public class StudentModel {
 		return bean;
 	}
 
+	/**
+	 * Finds a student by primary key.
+	 * 
+	 * @param pk primary key to search
+	 * @return StudentBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public StudentBean findByPk(long pk) throws ApplicationException {
 
 		log.debug("StudentModel findByPk method started");
@@ -209,6 +250,13 @@ public class StudentModel {
 		return bean;
 	}
 
+	/**
+	 * Updates a student record.
+	 * 
+	 * @param bean StudentBean containing updated details
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if email already exists
+	 */
 	public void update(StudentBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("StudentModel update method started");
@@ -261,12 +309,27 @@ public class StudentModel {
 
 	}
 
+	/**
+	 * Returns all student records.
+	 * 
+	 * @return List of StudentBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<StudentBean> list() throws ApplicationException {
 		log.debug("StudentModel list method called");
 
 		return search(null, 0, 0);
 	}
 
+	/**
+	 * Searches student records based on given criteria.
+	 * 
+	 * @param bean     StudentBean with search filters
+	 * @param pageNo   page number for pagination
+	 * @param pageSize number of records per page
+	 * @return List of StudentBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<StudentBean> search(StudentBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("StudentModel search method started");
 
