@@ -23,35 +23,47 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * StudentCtl servlet handles adding, updating, and preloading student records.
+ * It performs validation, populates StudentBean, and forwards requests to the view.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "StudentCtl", urlPatterns = { "/ctl/StudentCtl" })
 public class StudentCtl extends BaseCtl {
 
 	private static Logger log  = Logger.getLogger(StudentCtl.class);
 
+	/**
+	 * Preloads college list and gender map for the student form.
+	 *
+	 * @param request HttpServletRequest
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
-
 		CollegeModel model = new CollegeModel();
 		try {
-
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("Male", "Male");
 			map.put("Female", "Female");
-
 			List<CollegeBean> collegeList = model.list();
-
 			request.setAttribute("genderMap", map);
 			request.setAttribute("collegeList", collegeList);
-
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 		}
-
 	}
 
+	/**
+	 * Validates student form input.
+	 *
+	 * @param request HttpServletRequest
+	 * @return boolean true if validation passes, false otherwise
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
-
 		log.debug("StudentCtl validate method started");
 
 		boolean pass = true;
@@ -108,17 +120,20 @@ public class StudentCtl extends BaseCtl {
 		}
 
 		log.debug("StudentCtl validate method ended with status : " + pass);
-
 		return pass;
 	}
 
+	/**
+	 * Populates StudentBean from request parameters.
+	 *
+	 * @param request HttpServletRequest
+	 * @return populated StudentBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-
 		log.debug("StudentCtl populateBean method started");
 
 		StudentBean bean = new StudentBean();
-
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
@@ -133,6 +148,14 @@ public class StudentCtl extends BaseCtl {
 		return bean;
 	}
 
+	/**
+	 * Handles GET request to load student form for add/update.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -140,28 +163,30 @@ public class StudentCtl extends BaseCtl {
 		log.debug("StudentCtl doget method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		StudentModel model = new StudentModel();
-
 		long id = DataUtility.getLong(request.getParameter("id"));
 
 		if (id > 0 || op != null) {
-
 			try {
 				StudentBean bean = model.findByPk(id);
 				ServletUtility.setBean(bean, request);
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		}
 
 		ServletUtility.forward(getView(), request, response);
 		log.debug("StudentCtl doget method ended");
-
 	}
 
+	/**
+	 * Handles POST request to save/update student data.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -169,7 +194,6 @@ public class StudentCtl extends BaseCtl {
 		log.debug("StudentCtl dopost method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-
 		StudentModel model = new StudentModel();
 
 		if (OP_SAVE.equalsIgnoreCase(op)) {
@@ -209,12 +233,15 @@ public class StudentCtl extends BaseCtl {
 		}
 		ServletUtility.forward(getView(), request, response);
 		log.debug("StudentCtl dopost method ended");
-
 	}
 
+	/**
+	 * Returns the view page for student form.
+	 *
+	 * @return view path as String
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.STUDENT_VIEW;
 	}
-
 }

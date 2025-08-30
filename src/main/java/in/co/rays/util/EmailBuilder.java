@@ -2,8 +2,22 @@ package in.co.rays.util;
 
 import java.util.HashMap;
 
+/**
+ * Utility class to build HTML email messages for different scenarios like user
+ * registration, password recovery, and password change.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class EmailBuilder {
 
+	/**
+	 * Builds the HTML message for user registration confirmation.
+	 *
+	 * @param map HashMap containing user login and password details
+	 * @return HTML string message for registration
+	 */
 	public static String getUserRegistrationMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
 		msg.append("<HTML><BODY>");
@@ -17,6 +31,13 @@ public class EmailBuilder {
 		return msg.toString();
 	}
 
+	/**
+	 * Builds the HTML message for password recovery.
+	 *
+	 * @param map HashMap containing user's first name, last name, login, and
+	 *            password
+	 * @return HTML string message for password recovery
+	 */
 	public static String getForgetPasswordMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
 		msg.append("<HTML><BODY>");
@@ -29,6 +50,14 @@ public class EmailBuilder {
 		return msg.toString();
 	}
 
+	/**
+	 * Builds the HTML message for notifying the user of a successful password
+	 * change.
+	 *
+	 * @param map HashMap containing user's first name, last name, login, and new
+	 *            password
+	 * @return HTML string message for password change notification
+	 */
 	public static String getChangePasswordMessage(HashMap<String, String> map) {
 		StringBuilder msg = new StringBuilder();
 		msg.append("<HTML><BODY>");

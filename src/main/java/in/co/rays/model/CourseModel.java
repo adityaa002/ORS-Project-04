@@ -3,27 +3,37 @@ package in.co.rays.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import in.co.rays.bean.CourseBean;
-import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.exception.DatabaseException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * CourseModel handles database operations for CourseBean including add, delete,
+ * update, findByName, findByPK, search, and list methods.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class CourseModel {
 
 	private static Logger log = Logger.getLogger(CourseModel.class);
 
+	/**
+	 * Returns next primary key of course table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws DatabaseException if database error occurs
+	 */
 	public Integer nextPK() throws DatabaseException {
-
 		log.debug("CourseModel nextPk method started");
-
 		Connection conn = null;
 		int pk = 0;
 		try {
@@ -39,16 +49,20 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
-
 		log.debug("CourseModel nextPk method ended");
-
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new course record.
+	 * 
+	 * @param bean CourseBean object
+	 * @return primary key of inserted record
+	 * @throws ApplicationException     if application error occurs
+	 * @throws DuplicateRecordException if duplicate course name exists
+	 */
 	public long add(CourseBean bean) throws ApplicationException, DuplicateRecordException {
-
 		log.debug("CourseModel add method started");
-
 		Connection conn = null;
 		int pk = 0;
 
@@ -85,14 +99,17 @@ public class CourseModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CourseModel add method ended");
-
 		return pk;
 	}
 
+	/**
+	 * Deletes a course record.
+	 * 
+	 * @param bean CourseBean object
+	 * @throws ApplicationException if deletion fails
+	 */
 	public void delete(CourseBean bean) throws ApplicationException {
-
 		log.debug("CourseModel delete  method started");
-
 		Connection conn = null;
 		try {
 			conn = JDBCDataSource.getConnection();
@@ -102,7 +119,6 @@ public class CourseModel {
 			pstmt.executeUpdate();
 			conn.commit();
 			pstmt.close();
-
 		} catch (Exception e) {
 			try {
 				conn.rollback();
@@ -114,13 +130,17 @@ public class CourseModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CourseModel delete  method ended");
-
 	}
 
+	/**
+	 * Finds a course by name.
+	 * 
+	 * @param name Course name
+	 * @return CourseBean object if found, else null
+	 * @throws ApplicationException if database error occurs
+	 */
 	public CourseBean findByName(String name) throws ApplicationException {
-
 		log.debug("CourseModel findByName method started");
-
 		StringBuffer sql = new StringBuffer("select * from st_course where name = ?");
 		CourseBean bean = null;
 		Connection conn = null;
@@ -139,7 +159,6 @@ public class CourseModel {
 				bean.setModifiedBy(rs.getString(6));
 				bean.setCreatedDatetime(rs.getTimestamp(7));
 				bean.setModifiedDatetime(rs.getTimestamp(8));
-
 			}
 			rs.close();
 		} catch (Exception e) {
@@ -148,14 +167,18 @@ public class CourseModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CourseModel findByName method ended");
-
 		return bean;
 	}
 
+	/**
+	 * Finds a course by primary key.
+	 * 
+	 * @param pk primary key
+	 * @return CourseBean object if found, else null
+	 * @throws ApplicationException if database error occurs
+	 */
 	public CourseBean findByPK(long pk) throws ApplicationException {
-
 		log.debug("CourseModel findByPK method started");
-
 		StringBuffer sql = new StringBuffer("select * from st_course where id = ?");
 		CourseBean bean = null;
 		Connection conn = null;
@@ -182,14 +205,18 @@ public class CourseModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CourseModel findByPK method ended");
-
 		return bean;
 	}
 
+	/**
+	 * Updates a course record.
+	 * 
+	 * @param bean CourseBean object
+	 * @throws ApplicationException     if database error occurs
+	 * @throws DuplicateRecordException if course name already exists
+	 */
 	public void update(CourseBean bean) throws ApplicationException, DuplicateRecordException {
-
 		log.debug("CourseModel update method started");
-
 		Connection conn = null;
 
 		CourseBean duplicateCourse = findByName(bean.getName());
@@ -198,7 +225,6 @@ public class CourseModel {
 		}
 		try {
 			conn = JDBCDataSource.getConnection();
-
 			conn.setAutoCommit(false);
 			PreparedStatement pstmt = conn.prepareStatement(
 					"update st_course set name = ?, duration = ?, description = ?, created_by = ?, modified_by = ?, created_datetime = ?, modified_datetime = ? where id = ?");
@@ -223,36 +249,38 @@ public class CourseModel {
 		} finally {
 			JDBCDataSource.closeConnection(conn);
 		}
-
 		log.debug("CourseModel update method ended");
-
 	}
 
+	/**
+	 * Returns a list of all courses.
+	 * 
+	 * @return List of CourseBean
+	 * @throws ApplicationException if database error occurs
+	 */
 	public List<CourseBean> list() throws ApplicationException {
 		log.debug("CourseModel list method called");
-
 		return search(null, 0, 0);
 	}
 
+	/**
+	 * Searches courses based on criteria.
+	 * 
+	 * @param bean     CourseBean with search criteria
+	 * @param pageNo   page number for pagination
+	 * @param pageSize number of records per page
+	 * @return List of CourseBean matching criteria
+	 * @throws ApplicationException if database error occurs
+	 */
 	public List<CourseBean> search(CourseBean bean, int pageNo, int pageSize) throws ApplicationException {
-
 		log.debug("CourseModel search method started");
-
 		StringBuffer sql = new StringBuffer("select * from st_course where 1=1");
 
 		if (bean != null) {
-			if (bean.getId() > 0) {
-				sql.append(" and id = " + bean.getId());
-			}
-			if (bean.getName() != null && bean.getName().length() > 0) {
-				sql.append(" and name like '" + bean.getName() + "%'");
-			}
-			if (bean.getDuration() != null && bean.getDuration().length() > 0) {
-				sql.append(" and duration like '" + bean.getDuration() + "%'");
-			}
-			if (bean.getDescription() != null && bean.getDescription().length() > 0) {
-				sql.append(" and description like '" + bean.getDescription() + "%'");
-			}
+			if (bean.getId() > 0) sql.append(" and id = " + bean.getId());
+			if (bean.getName() != null && bean.getName().length() > 0) sql.append(" and name like '" + bean.getName() + "%'");
+			if (bean.getDuration() != null && bean.getDuration().length() > 0) sql.append(" and duration like '" + bean.getDuration() + "%'");
+			if (bean.getDescription() != null && bean.getDescription().length() > 0) sql.append(" and description like '" + bean.getDescription() + "%'");
 		}
 
 		if (pageSize > 0) {
@@ -285,7 +313,6 @@ public class CourseModel {
 			JDBCDataSource.closeConnection(conn);
 		}
 		log.debug("CourseModel search method ended");
-
 		return list;
 	}
 }

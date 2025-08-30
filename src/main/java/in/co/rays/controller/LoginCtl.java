@@ -25,13 +25,16 @@ import in.co.rays.util.ServletUtility;
 /**
  * Login functionality Controller. Performs operations for Login like Sign In,
  * Logout, SignUp
+ * * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
  * 
-  */
+ */
 @WebServlet(name = "LoginCtl", urlPatterns = { "/LoginCtl" })
 public class LoginCtl extends BaseCtl {
-	
+
 	private static Logger log = Logger.getLogger(LoginCtl.class);
-	
 
 	public static final String OP_SIGN_IN = "Sign In";
 	public static final String OP_SIGN_UP = "Sign Up";
@@ -46,13 +49,16 @@ public class LoginCtl extends BaseCtl {
 	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
-		
-    	log.debug("LoginCtl validate method started");
 
-		
+		log.debug("LoginCtl validate method started");
+
 		boolean pass = true;
 
 		String op = DataUtility.getString(request.getParameter("operation"));
+		
+		log.debug("LoginCtl validate method operation ---> " + op);
+
+		
 		if (OP_SIGN_UP.equals(op) || OP_LOG_OUT.equals(op)) {
 			return pass;
 		}
@@ -75,7 +81,7 @@ public class LoginCtl extends BaseCtl {
 			request.setAttribute("password", "Invalid password");
 		}
 
-		log.debug("LoginCtl validate method ended with status : " +pass);
+		log.debug("LoginCtl validate method ended with status : " + pass);
 		return pass;
 
 	}
@@ -91,13 +97,12 @@ public class LoginCtl extends BaseCtl {
 
 		log.debug("LoginCtl populateBean method started");
 
-		
 		UserBean bean = new UserBean();
 
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
 		bean.setLogin(DataUtility.getString(request.getParameter("loginId")));
 		bean.setPassword(DataUtility.getString(request.getParameter("password")));
-		
+
 		log.debug("LoginCtl populateBean method ended");
 		return bean;
 
@@ -114,13 +119,14 @@ public class LoginCtl extends BaseCtl {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("LoginCtl doget method started");
 
+		log.debug("LoginCtl doget method started");
 
 		HttpSession session = request.getSession();
 
 		String op = DataUtility.getString(request.getParameter("operation"));
+
+		log.debug("LoginCtl doget operation ---> " + op);
 
 		if (OP_LOG_OUT.equals(op)) {
 			session.invalidate();
@@ -145,12 +151,15 @@ public class LoginCtl extends BaseCtl {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		log.debug("LoginCtl dopost method started");
-		
+
 		HttpSession session = request.getSession();
 
 		String op = DataUtility.getString(request.getParameter("operation"));
+		
+		log.debug("LoginCtl doget operation ---> " + op);
+
 
 		UserModel userModel = new UserModel();
 		RoleModel roleModel = new RoleModel();
@@ -166,7 +175,7 @@ public class LoginCtl extends BaseCtl {
 				if (bean != null) {
 					session.setAttribute("user", bean);
 					RoleBean roleBean = roleModel.findByPk(bean.getRoleId());
-					System.out.println("Role name : " + roleBean.getName());
+					log.debug("Role name : " + roleBean.getName());
 
 					if (roleBean != null) {
 						session.setAttribute("role", roleBean.getName());

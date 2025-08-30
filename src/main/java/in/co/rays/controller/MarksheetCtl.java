@@ -26,12 +26,15 @@ import in.co.rays.util.ServletUtility;
  * MarksheetCtl servlet class to handle create/update/view operations on
  * marksheet.
  * 
- * @author
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ * 
  */
 @WebServlet(name = "MarksheetCtl", urlPatterns = { "/ctl/MarksheetCtl" })
 public class MarksheetCtl extends BaseCtl {
 
-	private static Logger log  = Logger.getLogger(MarksheetCtl.class);
+	private static Logger log = Logger.getLogger(MarksheetCtl.class);
 
 	/**
 	 * Preloads student list to populate dropdown.
@@ -40,8 +43,7 @@ public class MarksheetCtl extends BaseCtl {
 	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
-		
- 
+
 		StudentModel model = new StudentModel();
 		try {
 			List<StudentBean> stList = model.list();
@@ -49,7 +51,7 @@ public class MarksheetCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 		}
- 
+
 	}
 
 	/**
@@ -60,9 +62,9 @@ public class MarksheetCtl extends BaseCtl {
 	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("MarksheetCtl validate method started");
-		
+
 		boolean pass = true;
 
 		if (DataValidator.isNull(request.getParameter("studentId"))) {
@@ -126,9 +128,8 @@ public class MarksheetCtl extends BaseCtl {
 	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		
-		log.debug("MarksheetCtl populateBean method started");
 
+		log.debug("MarksheetCtl populateBean method started");
 
 		MarksheetBean bean = new MarksheetBean();
 
@@ -149,7 +150,7 @@ public class MarksheetCtl extends BaseCtl {
 		bean.setStudentId(DataUtility.getLong(request.getParameter("studentId")));
 
 		populateDto(bean, request);
-		
+
 		log.debug("MarksheetCtl populateBean method ended");
 
 		return bean;
@@ -165,9 +166,8 @@ public class MarksheetCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("MarksheetCtl doget method started");
 
+		log.debug("MarksheetCtl doget method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 		long id = DataUtility.getLong(request.getParameter("id"));
@@ -199,9 +199,8 @@ public class MarksheetCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("MarksheetCtl dopost method started");
 
+		log.debug("MarksheetCtl dopost method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 

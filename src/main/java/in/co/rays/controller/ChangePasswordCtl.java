@@ -22,6 +22,13 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Controller to handle change password operations.
+ *
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "ChangePasswordCtl", urlPatterns = { "/ctl/ChangePasswordCtl" })
 public class ChangePasswordCtl extends BaseCtl {
 
@@ -29,6 +36,12 @@ public class ChangePasswordCtl extends BaseCtl {
 
 	public static final String OP_CHANGE_MY_PROFILE = "Change My Profile";
 
+	/**
+	 * Validates change password form input.
+	 *
+	 * @param request the HTTP request
+	 * @return true if valid, false otherwise
+	 */
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 
@@ -76,6 +89,12 @@ public class ChangePasswordCtl extends BaseCtl {
 		return pass;
 	}
 
+	/**
+	 * Populates UserBean from request parameters.
+	 *
+	 * @param request the HTTP request
+	 * @return populated UserBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 
@@ -92,6 +111,12 @@ public class ChangePasswordCtl extends BaseCtl {
 		return bean;
 	}
 
+	/**
+	 * Handles GET requests.
+	 *
+	 * @param request  the HTTP request
+	 * @param response the HTTP response
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -103,12 +128,22 @@ public class ChangePasswordCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Handles POST requests.
+	 *
+	 * @param request  the HTTP request
+	 * @param response the HTTP response
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		log.debug("ChangePasswordCtl dopost Method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
+		
+		log.debug("LoginCtl dopost method operation ---> " + op);
+
+		
 		String newPassword = (String) request.getParameter("newPassword");
 
 		UserBean bean = (UserBean) populateBean(request);
@@ -150,6 +185,11 @@ public class ChangePasswordCtl extends BaseCtl {
 
 	}
 
+	/**
+	 * Returns the view for Change Password.
+	 *
+	 * @return CHANGE_PASSWORD_VIEW
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.CHANGE_PASSWORD_VIEW;

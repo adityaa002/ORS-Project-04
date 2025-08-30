@@ -7,7 +7,7 @@ import java.util.Date;
  * It stores user-related information such as personal details, 
  * login credentials, role, and contact information.
  * 
- * @author YourName
+ * @author Aditya
  * @version 1.0
  * @since 2025
  */

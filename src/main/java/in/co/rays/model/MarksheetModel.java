@@ -16,10 +16,23 @@ import in.co.rays.exception.DatabaseException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * Model class for handling Marksheet operations including CRUD and searches.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class MarksheetModel {
 
 	private static Logger log = Logger.getLogger(MarksheetModel.class);
 
+	/**
+	 * Returns the next primary key for marksheet table.
+	 * 
+	 * @return next primary key as Integer
+	 * @throws DatabaseException if a database error occurs
+	 */
 	public Integer nextPk() throws DatabaseException {
 
 		log.debug("MarksheetModel nextPk method started");
@@ -46,6 +59,14 @@ public class MarksheetModel {
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new marksheet record to the database.
+	 * 
+	 * @param bean MarksheetBean containing details
+	 * @return primary key of the inserted record
+	 * @throws ApplicationException       if a database error occurs
+	 * @throws DuplicateRecordException   if roll number already exists
+	 */
 	public long add(MarksheetBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("MarksheetModel add method started");
@@ -100,6 +121,12 @@ public class MarksheetModel {
 		return pk;
 	}
 
+	/**
+	 * Deletes a marksheet record from the database.
+	 * 
+	 * @param bean MarksheetBean containing ID
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public void delete(MarksheetBean bean) throws ApplicationException {
 
 		log.debug("MarksheetModel delete method started");
@@ -129,6 +156,13 @@ public class MarksheetModel {
 
 	}
 
+	/**
+	 * Finds a marksheet by roll number.
+	 * 
+	 * @param rollNo Roll number to search
+	 * @return MarksheetBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public MarksheetBean findByRollNo(String rollNo) throws ApplicationException {
 
 		log.debug("MarksheetModel findByRollNo method started");
@@ -167,6 +201,13 @@ public class MarksheetModel {
 
 	}
 
+	/**
+	 * Finds a marksheet by primary key.
+	 * 
+	 * @param pk Primary key to search
+	 * @return MarksheetBean if found, else null
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public MarksheetBean findByPk(long pk) throws ApplicationException {
 
 		log.debug("MarksheetModel findByPk method started");
@@ -205,6 +246,13 @@ public class MarksheetModel {
 		return bean;
 	}
 
+	/**
+	 * Updates a marksheet record.
+	 * 
+	 * @param bean MarksheetBean containing updated details
+	 * @throws ApplicationException     if a database error occurs
+	 * @throws DuplicateRecordException if roll number already exists
+	 */
 	public void update(MarksheetBean bean) throws ApplicationException, DuplicateRecordException {
 
 		log.debug("MarksheetModel update method started");
@@ -255,12 +303,27 @@ public class MarksheetModel {
 
 	}
 
+	/**
+	 * Returns all marksheet records.
+	 * 
+	 * @return List of MarksheetBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<MarksheetBean> list() throws ApplicationException {
 		log.debug("MarksheetModel list method ended");
 
 		return search(null, 0, 0);
 	}
 
+	/**
+	 * Searches marksheet records based on given criteria.
+	 * 
+	 * @param bean     MarksheetBean with search filters
+	 * @param pageNo   Page number for pagination
+	 * @param pageSize Number of records per page
+	 * @return List of MarksheetBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<MarksheetBean> search(MarksheetBean bean, int pageNo, int pageSize) throws ApplicationException {
 
 		log.debug("MarksheetModel search method started");
@@ -325,6 +388,14 @@ public class MarksheetModel {
 		return list;
 	}
 
+	/**
+	 * Returns merit list of students based on total marks.
+	 * 
+	 * @param pageNo   Page number for pagination
+	 * @param pageSize Number of records per page
+	 * @return List of MarksheetBean
+	 * @throws ApplicationException if a database error occurs
+	 */
 	public List<MarksheetBean> getMeritList(int pageNo, int pageSize) throws ApplicationException {
 
 		ArrayList<MarksheetBean> list = new ArrayList<MarksheetBean>();

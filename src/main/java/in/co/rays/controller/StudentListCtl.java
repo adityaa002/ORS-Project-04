@@ -12,47 +12,62 @@ import org.apache.log4j.Logger;
 
 import in.co.rays.bean.BaseBean;
 import in.co.rays.bean.StudentBean;
-import in.co.rays.bean.UserBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.model.StudentModel;
-import in.co.rays.model.UserModel;
 import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * StudentListCtl servlet handles listing, searching, pagination,
+ * deletion, and navigation for student records.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "StudentListCtl", urlPatterns = { "/ctl/StudentListCtl" })
 public class StudentListCtl extends BaseCtl {
 	
 	private static Logger log  = Logger.getLogger(StudentListCtl.class);
 
-
+	/**
+	 * Populates StudentBean from request parameters for search/filter operations.
+	 *
+	 * @param request HttpServletRequest
+	 * @return populated StudentBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
 		log.debug("StudentListCtl populateBean method started");
 
 		StudentBean bean = new StudentBean();
-
 		bean.setFirstName(DataUtility.getString(request.getParameter("firstName")));
 		bean.setLastName(DataUtility.getString(request.getParameter("lastName")));
 		bean.setEmail(DataUtility.getString(request.getParameter("email")));
 
 		log.debug("StudentListCtl populateBean method ended");
 		return bean;
-
 	}
 
+	/**
+	 * Handles GET request to list students with pagination.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		log.debug("StudentListCtl doget method started");
 
-
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
 		StudentBean bean = (StudentBean) populateBean(request);
-
 		StudentModel model = new StudentModel();
 
 		try {
@@ -67,7 +82,6 @@ public class StudentListCtl extends BaseCtl {
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.setBean(bean, request);
 			ServletUtility.setList(list, request);
-
 			request.setAttribute("nextListSize", next.size());
 
 		} catch (ApplicationException e) {
@@ -77,35 +91,37 @@ public class StudentListCtl extends BaseCtl {
 
 		ServletUtility.forward(getView(), request, response);
 		log.debug("StudentListCtl doget method ended");
-
 	}
 
+	/**
+	 * Handles POST request for search, pagination, deletion, reset, and navigation.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		log.debug("StudentListCtl dopost method started");
 
-
 		List list = null;
 		List next = null;
 
 		int pageNo = DataUtility.getInt(request.getParameter("pageNo"));
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
-
 		pageNo = (pageNo == 0) ? 1 : pageNo;
 		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
 		StudentBean bean = (StudentBean) populateBean(request);
 		StudentModel model = new StudentModel();
-
 		String op = DataUtility.getString(request.getParameter("operation"));
 		String[] ids = request.getParameterValues("ids");
 
 		try {
-
 			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
-
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
 				} else if (OP_NEXT.equalsIgnoreCase(op)) {
@@ -156,13 +172,17 @@ public class StudentListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
-		log.debug("StudentListCtl dopost method ended");
 
+		log.debug("StudentListCtl dopost method ended");
 	}
 
+	/**
+	 * Returns the view page for student list.
+	 *
+	 * @return view path as String
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.STUDENT_LIST_VIEW;
 	}
-
 }

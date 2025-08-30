@@ -17,10 +17,25 @@ import in.co.rays.exception.DatabaseException;
 import in.co.rays.exception.DuplicateRecordException;
 import in.co.rays.util.JDBCDataSource;
 
+/**
+ * TimetableModel encapsulates database operations for TimetableBean.
+ * It provides methods for adding, updating, deleting, and searching timetable records.
+ * Handles validation and duplicate checking for exam schedules.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class TimetableModel {
 
 	private static Logger log = Logger.getLogger(TimetableModel.class);
 
+	/**
+	 * Returns next primary key for timetable table.
+	 * 
+	 * @return next PK value
+	 * @throws DatabaseException if any database error occurs
+	 */
 	public Integer nextPK() throws DatabaseException {
 		log.debug("TimetableModel nextPk method started");
 
@@ -44,6 +59,14 @@ public class TimetableModel {
 		return pk + 1;
 	}
 
+	/**
+	 * Adds a new timetable record to the database.
+	 * 
+	 * @param bean TimetableBean object
+	 * @return primary key of inserted record
+	 * @throws ApplicationException if database operation fails
+	 * @throws DuplicateRecordException if record already exists
+	 */
 	public long add(TimetableBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("TimetableModel add method started");
 
@@ -96,6 +119,12 @@ public class TimetableModel {
 
 	}
 
+	/**
+	 * Deletes a timetable record from the database.
+	 * 
+	 * @param bean TimetableBean object
+	 * @throws ApplicationException if database operation fails
+	 */
 	public void delete(TimetableBean bean) throws ApplicationException {
 
 		log.debug("TimetableModel delete method started");
@@ -124,6 +153,18 @@ public class TimetableModel {
 
 	}
 
+	/**
+	 * Checks for timetable conflict based on exam time.
+	 * 
+	 * @param courseId course ID
+	 * @param subjectId subject ID
+	 * @param semester semester
+	 * @param examDate exam date
+	 * @param examTime exam time
+	 * @param description description
+	 * @return TimetableBean if found, else null
+	 * @throws ApplicationException if database operation fails
+	 */
 	public TimetableBean checkByExamTime(Long courseId, Long subjectId, String semester, Date examDate, String examTime,
 			String description) throws ApplicationException {
 
@@ -172,6 +213,14 @@ public class TimetableModel {
 		return bean;
 	}
 
+	/**
+	 * Checks timetable for given course and date.
+	 * 
+	 * @param courseId course ID
+	 * @param examDate exam date
+	 * @return TimetableBean if found, else null
+	 * @throws ApplicationException if database operation fails
+	 */
 	public TimetableBean checkByCourseName(Long courseId, Date examDate) throws ApplicationException {
 
 		log.debug("TimetableModel checkByCourseName method started");
@@ -215,6 +264,15 @@ public class TimetableModel {
 		return bean;
 	}
 
+	/**
+	 * Checks timetable for given course, subject and date.
+	 * 
+	 * @param courseId course ID
+	 * @param subjectId subject ID
+	 * @param examDate exam date
+	 * @return TimetableBean if found, else null
+	 * @throws ApplicationException if database operation fails
+	 */
 	public TimetableBean checkBySubjectName(Long courseId, Long subjectId, Date examDate) throws ApplicationException {
 		log.debug("TimetableModel checkBySubjectName method started");
 
@@ -259,6 +317,16 @@ public class TimetableModel {
 		return bean;
 	}
 
+	/**
+	 * Checks timetable for given semester.
+	 * 
+	 * @param courseId course ID
+	 * @param subjectId subject ID
+	 * @param semester semester
+	 * @param examDate exam date
+	 * @return TimetableBean if found, else null
+	 * @throws ApplicationException if database operation fails
+	 */
 	public TimetableBean checkBySemester(Long courseId, Long subjectId, String semester, Date examDate)
 			throws ApplicationException {
 		log.debug("TimetableModel checkBySemester method started");
@@ -303,6 +371,13 @@ public class TimetableModel {
 		return bean;
 	}
 
+	/**
+	 * Finds timetable record by primary key.
+	 * 
+	 * @param pk primary key
+	 * @return TimetableBean if found, else null
+	 * @throws ApplicationException if database operation fails
+	 */
 	public TimetableBean findByPK(long pk) throws ApplicationException {
 
 		log.debug("TimetableModel findByPK method started");
@@ -336,12 +411,19 @@ public class TimetableModel {
 			throw new ApplicationException("Exception : Exception in getting Timetable by pk");
 		} finally {
 			JDBCDataSource.closeConnection(conn);
-		}
+}
 		log.debug("TimetableModel findByPK method ended");
 
 		return bean;
 	}
 
+	/**
+	 * Updates an existing timetable record in the database.
+	 * 
+	 * @param bean TimetableBean object containing updated data
+	 * @throws ApplicationException if database operation fails
+	 * @throws DuplicateRecordException if record with same data already exists
+	 */
 	public void update(TimetableBean bean) throws ApplicationException, DuplicateRecordException {
 		log.debug("TimetableModel update method started");
 
@@ -392,6 +474,15 @@ public class TimetableModel {
 
 	}
 
+	/**
+	 * Searches timetable records based on given criteria and pagination.
+	 * 
+	 * @param bean TimetableBean object containing search criteria
+	 * @param pageNo page number for pagination (1-based)
+	 * @param pageSize number of records per page
+	 * @return List of TimetableBean matching search criteria
+	 * @throws ApplicationException if database operation fails
+	 */
 	public List<TimetableBean> search(TimetableBean bean, int pageNo, int pageSize) throws ApplicationException {
 		log.debug("TimetableModel search method started");
 

@@ -15,9 +15,18 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * Abstract base controller providing common constants, utility methods, and
+ * request handling logic for all controllers. Ensures validation, preloading,
+ * and audit field population.
+ * 
+ * @author Aditya
+ * @version 1.0
+ * @since 2025
+ */
 public abstract class BaseCtl extends HttpServlet {
 
-	private static Logger log  = Logger.getLogger(BaseCtl.class);
+	private static Logger log = Logger.getLogger(BaseCtl.class);
 
 	public static final String OP_SAVE = "Save";
 	public static final String OP_UPDATE = "Update";
@@ -37,18 +46,22 @@ public abstract class BaseCtl extends HttpServlet {
 	public static final String MSG_SUCCESS = "success";
 	public static final String MSG_ERROR = "error";
 
+	/** Validates input data. Default returns true. */
 	protected boolean validate(HttpServletRequest request) {
 		return true;
 	}
 
+	/** Preloads data before processing. */
 	protected void preload(HttpServletRequest request) {
 		log.debug("BaseCtl preload called");
 	}
 
+	/** Populates a bean with request parameters. */
 	protected BaseBean populateBean(HttpServletRequest request) {
 		return null;
 	}
 
+	/** Sets audit fields (createdBy, modifiedBy, timestamps). */
 	protected BaseBean populateDto(BaseBean dto, HttpServletRequest request) {
 
 		String createdBy = request.getParameter("createdBy");
@@ -81,6 +94,7 @@ public abstract class BaseCtl extends HttpServlet {
 
 	}
 
+	/** Service method handling preload, validation and request dispatch. */
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -90,9 +104,9 @@ public abstract class BaseCtl extends HttpServlet {
 		preload(request);
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		
-		log.debug("Operation get in BaseCtl is : "+ op);
- 		
+
+		log.debug("Operation get in BaseCtl is : " + op);
+
 		if (DataValidator.isNotNull(op) && !OP_CANCEL.equalsIgnoreCase(op) && !OP_VIEW.equalsIgnoreCase(op)
 				&& !OP_DELETE.equalsIgnoreCase(op) && !OP_RESET.equalsIgnoreCase(op)) {
 
@@ -100,7 +114,7 @@ public abstract class BaseCtl extends HttpServlet {
 				BaseBean bean = populateBean(request);
 				ServletUtility.setBean(bean, request);
 				ServletUtility.forward(getView(), request, response);
-				
+
 				log.debug("view: " + getView());
 				return;
 			}
@@ -110,5 +124,6 @@ public abstract class BaseCtl extends HttpServlet {
 		super.service(request, response);
 	}
 
+	/** Returns the view path for this controller. */
 	protected abstract String getView();
 }

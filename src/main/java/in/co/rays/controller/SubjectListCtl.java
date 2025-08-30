@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import in.co.rays.bean.BaseBean;
-import in.co.rays.bean.CourseBean;
 import in.co.rays.bean.SubjectBean;
 import in.co.rays.exception.ApplicationException;
 import in.co.rays.model.CourseModel;
@@ -20,50 +19,69 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
+/**
+ * SubjectListCtl handles listing, searching, pagination, deletion, and navigation for subjects.
+ * It also preloads subjects and courses for filters.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebServlet(name = "SubjectListCtl", urlPatterns = { "/ctl/SubjectListCtl" })
 public class SubjectListCtl extends BaseCtl {
 
 	private static Logger log  = Logger.getLogger(SubjectListCtl.class);
 
+	/**
+	 * Preloads the subjects and courses for filter selection.
+	 *
+	 * @param request HttpServletRequest
+	 */
 	@Override
 	protected void preload(HttpServletRequest request) {
-
 		SubjectModel subjectModel = new SubjectModel();
 		CourseModel courseModel = new CourseModel();
-
 		try {
 			List subjectList = subjectModel.list();
 			request.setAttribute("subjectList", subjectList);
 
 			List courseList = courseModel.list();
 			request.setAttribute("courseList", courseList);
-
 		} catch (ApplicationException e) {
 			e.printStackTrace();
 			return;
 		}
 	}
 
+	/**
+	 * Populates SubjectBean from request parameters for search and filters.
+	 *
+	 * @param request HttpServletRequest
+	 * @return populated SubjectBean
+	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-
 		log.debug("SubjectListCtl populateBean method started");
-
 		SubjectBean bean = new SubjectBean();
-
 		bean.setName(DataUtility.getString(request.getParameter("name")));
 		bean.setId(DataUtility.getLong(request.getParameter("subjectId")));
 		bean.setCourseName(DataUtility.getString(request.getParameter("courseName")));
 		bean.setDescription(DataUtility.getString(request.getParameter("description")));
 		bean.setCourseId(DataUtility.getLong(request.getParameter("courseId")));
-
 		log.debug("SubjectListCtl populateBean method ended");
 		return bean;
 	}
 
+	/**
+	 * Handles GET request for subject listing with pagination.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("SubjectListCtl doget method started");
 
 		int pageNo = 1;
@@ -91,14 +109,21 @@ public class SubjectListCtl extends BaseCtl {
 		} catch (ApplicationException e) {
 			ServletUtility.handleException(e, request, response);
 		}
-		log.debug("SubjectListCtl doget method ended");
 
+		log.debug("SubjectListCtl doget method ended");
 	}
 
+	/**
+	 * Handles POST request for search, pagination, deletion, reset, and navigation operations.
+	 *
+	 * @param request HttpServletRequest
+	 * @param response HttpServletResponse
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		log.debug("SubjectListCtl dopost method started");
 
 		List list = null;
@@ -119,7 +144,6 @@ public class SubjectListCtl extends BaseCtl {
 		try {
 
 			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
-
 				if (OP_SEARCH.equalsIgnoreCase(op)) {
 					pageNo = 1;
 				} else if (OP_NEXT.equalsIgnoreCase(op)) {
@@ -171,10 +195,15 @@ public class SubjectListCtl extends BaseCtl {
 			ServletUtility.handleException(e, request, response);
 			return;
 		}
-		log.debug("SubjectListCtl dopost method ended");
 
+		log.debug("SubjectListCtl dopost method ended");
 	}
 
+	/**
+	 * Returns the view for the subject list.
+	 *
+	 * @return String representing the view path
+	 */
 	@Override
 	protected String getView() {
 		return ORSView.SUBJECT_LIST_VIEW;

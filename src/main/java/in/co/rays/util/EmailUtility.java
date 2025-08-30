@@ -13,6 +13,14 @@ import javax.mail.internet.MimeMessage;
 
 import in.co.rays.exception.ApplicationException;
 
+/**
+ * Utility class to send emails using SMTP protocol.
+ * Supports both HTML and plain text email messages.
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 public class EmailUtility {
 
 	static ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.bundle.System");
@@ -36,6 +44,12 @@ public class EmailUtility {
 		props.put("mail.smtp.socketFactory.fallback", "false");
 	}
 
+	/**
+	 * Sends an email message using SMTP settings.
+	 *
+	 * @param emailMessageDTO email message object containing recipient, subject, content, and type
+	 * @throws ApplicationException if there is an error while sending email
+	 */
 	public static void sendMail(EmailMessage emailMessageDTO) throws ApplicationException {
 		try {
 			// Setup mail session
@@ -63,6 +77,13 @@ public class EmailUtility {
 		}
 	}
 
+	/**
+	 * Converts a comma-separated string of email addresses into an array of InternetAddress.
+	 *
+	 * @param emails comma-separated email addresses
+	 * @return array of InternetAddress
+	 * @throws Exception if an email address is invalid
+	 */
 	private static InternetAddress[] getInternetAddresses(String emails) throws Exception {
 		if (emails == null || emails.isEmpty()) {
 			return new InternetAddress[0];

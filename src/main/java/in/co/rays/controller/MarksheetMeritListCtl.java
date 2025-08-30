@@ -18,22 +18,24 @@ import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
 /**
- * MarksheetMeritListCtl servlet handles the display of top merit list of marksheets.
- * It interacts with the MarksheetModel to retrieve the data and forwards it to the view.
+ * MarksheetMeritListCtl servlet handles the display of top merit list of
+ * marksheets. It interacts with the MarksheetModel to retrieve the data and
+ * forwards it to the view.
  *
  * @author Aditya
+ * @since 2025
+ * @version 1.0
+ * 
  */
 @WebServlet(name = "MarksheetMeritListCtl", urlPatterns = { "/ctl/MarksheetMeritListCtl" })
 public class MarksheetMeritListCtl extends BaseCtl {
-	
-	private static Logger log  = Logger.getLogger(MarksheetMeritListCtl.class);
 
+	private static Logger log = Logger.getLogger(MarksheetMeritListCtl.class);
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("MarksheetMeritListCtl doget method started");
 
+		log.debug("MarksheetMeritListCtl doget method started");
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
@@ -64,9 +66,8 @@ public class MarksheetMeritListCtl extends BaseCtl {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("MarksheetMeritListCtl dopost method started");
 
+		log.debug("MarksheetMeritListCtl dopost method started");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
@@ -74,7 +75,7 @@ public class MarksheetMeritListCtl extends BaseCtl {
 			ServletUtility.redirect(ORSView.WELCOME_CTL, request, response);
 			return;
 		}
-		
+
 		log.debug("MarksheetMeritListCtl dopost method ended");
 
 	}

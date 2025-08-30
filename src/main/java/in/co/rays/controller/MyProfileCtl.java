@@ -25,11 +25,14 @@ import in.co.rays.util.ServletUtility;
  * user profile data.
  * 
  * @author Aditya
+ * @since 2025
+ * @version 1.0
+ * 
  */
 @WebServlet(name = "MyProfileCtl", urlPatterns = { "/ctl/MyProfileCtl" })
 public class MyProfileCtl extends BaseCtl {
 
-	private static Logger log  = Logger.getLogger(MyProfileCtl.class);
+	private static Logger log = Logger.getLogger(MyProfileCtl.class);
 
 	/** Operation for changing the password from profile view */
 	public static final String OP_CHANGE_MY_PASSWORD = "Change Password";
@@ -103,9 +106,8 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	@Override
 	protected BaseBean populateBean(HttpServletRequest request) {
-		
-		log.debug("MyProfileCtl populateBean method started");
 
+		log.debug("MyProfileCtl populateBean method started");
 
 		UserBean bean = new UserBean();
 
@@ -124,7 +126,7 @@ public class MyProfileCtl extends BaseCtl {
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
 
 		populateDto(bean, request);
-		
+
 		log.debug("MyProfileCtl populateBean method ended");
 		return bean;
 	}
@@ -140,9 +142,8 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("MyProfileCtl doget method started");
 
+		log.debug("MyProfileCtl doget method started");
 
 		HttpSession session = request.getSession(true);
 		UserBean user = (UserBean) session.getAttribute("user");
@@ -176,9 +177,8 @@ public class MyProfileCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		log.debug("MyProfileCtl dopost method started");
 
+		log.debug("MyProfileCtl dopost method started");
 
 		HttpSession session = request.getSession(true);
 
@@ -215,7 +215,7 @@ public class MyProfileCtl extends BaseCtl {
 			return;
 		}
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("MyProfileCtl dopost method ended");
 
 	}

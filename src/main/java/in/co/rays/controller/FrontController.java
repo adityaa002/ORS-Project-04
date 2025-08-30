@@ -16,40 +16,68 @@ import javax.servlet.http.HttpSession;
 
 import in.co.rays.util.ServletUtility;
 
+/**
+ * FrontController is a filter that manages user session and request 
+ * authorization for secured URLs. It forwards unauthenticated users 
+ * to the login page. 
+ * 
+ * @author Aditya
+ * @since 2025
+ * @version 1.0
+ */
 @WebFilter(urlPatterns = { "/doc/*", "/ctl/*" })
 public class FrontController implements Filter {
 
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-	}
+    /**
+     * Initializes the filter.
+     * 
+     * @param filterConfig configuration for this filter
+     * @throws ServletException if initialization fails
+     */
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
-	@Override
-	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
-			throws IOException, ServletException {
+    /**
+     * Performs filtering by checking session validity. If user is not 
+     * logged in, request is forwarded to login page.
+     * 
+     * @param req   ServletRequest
+     * @param resp  ServletResponse
+     * @param chain FilterChain
+     * @throws IOException      if I/O error occurs
+     * @throws ServletException if servlet error occurs
+     */
+    @Override
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws IOException, ServletException {
 
-		System.out.println("in do filter");
+        System.out.println("in do filter");
 
-		HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) resp;
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
 
-		HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
-		String uri = request.getRequestURI();
-		request.setAttribute("uri", uri);
+        String uri = request.getRequestURI();
+        request.setAttribute("uri", uri);
 
-		if (session.getAttribute("user") == null) {
-			request.setAttribute("error", "Your session has been expired. Please login again..!!!");
-			ServletUtility.forward(ORSView.LOGIN_VIEW, request, response);
-			return;
+        if (session.getAttribute("user") == null) {
+            request.setAttribute("error", "Your session has been expired. Please login again..!!!");
+            ServletUtility.forward(ORSView.LOGIN_VIEW, request, response);
+            return;
 
-		} else {
-			chain.doFilter(request, response);
-		}
+        } else {
+            chain.doFilter(request, response);
+        }
 
-	}
+    }
 
-	@Override
-	public void destroy() {
-	}
+    /**
+     * Cleans up resources before filter destruction.
+     */
+    @Override
+    public void destroy() {
+    }
 
 }
