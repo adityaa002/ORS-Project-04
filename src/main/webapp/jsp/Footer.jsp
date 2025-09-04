@@ -8,7 +8,7 @@ div.footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	background-color: #92929240;
+	background-color: white;
 	text-align: center;
 	padding: 20px 0;
 	border-top: 1px solid #ccc;

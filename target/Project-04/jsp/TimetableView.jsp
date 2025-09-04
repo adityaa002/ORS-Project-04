@@ -95,11 +95,10 @@
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("semester", request)%></font></td>
 				</tr>
 				<tr>
-					<th align="left">Date of Birth<span style="color: red">*</span></th>
-					<td><input type="text" id="udatee" name="dob"
-					    placeholder="Select Date of Birth"
+					<th align="left">Exam Date<span style="color: red">*</span></th>
+					<td><input type="text" id="udatee" name="examDate" placeholder="Select Exam Date"
 						value="<%=DataUtility.getDateString(bean.getExamDate())%>"></td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("dob", request)%></font></td>
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("examDate", request)%></font></td>
 				</tr>	
 				<tr>
 					<th align="left">Exam Time<span style="color: red">*</span></th>
@@ -148,5 +147,6 @@
 			</table>
 		</div>
 	</form>
+	<%@include file="Footer.jsp" %>
 </body>
 </html>

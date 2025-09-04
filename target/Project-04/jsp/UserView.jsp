@@ -13,14 +13,13 @@
 	href="<%=ORSView.APP_CONTEXT%>/img/logo.png" sizes="16x16" />
 </head>
 <body>
-		<%@ include file="Header.jsp"%>
+	<%@ include file="Header.jsp"%>
 
-		<jsp:useBean id="bean" class="in.co.rays.bean.UserBean"
-			scope="request"></jsp:useBean>
+	<jsp:useBean id="bean" class="in.co.rays.bean.UserBean" scope="request"></jsp:useBean>
 
-		<%
+	<%
 		List<UserBean> roleList = (List<UserBean>) request.getAttribute("roleList");
-		%>
+	%>
 	<form action="<%=ORSView.USER_CTL%>" method="post">
 
 
@@ -96,10 +95,10 @@
 				<tr>
 					<th align="left">Date of Birth<span style="color: red">*</span></th>
 					<td><input type="text" id="udate" name="dob"
-					    placeholder="Select Date of Birth"
+						placeholder="Select Date of Birth"
 						value="<%=DataUtility.getDateString(bean.getDob())%>"></td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("dob", request)%></font></td>
-				</tr>	
+				</tr>
 				<tr>
 					<th align="left">Gender<span style="color: red">*</span></th>
 					<td>
@@ -134,21 +133,23 @@
 					<%
 						if (bean != null && bean.getId() > 0) {
 					%>
-					<td align="left" colspan="2">
-					<input type="submit" name="operation" value="<%=UserCtl.OP_UPDATE%>">
-						<input type="submit" name="operation" value="<%=UserCtl.OP_CANCEL%>">
+					<td align="left" colspan="2"><input type="submit"
+						name="operation" value="<%=UserCtl.OP_UPDATE%>"> <input
+						type="submit" name="operation" value="<%=UserCtl.OP_CANCEL%>">
 						<%
 							} else {
 						%>
-					<td align="left" colspan="2">
-					<input type="submit" name="operation" value="<%=UserCtl.OP_SAVE%>">
-					<input type="submit" name="operation" value="<%=UserCtl.OP_RESET%>"></td>
-						<%
-							}
-						%>
+					<td align="left" colspan="2"><input type="submit"
+						name="operation" value="<%=UserCtl.OP_SAVE%>"> <input
+						type="submit" name="operation" value="<%=UserCtl.OP_RESET%>"></td>
+					<%
+						}
+					%>
 				</tr>
 			</table>
 		</div>
 	</form>
+	<%@include file="Footer.jsp"%>
+
 </body>
 </html>

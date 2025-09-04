@@ -50,8 +50,8 @@
 
 				if (list.size() != 0) {
 			%>
-			   <input type="hidden" name="pageNo" value="<%=pageNo%>">
-            <input type="hidden" name="pageSize" value="<%=pageSize%>">
+			<input type="hidden" name="pageNo" value="<%=pageNo%>"> <input
+				type="hidden" name="pageSize" value="<%=pageSize%>">
 			<table>
 
 				<tr>
@@ -93,36 +93,38 @@
 				<%
 					}
 				%>
-				</table>
-				<table style="width: 100%">
-					<tr>
-						<td style="width: 25%"><input type="submit" name="operation"
-							value="<%=RoleListCtl.OP_PREVIOUS%>"
-							<%=pageNo > 1 ? "" : "disabled"%>></td>
-						<td align="center" style="width: 25%"><input type="submit"
-							name="operation" value="<%=RoleListCtl.OP_NEW%>"></td>
-						<td align="center" style="width: 25%"><input type="submit"
-							name="operation" value="<%=RoleListCtl.OP_DELETE%>"></td>
-						<td style="width: 25%" align="right"><input type="submit"
-							name="operation" value="<%=RoleListCtl.OP_NEXT%>"
-							<%=nextListSize != 0 ? "" : "disabled"%>></td>
-					</tr>
-				</table>
+			</table>
+			<table style="width: 100%">
+				<tr>
+					<td style="width: 25%"><input type="submit" name="operation"
+						value="<%=RoleListCtl.OP_PREVIOUS%>"
+						<%=pageNo > 1 ? "" : "disabled"%>></td>
+					<td align="center" style="width: 25%"><input type="submit"
+						name="operation" value="<%=RoleListCtl.OP_NEW%>"></td>
+					<td align="center" style="width: 25%"><input type="submit"
+						name="operation" value="<%=RoleListCtl.OP_DELETE%>"></td>
+					<td style="width: 25%" align="right"><input type="submit"
+						name="operation" value="<%=RoleListCtl.OP_NEXT%>"
+						<%=nextListSize != 0 ? "" : "disabled"%>></td>
+				</tr>
+			</table>
 
-				<%
-					}
-					if (list.size() == 0) {
-				%>
-				<table>
-					<tr>
-						<td align="right"><input type="submit" name="operation"
-							value="<%=RoleListCtl.OP_BACK%>"></td>
-					</tr>
-				</table>
-				<%
-					}
-				%>
-				</form>
-				</div>
+			<%
+				}
+				if (list.size() == 0) {
+			%>
+			<table>
+				<tr>
+					<td align="right"><input type="submit" name="operation"
+						value="<%=RoleListCtl.OP_BACK%>"></td>
+				</tr>
+			</table>
+			<%
+				}
+			%>
+		</form>
+	</div>
+	<%@include file="Footer.jsp"%>
 </body>
+
 </html>

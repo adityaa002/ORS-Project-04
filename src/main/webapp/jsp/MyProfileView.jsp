@@ -101,7 +101,7 @@
                             HashMap<String, String> map = new HashMap<String, String>();
                             map.put("Female", "Female");
                             map.put("Male", "Male");
-                            String htmlList = HTMLUtility.getList("gender", bean.getGender(), map);
+                            String htmlList = HTMLUtility.getList("gender",String.valueOf(bean.getGender()), map);
                         %>
                         <%=htmlList%>
                     </td>

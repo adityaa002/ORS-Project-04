@@ -18,9 +18,9 @@ public class TestUserModel {
 
 	public static void main(String[] args) throws Exception {
 		// testNextPk();
-		// testAdd();
+		 testAdd();
 		// testUpdate();
-		testDelete();
+		//testDelete();
 		// testFindByLogin();
 		// testFindByPk();
 		// testAuth();
@@ -59,9 +59,9 @@ public class TestUserModel {
 		UserBean bean = new UserBean();
 		bean.setFirstName("Aditya");
 		bean.setLastName("Sharma");
-		bean.setLogin("aditya@gmail.com");
-		bean.setPassword("adi@123");
-		bean.setDob(sdf.parse("2002-07-12"));
+		bean.setLogin("aaeditya@gmail.com");
+		bean.setPassword("Pass@123");
+		bean.setDob(sdf.parse("2002-07-26"));
 		bean.setMobileNo("8574585965");
 		bean.setRoleId(1);
 		bean.setGender("male");

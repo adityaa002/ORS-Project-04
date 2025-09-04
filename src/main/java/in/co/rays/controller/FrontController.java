@@ -17,9 +17,9 @@ import javax.servlet.http.HttpSession;
 import in.co.rays.util.ServletUtility;
 
 /**
- * FrontController is a filter that manages user session and request 
- * authorization for secured URLs. It forwards unauthenticated users 
- * to the login page. 
+ * FrontCtl performs the session checking
+ * and logging operations before calling any other application controller
+ * It's also prevents user from access application without login.
  * 
  * @author Aditya
  * @since 2025

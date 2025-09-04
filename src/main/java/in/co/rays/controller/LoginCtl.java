@@ -24,8 +24,8 @@ import in.co.rays.util.ServletUtility;
 
 /**
  * Login functionality Controller. Performs operations for Login like Sign In,
- * Logout, SignUp
- * * 
+ * Logout, SignUp *
+ * 
  * @author Aditya
  * @since 2025
  * @version 1.0
@@ -55,10 +55,9 @@ public class LoginCtl extends BaseCtl {
 		boolean pass = true;
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		
+
 		log.debug("LoginCtl validate method operation ---> " + op);
 
-		
 		if (OP_SIGN_UP.equals(op) || OP_LOG_OUT.equals(op)) {
 			return pass;
 		}
@@ -157,9 +156,10 @@ public class LoginCtl extends BaseCtl {
 		HttpSession session = request.getSession();
 
 		String op = DataUtility.getString(request.getParameter("operation"));
-		
-		log.debug("LoginCtl doget operation ---> " + op);
 
+ 
+ 
+		log.debug("LoginCtl dopost operation ---> " + op);
 
 		UserModel userModel = new UserModel();
 		RoleModel roleModel = new RoleModel();
