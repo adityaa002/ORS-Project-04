@@ -17,6 +17,8 @@
 		<h1 align="center">
 			<font size="10px" color="red">
 			<a href="<%=ORSView.WELCOME_CTL%>">Online Result System</a></font>
+<h2 align="center"> By Aditya Sharma </h2>
+
 <h2 align="center"> &copy; Owner of Rays </h2>
 		</h1>
 
