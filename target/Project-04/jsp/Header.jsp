@@ -52,7 +52,7 @@
 				%></td>
 			<td rowspan="2">
 				<h1 align="Right">
-					<img src="<%=ORSView.APP_CONTEXT%>/img/customLogo.jpg" width="318"
+					<img src="<%=ORSView.APP_CONTEXT%>/img/customLogo.jpg" width="280"
 						height="90">
 				</h1>
 			</td>

@@ -21,8 +21,9 @@ import in.co.rays.util.DataValidator;
 import in.co.rays.util.ServletUtility;
 
 /**
- * UserRegistrationCtl manages user registration, validation, and signup.
- * It validates input fields, populates the UserBean, and handles registration operations.
+ * UserRegistrationCtl manages user registration, validation, and signup. It
+ * validates input fields, populates the UserBean, and handles registration
+ * operations.
  * 
  * @author Aditya
  * @since 2025
@@ -30,8 +31,8 @@ import in.co.rays.util.ServletUtility;
  */
 @WebServlet(name = "UserRegistrationCtl", urlPatterns = { "/UserRegistrationCtl" })
 public class UserRegistrationCtl extends BaseCtl {
-	
-	private static Logger log  = Logger.getLogger(UserRegistrationCtl.class);
+
+	private static Logger log = Logger.getLogger(UserRegistrationCtl.class);
 
 	public static final String OP_SIGN_UP = "Sign Up";
 
@@ -82,6 +83,11 @@ public class UserRegistrationCtl extends BaseCtl {
 			request.setAttribute("confirmPassword", PropertyReader.getValue("error.require", "Confirm Password"));
 			pass = false;
 		}
+		if (!request.getParameter("password").equals(request.getParameter("confirmPassword"))
+				&& !"".equals(request.getParameter("confirmPassword"))) {
+			request.setAttribute("confirmPassword", "Password and Confirm Password must be Same!");
+			pass = false;
+		}
 		if (DataValidator.isNull(request.getParameter("gender"))) {
 			request.setAttribute("gender", PropertyReader.getValue("error.require", "Gender"));
 			pass = false;
@@ -93,11 +99,7 @@ public class UserRegistrationCtl extends BaseCtl {
 			request.setAttribute("dob", PropertyReader.getValue("error.date", "Date of Birth"));
 			pass = false;
 		}
-		if (!request.getParameter("password").equals(request.getParameter("confirmPassword"))
-				&& !"".equals(request.getParameter("confirmPassword"))) {
-			request.setAttribute("confirmPassword", "Password and Confirm Password must be Same!");
-			pass = false;
-		}
+
 		if (DataValidator.isNull(request.getParameter("mobileNo"))) {
 			request.setAttribute("mobileNo", PropertyReader.getValue("error.require", "Mobile No"));
 			pass = false;
@@ -144,7 +146,7 @@ public class UserRegistrationCtl extends BaseCtl {
 	/**
 	 * Handles GET requests to show registration page.
 	 *
-	 * @param request HttpServletRequest
+	 * @param request  HttpServletRequest
 	 * @param response HttpServletResponse
 	 * @throws ServletException
 	 * @throws IOException
@@ -160,7 +162,7 @@ public class UserRegistrationCtl extends BaseCtl {
 	/**
 	 * Handles POST requests to perform user signup or reset operations.
 	 *
-	 * @param request HttpServletRequest
+	 * @param request  HttpServletRequest
 	 * @param response HttpServletResponse
 	 * @throws ServletException
 	 * @throws IOException

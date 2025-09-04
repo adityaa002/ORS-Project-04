@@ -99,6 +99,7 @@ public class UserModel {
 			pstmt.setString(11, bean.getModifiedBy());
 			pstmt.setTimestamp(12, bean.getCreatedDatetime());
 			pstmt.setTimestamp(13, bean.getModifiedDatetime());
+
 			pstmt.executeUpdate();
 			conn.commit();
 			pstmt.close();

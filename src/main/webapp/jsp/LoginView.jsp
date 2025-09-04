@@ -22,6 +22,7 @@
 		<jsp:useBean id="bean" class="in.co.rays.bean.UserBean"
 			scope="request"></jsp:useBean>
 
+		 
 
 
 		<div align="center">
@@ -40,9 +41,7 @@
 				value="<%=DataUtility.getTimestamp(bean.getCreatedDatetime())%>">
 			<input type="hidden" name="modifiedDatetime"
 				value="<%=DataUtility.getTimestamp(bean.getModifiedDatetime())%>">
-			<%
-				String uri = (String) request.getAttribute("uri");
-			%>
+			 
 
 			<table>
 				<tr>
@@ -80,6 +79,7 @@
 
 		</div>
 
+ 
 	</form>
 	<%@include file="Footer.jsp"%>
 </body>
