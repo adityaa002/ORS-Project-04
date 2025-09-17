@@ -1,0 +1,50 @@
+02-Sep-2025 17:45:45.895 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.33
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 11 2020 09:31:38 UTC
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.33.0
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-11.0.15.1
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.15.1+2-LTS-10
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+02-Sep-2025 17:45:45.915 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+02-Sep-2025 17:45:45.930 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+02-Sep-2025 17:45:45.930 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+02-Sep-2025 17:45:45.930 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+02-Sep-2025 17:45:45.930 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\conf\logging.properties
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\temp
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+02-Sep-2025 17:45:45.960 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+02-Sep-2025 17:45:45.977 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+02-Sep-2025 17:45:46.259 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+02-Sep-2025 17:45:46.529 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [869] milliseconds
+02-Sep-2025 17:45:46.593 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+02-Sep-2025 17:45:46.593 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.33]
+02-Sep-2025 17:45:46.593 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\docs]
+02-Sep-2025 17:45:47.037 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [206] milliseconds.
+02-Sep-2025 17:45:47.068 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\docs] has finished in [475] ms
+02-Sep-2025 17:45:47.068 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\examples]
+02-Sep-2025 17:45:48.530 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\examples] has finished in [1,462] ms
+02-Sep-2025 17:45:48.553 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\host-manager]
+02-Sep-2025 17:45:48.624 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\host-manager] has finished in [71] ms
+02-Sep-2025 17:45:48.624 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\manager]
+02-Sep-2025 17:45:48.687 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\manager] has finished in [63] ms
+02-Sep-2025 17:45:48.687 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\Project-04]
+02-Sep-2025 17:45:50.325 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+02-Sep-2025 17:45:50.401 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\Project-04] has finished in [1,714] ms
+02-Sep-2025 17:45:50.401 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ROOT]
+02-Sep-2025 17:45:50.449 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ROOT] has finished in [48] ms
+02-Sep-2025 17:45:50.449 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+02-Sep-2025 17:45:50.481 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [3,950] milliseconds
+02-Sep-2025 17:54:27.733 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+02-Sep-2025 17:54:28.078 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+02-Sep-2025 17:54:28.209 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+02-Sep-2025 17:54:28.242 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]

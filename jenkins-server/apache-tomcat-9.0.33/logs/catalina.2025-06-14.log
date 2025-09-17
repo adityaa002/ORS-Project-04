@@ -1,0 +1,124 @@
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.33
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 11 2020 09:31:38 UTC
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.33.0
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-11.0.15.1
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.15.1+2-LTS-10
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:08:38.986 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:08:39.002 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+14-Jun-2025 12:08:39.002 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\conf\logging.properties
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\temp
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+14-Jun-2025 12:08:39.018 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+14-Jun-2025 12:08:39.036 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+14-Jun-2025 12:08:39.368 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:08:40.020 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1,560] milliseconds
+14-Jun-2025 12:08:40.132 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+14-Jun-2025 12:08:40.132 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.33]
+14-Jun-2025 12:08:40.164 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\docs]
+14-Jun-2025 12:08:41.087 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [508] milliseconds.
+14-Jun-2025 12:08:41.198 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\docs] has finished in [1,037] ms
+14-Jun-2025 12:08:41.198 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\examples]
+14-Jun-2025 12:08:42.578 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\examples] has finished in [1,380] ms
+14-Jun-2025 12:08:42.578 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\host-manager]
+14-Jun-2025 12:08:42.668 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\host-manager] has finished in [90] ms
+14-Jun-2025 12:08:42.670 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\manager]
+14-Jun-2025 12:08:42.724 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\manager] has finished in [54] ms
+14-Jun-2025 12:08:42.726 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ORS-Web-Applictaion]
+14-Jun-2025 12:08:43.740 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+14-Jun-2025 12:08:43.795 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ORS-Web-Applictaion] has finished in [1,071] ms
+14-Jun-2025 12:08:43.795 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ROOT]
+14-Jun-2025 12:08:43.833 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ROOT] has finished in [38] ms
+14-Jun-2025 12:08:43.833 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:08:43.865 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [3,841] milliseconds
+14-Jun-2025 12:09:47.601 INFO [http-nio-8080-exec-7] com.mchange.v2.log.MLog.<clinit> MLog clients using java 1.4+ standard logging.
+14-Jun-2025 12:09:47.747 INFO [http-nio-8080-exec-7] com.mchange.v2.c3p0.C3P0Registry.banner Initializing c3p0-0.9.1.2 [built 21-May-2007 15:04:56; debug? true; trace: 10]
+14-Jun-2025 12:09:47.917 INFO [http-nio-8080-exec-7] com.mchange.v2.c3p0.impl.AbstractPoolBackedDataSource.getPoolManager Initializing c3p0 pool... com.mchange.v2.c3p0.ComboPooledDataSource [ acquireIncrement -> 5, acquireRetryAttempts -> 30, acquireRetryDelay -> 1000, autoCommitOnClose -> false, automaticTestTable -> null, breakAfterAcquireFailure -> false, checkoutTimeout -> 0, connectionCustomizerClassName -> null, connectionTesterClassName -> com.mchange.v2.c3p0.impl.DefaultConnectionTester, dataSourceName -> 1hge4p1bbuafd36fduokf|20820f68, debugUnreturnedConnectionStackTraces -> false, description -> null, driverClass -> com.mysql.cj.jdbc.Driver, factoryClassLocation -> null, forceIgnoreUnresolvedTransactions -> false, identityToken -> 1hge4p1bbuafd36fduokf|20820f68, idleConnectionTestPeriod -> 0, initialPoolSize -> 5, jdbcUrl -> jdbc:mysql://localhost:3306/advance_java, maxAdministrativeTaskTime -> 0, maxConnectionAge -> 0, maxIdleTime -> 0, maxIdleTimeExcessConnections -> 0, maxPoolSize -> 30, maxStatements -> 0, maxStatementsPerConnection -> 0, minPoolSize -> 3, numHelperThreads -> 3, numThreadsAwaitingCheckoutDefaultUser -> 0, preferredTestQuery -> null, properties -> {password=******, user=******}, propertyCycle -> 0, testConnectionOnCheckin -> false, testConnectionOnCheckout -> false, unreturnedConnectionTimeout -> 0, usesTraditionalReflectiveProxies -> false ]
+14-Jun-2025 12:10:13.899 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:10:14.219 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+14-Jun-2025 12:10:14.307 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [ORS-Web-Applictaion] registered the JDBC driver [com.mysql.cj.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+14-Jun-2025 12:10:14.307 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ORS-Web-Applictaion] appears to have started a thread named [Timer-0] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ java.base@11.0.15.1/java.util.TimerThread.mainLoop(Timer.java:553)
+ java.base@11.0.15.1/java.util.TimerThread.run(Timer.java:506)
+14-Jun-2025 12:10:14.307 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ORS-Web-Applictaion] appears to have started a thread named [com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#0] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+14-Jun-2025 12:10:14.307 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ORS-Web-Applictaion] appears to have started a thread named [com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+14-Jun-2025 12:10:14.307 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ORS-Web-Applictaion] appears to have started a thread named [com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+14-Jun-2025 12:10:14.314 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ORS-Web-Applictaion] appears to have started a thread named [mysql-cj-abandoned-connection-cleanup] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ java.base@11.0.15.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+ com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:91)
+ java.base@11.0.15.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+ java.base@11.0.15.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+ java.base@11.0.15.1/java.lang.Thread.run(Thread.java:834)
+14-Jun-2025 12:10:14.347 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:10:14.347 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:11:44.276 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.33
+14-Jun-2025 12:11:44.287 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 11 2020 09:31:38 UTC
+14-Jun-2025 12:11:44.287 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.33.0
+14-Jun-2025 12:11:44.289 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+14-Jun-2025 12:11:44.289 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+14-Jun-2025 12:11:44.289 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+14-Jun-2025 12:11:44.289 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-11.0.15.1
+14-Jun-2025 12:11:44.289 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.15.1+2-LTS-10
+14-Jun-2025 12:11:44.289 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+14-Jun-2025 12:11:44.290 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:11:44.290 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\conf\logging.properties
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\temp
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+14-Jun-2025 12:11:44.309 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+14-Jun-2025 12:11:44.317 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+14-Jun-2025 12:11:44.583 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:11:44.852 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [798] milliseconds
+14-Jun-2025 12:11:44.927 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+14-Jun-2025 12:11:44.931 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.33]
+14-Jun-2025 12:11:44.940 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\docs]
+14-Jun-2025 12:11:45.389 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [206] milliseconds.
+14-Jun-2025 12:11:45.441 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\docs] has finished in [501] ms
+14-Jun-2025 12:11:45.441 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\EMS-WebApp]
+14-Jun-2025 12:11:45.485 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\EMS-WebApp] has finished in [44] ms
+14-Jun-2025 12:11:45.485 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\examples]
+14-Jun-2025 12:11:45.830 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\examples] has finished in [345] ms
+14-Jun-2025 12:11:45.830 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\host-manager]
+14-Jun-2025 12:11:45.865 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\host-manager] has finished in [35] ms
+14-Jun-2025 12:11:45.865 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\manager]
+14-Jun-2025 12:11:45.897 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\manager] has finished in [32] ms
+14-Jun-2025 12:11:45.897 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ROOT]
+14-Jun-2025 12:11:45.924 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Softwares\Servers\apache-tomcat-9.0.33\webapps\ROOT] has finished in [27] ms
+14-Jun-2025 12:11:45.929 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:11:45.939 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1,082] milliseconds
+14-Jun-2025 12:15:26.886 INFO [Catalina-utility-1] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/EMS-WebApp]
+14-Jun-2025 12:15:41.620 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:15:41.948 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+14-Jun-2025 12:15:42.020 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+14-Jun-2025 12:15:42.030 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]

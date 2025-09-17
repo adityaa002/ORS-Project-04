@@ -1,0 +1,252 @@
+04-Sep-2025 15:55:47.871 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.33
+04-Sep-2025 15:55:47.887 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 11 2020 09:31:38 UTC
+04-Sep-2025 15:55:47.890 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.33.0
+04-Sep-2025 15:55:47.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+04-Sep-2025 15:55:47.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+04-Sep-2025 15:55:47.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+04-Sep-2025 15:55:47.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-11.0.15.1
+04-Sep-2025 15:55:47.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.15.1+2-LTS-10
+04-Sep-2025 15:55:47.891 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+04-Sep-2025 15:55:47.893 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 15:55:47.893 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\conf\logging.properties
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+04-Sep-2025 15:55:47.923 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+04-Sep-2025 15:55:47.927 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 15:55:47.927 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 15:55:47.927 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\temp
+04-Sep-2025 15:55:47.927 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+04-Sep-2025 15:55:47.927 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+04-Sep-2025 15:55:47.927 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+04-Sep-2025 15:55:47.934 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+04-Sep-2025 15:55:48.398 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 15:55:49.057 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1,811] milliseconds
+04-Sep-2025 15:55:49.171 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+04-Sep-2025 15:55:49.171 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.33]
+04-Sep-2025 15:55:49.187 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\docs]
+04-Sep-2025 15:55:50.074 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [492] milliseconds.
+04-Sep-2025 15:55:50.138 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\docs] has finished in [951] ms
+04-Sep-2025 15:55:50.138 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\examples]
+04-Sep-2025 15:55:51.468 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\examples] has finished in [1,330] ms
+04-Sep-2025 15:55:51.469 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\host-manager]
+04-Sep-2025 15:55:51.526 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\host-manager] has finished in [57] ms
+04-Sep-2025 15:55:51.526 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\manager]
+04-Sep-2025 15:55:51.571 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\manager] has finished in [45] ms
+04-Sep-2025 15:55:51.573 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\ROOT]
+04-Sep-2025 15:55:51.616 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\ROOT] has finished in [41] ms
+04-Sep-2025 15:55:51.620 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 15:55:51.640 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [2,582] milliseconds
+04-Sep-2025 16:07:22.745 INFO [Catalina-utility-2] org.apache.catalina.users.MemoryUserDatabase.backgroundProcess Reloading memory user database [UserDatabase] from updated source [file:/D:/Rays/Projects/Project-04/jenkins-server/apache-tomcat-9.0.33/conf/tomcat-users.xml]
+04-Sep-2025 16:07:22.770 SEVERE [Catalina-utility-2] org.apache.tomcat.util.digester.Digester.fatalError Parse fatal error at line [46] column [3]
+	org.xml.sax.SAXParseException; lineNumber: 46; columnNumber: 3; The element type "user" must be terminated by the matching end-tag "</user>".
+		at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+		at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1465)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanEndElement(XMLDocumentFragmentScannerImpl.java:1685)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2883)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+		at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:534)
+		at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:888)
+		at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:824)
+		at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+		at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1216)
+		at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+		at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1477)
+		at org.apache.catalina.users.MemoryUserDatabase.open(MemoryUserDatabase.java:446)
+		at org.apache.catalina.users.MemoryUserDatabase.backgroundProcess(MemoryUserDatabase.java:674)
+		at org.apache.catalina.realm.UserDatabaseRealm.backgroundProcess(UserDatabaseRealm.java:143)
+		at org.apache.catalina.realm.CombinedRealm.backgroundProcess(CombinedRealm.java:301)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1137)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1353)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1335)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+04-Sep-2025 16:07:22.774 SEVERE [Catalina-utility-2] org.apache.catalina.users.MemoryUserDatabase.backgroundProcess Error reloading memory user database [UserDatabase] from updated source [file:/D:/Rays/Projects/Project-04/jenkins-server/apache-tomcat-9.0.33/conf/tomcat-users.xml]
+	org.xml.sax.SAXParseException; lineNumber: 46; columnNumber: 3; The element type "user" must be terminated by the matching end-tag "</user>".
+		at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1243)
+		at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:635)
+		at org.apache.tomcat.util.digester.Digester.parse(Digester.java:1477)
+		at org.apache.catalina.users.MemoryUserDatabase.open(MemoryUserDatabase.java:446)
+		at org.apache.catalina.users.MemoryUserDatabase.backgroundProcess(MemoryUserDatabase.java:674)
+		at org.apache.catalina.realm.UserDatabaseRealm.backgroundProcess(UserDatabaseRealm.java:143)
+		at org.apache.catalina.realm.CombinedRealm.backgroundProcess(CombinedRealm.java:301)
+		at org.apache.catalina.core.ContainerBase.backgroundProcess(ContainerBase.java:1137)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.processChildren(ContainerBase.java:1353)
+		at org.apache.catalina.core.ContainerBase$ContainerBackgroundProcessor.run(ContainerBase.java:1335)
+		at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+		at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305)
+		at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:834)
+04-Sep-2025 16:07:42.807 INFO [Catalina-utility-1] org.apache.catalina.users.MemoryUserDatabase.backgroundProcess Reloading memory user database [UserDatabase] from updated source [file:/D:/Rays/Projects/Project-04/jenkins-server/apache-tomcat-9.0.33/conf/tomcat-users.xml]
+04-Sep-2025 16:32:55.030 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 16:32:55.354 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+04-Sep-2025 16:32:55.506 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 16:32:55.514 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.33
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 11 2020 09:31:38 UTC
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.33.0
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-11.0.15.1
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.15.1+2-LTS-10
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 16:56:20.437 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 16:56:20.453 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+04-Sep-2025 16:56:20.453 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+04-Sep-2025 16:56:20.453 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+04-Sep-2025 16:56:20.453 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\conf\logging.properties
+04-Sep-2025 16:56:20.453 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\temp
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+04-Sep-2025 16:56:20.469 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+04-Sep-2025 16:56:20.756 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 16:56:21.042 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [832] milliseconds
+04-Sep-2025 16:56:21.105 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+04-Sep-2025 16:56:21.105 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.33]
+04-Sep-2025 16:56:21.125 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\docs]
+04-Sep-2025 16:56:21.568 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [208] milliseconds.
+04-Sep-2025 16:56:21.626 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\docs] has finished in [501] ms
+04-Sep-2025 16:56:21.626 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\examples]
+04-Sep-2025 16:56:21.982 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\examples] has finished in [356] ms
+04-Sep-2025 16:56:21.998 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\host-manager]
+04-Sep-2025 16:56:22.030 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\host-manager] has finished in [32] ms
+04-Sep-2025 16:56:22.030 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\manager]
+04-Sep-2025 16:56:22.062 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\manager] has finished in [32] ms
+04-Sep-2025 16:56:22.062 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\ROOT]
+04-Sep-2025 16:56:22.094 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\ROOT] has finished in [16] ms
+04-Sep-2025 16:56:22.096 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 16:56:22.110 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [1,069] milliseconds
+04-Sep-2025 16:57:37.795 INFO [http-nio-8080-exec-10] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 16:57:40.725 INFO [http-nio-8080-exec-10] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 16:57:40.763 INFO [http-nio-8080-exec-10] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [2,968] ms
+04-Sep-2025 17:01:34.262 INFO [http-nio-8080-exec-10] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:01:34.413 INFO [http-nio-8080-exec-3] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:01:36.463 INFO [http-nio-8080-exec-3] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:01:36.463 INFO [http-nio-8080-exec-3] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [2,050] ms
+04-Sep-2025 17:01:51.700 INFO [http-nio-8080-exec-9] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:01:51.829 INFO [http-nio-8080-exec-12] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:01:53.651 INFO [http-nio-8080-exec-12] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:01:53.656 INFO [http-nio-8080-exec-12] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [1,842] ms
+04-Sep-2025 17:03:52.187 INFO [http-nio-8080-exec-17] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:03:52.324 INFO [http-nio-8080-exec-18] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:03:54.412 INFO [http-nio-8080-exec-18] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:03:54.425 INFO [http-nio-8080-exec-18] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [2,100] ms
+04-Sep-2025 17:04:52.518 INFO [http-nio-8080-exec-26] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:04:52.667 INFO [http-nio-8080-exec-22] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:04:54.824 INFO [http-nio-8080-exec-22] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:04:54.840 INFO [http-nio-8080-exec-22] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [2,173] ms
+04-Sep-2025 17:06:12.351 INFO [http-nio-8080-exec-37] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:06:12.470 INFO [http-nio-8080-exec-33] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:06:14.455 INFO [http-nio-8080-exec-33] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:06:14.472 INFO [http-nio-8080-exec-33] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [2,002] ms
+04-Sep-2025 17:07:14.988 INFO [http-nio-8080-exec-42] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:07:15.126 INFO [http-nio-8080-exec-40] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:07:17.065 INFO [http-nio-8080-exec-40] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:07:17.073 INFO [http-nio-8080-exec-40] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [1,947] ms
+04-Sep-2025 17:08:58.452 INFO [http-nio-8080-exec-51] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:08:58.596 INFO [http-nio-8080-exec-50] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:09:00.452 INFO [http-nio-8080-exec-50] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:09:00.459 INFO [http-nio-8080-exec-50] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [1,863] ms
+04-Sep-2025 17:11:01.813 INFO [http-nio-8080-exec-58] org.apache.catalina.startup.HostConfig.undeploy Undeploying context [/Project-04]
+04-Sep-2025 17:11:01.951 INFO [http-nio-8080-exec-56] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 17:11:03.889 INFO [http-nio-8080-exec-56] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 17:11:03.900 INFO [http-nio-8080-exec-56] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [1,948] ms
+04-Sep-2025 17:12:20.892 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 17:12:21.230 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+04-Sep-2025 17:12:21.320 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 17:12:21.327 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 22:34:19.103 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.33
+04-Sep-2025 22:34:19.116 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Mar 11 2020 09:31:38 UTC
+04-Sep-2025 22:34:19.119 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.33.0
+04-Sep-2025 22:34:19.119 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 11
+04-Sep-2025 22:34:19.119 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+04-Sep-2025 22:34:19.119 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+04-Sep-2025 22:34:19.119 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-11.0.15.1
+04-Sep-2025 22:34:19.121 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           11.0.15.1+2-LTS-10
+04-Sep-2025 22:34:19.121 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+04-Sep-2025 22:34:19.121 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 22:34:19.121 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 22:34:19.160 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+04-Sep-2025 22:34:19.160 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\conf\logging.properties
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\temp
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.7.0].
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+04-Sep-2025 22:34:19.163 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+04-Sep-2025 22:34:19.193 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1c  28 May 2019]
+04-Sep-2025 22:34:19.659 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 22:34:20.329 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1,924] milliseconds
+04-Sep-2025 22:34:20.440 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+04-Sep-2025 22:34:20.440 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.33]
+04-Sep-2025 22:34:20.514 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war]
+04-Sep-2025 22:34:22.736 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Sep-2025 22:34:23.293 WARNING [main] org.apache.catalina.util.SessionIdGeneratorBase.createSecureRandom Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [515] milliseconds.
+04-Sep-2025 22:34:23.383 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\Project-04.war] has finished in [2,869] ms
+04-Sep-2025 22:34:23.383 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\docs]
+04-Sep-2025 22:34:23.441 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\docs] has finished in [58] ms
+04-Sep-2025 22:34:23.441 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\examples]
+04-Sep-2025 22:34:24.815 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\examples] has finished in [1,374] ms
+04-Sep-2025 22:34:24.815 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\host-manager]
+04-Sep-2025 22:34:24.898 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\host-manager] has finished in [83] ms
+04-Sep-2025 22:34:24.898 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\manager]
+04-Sep-2025 22:34:24.954 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\manager] has finished in [56] ms
+04-Sep-2025 22:34:24.954 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\ROOT]
+04-Sep-2025 22:34:25.000 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [D:\Rays\Projects\Project-04\jenkins-server\apache-tomcat-9.0.33\webapps\ROOT] has finished in [43] ms
+04-Sep-2025 22:34:25.004 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 22:34:25.032 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [4,702] milliseconds
+04-Sep-2025 23:18:38.970 INFO [Thread-3] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 23:18:39.437 INFO [Thread-3] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+04-Sep-2025 23:18:39.576 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [Project-04] registered the JDBC driver [com.mysql.cj.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+04-Sep-2025 23:18:39.576 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [Project-04] appears to have started a thread named [Timer-0] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ java.base@11.0.15.1/java.util.TimerThread.mainLoop(Timer.java:553)
+ java.base@11.0.15.1/java.util.TimerThread.run(Timer.java:506)
+04-Sep-2025 23:18:39.576 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [Project-04] appears to have started a thread named [com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#0] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+04-Sep-2025 23:18:39.576 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [Project-04] appears to have started a thread named [com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#1] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+04-Sep-2025 23:18:39.576 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [Project-04] appears to have started a thread named [com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread-#2] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ com.mchange.v2.async.ThreadPoolAsynchronousRunner$PoolThread.run(ThreadPoolAsynchronousRunner.java:534)
+04-Sep-2025 23:18:39.576 WARNING [Thread-3] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [Project-04] appears to have started a thread named [mysql-cj-abandoned-connection-cleanup] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@11.0.15.1/java.lang.Object.wait(Native Method)
+ java.base@11.0.15.1/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:155)
+ com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:91)
+ java.base@11.0.15.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+ java.base@11.0.15.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+ java.base@11.0.15.1/java.lang.Thread.run(Thread.java:834)
+04-Sep-2025 23:18:39.624 INFO [Thread-3] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+04-Sep-2025 23:18:39.640 INFO [Thread-3] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]

@@ -1,0 +1,16 @@
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:24 +0530] "GET /dynamic-web/WelcomeCtl HTTP/1.1" 404 735
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:30 +0530] "GET /ORS-Web-Applictaion/LoginCtl HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:30 +0530] "GET /ORS-Web-Applictaion/LoginView.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:43 +0530] "GET /ORS-Web-Applictaion/LoginCtl HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:43 +0530] "GET /ORS-Web-Applictaion/LoginView.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:49 +0530] "POST /ORS-Web-Applictaion/LoginCtl HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:49 +0530] "GET /ORS-Web-Applictaion/WelcomeCtl HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:49 +0530] "GET /ORS-Web-Applictaion/Welcome.jsp HTTP/1.1" 200 613
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:09:52 +0530] "GET /ORS-Web-Applictaion/UserListCtl HTTP/1.1" 200 3180
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:10:06 +0530] "GET /ORS-Web-Applictaion/LoginCtl?operation=logout HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:10:07 +0530] "GET /ORS-Web-Applictaion/LoginView.jsp HTTP/1.1" 200 978
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:13:06 +0530] "GET /dynamic-web/WelcomeCtl HTTP/1.1" 404 735
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:14:02 +0530] "GET /EMS-WebApp/LoginCtl HTTP/1.1" 404 732
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:14:08 +0530] "GET /EMS-WebApp HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:14:08 +0530] "GET /EMS-WebApp/ HTTP/1.1" 404 724
+0:0:0:0:0:0:0:1 - - [14/Jun/2025:12:15:10 +0530] "GET /EMS-WebApp/WebContent/LoginView.jsp HTTP/1.1" 500 2610
