@@ -10,6 +10,7 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\UserRegistration
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\FacultyListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\ErrorCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\DataUtility.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestDoctor.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\BaseBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\LoginCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\MarksheetCtl.java
@@ -22,6 +23,7 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\BaseCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\ChangePasswordCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\CollegeBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\StudentBean.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\DoctorCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestCollegeModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestFacultyModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\CourseCtl.java
@@ -30,6 +32,7 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\StudentListCtl.j
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\EmailMessage.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\CollegeCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\RoleBean.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\DoctorModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\exception\DatabaseException.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\ServletUtility.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestTimetableModel.java
@@ -41,6 +44,7 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestStudentModel.
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\UserModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\test\TestEmailUtility.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\HTMLUtility.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\DoctorListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\FrontController.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestLog.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\MarksheetModel.java
@@ -53,6 +57,7 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\exception\DuplicateRecordEx
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\CourseModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\MarksheetBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestMarksheetModel.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\DoctorBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\MarksheetListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestSubjectModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\UserCtl.java

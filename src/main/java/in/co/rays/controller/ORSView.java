@@ -102,10 +102,10 @@ public interface ORSView {
 	public String ERROR_VIEW = PAGE_FOLDER + "/ErrorView.jsp";
 	public String ERROR_CTL = APP_CONTEXT + "/ctl/ErrorCtl";
 
-	public String PATIENT_VIEW = PAGE_FOLDER + "/PatientView.jsp";
-	public String PATIENT_CTL = APP_CONTEXT + "/PatientCtl";
+	public String DOCTOR_VIEW = PAGE_FOLDER + "/DoctorView.jsp";
+	public String DOCTOR_CTL = APP_CONTEXT + "/ctl/DoctorCtl";
 	
-	public String PATIENT_LIST_VIEW = PAGE_FOLDER + "/PatientListView.jsp";
-	public String PATIENT_LIST_CTL = APP_CONTEXT + "/PatientListCtl";
+	public String DOCTOR_LIST_VIEW = PAGE_FOLDER + "/DoctorListView.jsp";
+	public String DOCTOR_LIST_CTL = APP_CONTEXT + "/ctl/DoctorListCtl";
 	
 }
