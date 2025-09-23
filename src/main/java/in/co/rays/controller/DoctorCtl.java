@@ -1,6 +1,7 @@
 package in.co.rays.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,6 +23,13 @@ public class DoctorCtl extends BaseCtl {
 	@Override
 	protected void preload(HttpServletRequest request) {
 		DoctorModel model = new DoctorModel();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("Male", "Male");
+		map.put("Female", "Female");
+		
+		request.setAttribute("genderMap", map);
+
 
 		try {
 			List<DoctorBean> expertiseList = model.list();
@@ -53,7 +61,10 @@ public class DoctorCtl extends BaseCtl {
 			request.setAttribute("dob", PropertyReader.getValue("error.date", "Date of Birth"));
 			pass = false;
 		}
-
+		if (DataValidator.isNull(request.getParameter("gender"))) {
+			request.setAttribute("gender", PropertyReader.getValue("error.require", "gender"));
+			pass = false;
+		}
 		if (DataValidator.isNull(request.getParameter("expertise"))) {
 			request.setAttribute("expertise", PropertyReader.getValue("error.require", "Expertise"));
 			pass = false;
@@ -81,6 +92,8 @@ public class DoctorCtl extends BaseCtl {
 		bean.setId(DataUtility.getLong(request.getParameter("id")));
 		bean.setName(DataUtility.getString(request.getParameter("name")));
 		bean.setDob(DataUtility.getDate(request.getParameter("dob")));
+		bean.setGender(DataUtility.getString(request.getParameter("gender")));
+		
 		bean.setMobile(DataUtility.getString(request.getParameter("mobileNo")));
 		bean.setExpertise(DataUtility.getString(request.getParameter("expertise")));
 

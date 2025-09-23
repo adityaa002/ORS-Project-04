@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="in.co.rays.controller.DoctorListCtl"%>
 <%@page import="in.co.rays.util.HTMLUtility"%>
@@ -42,6 +43,8 @@
 				int nextListSize = DataUtility.getInt(request.getAttribute("nextListSize").toString());
 
 				List<DoctorBean> list = (List<DoctorBean>) ServletUtility.getList(request);
+				HashMap<String, String> genderMap = (HashMap<String, String>) request.getAttribute("genderMap");
+
 				Iterator<DoctorBean> it = list.iterator();
 
 				if (list.size() != 0) {
@@ -52,12 +55,15 @@
 
 			<table style="width: 100%">
 				<tr>
-					<td align="center"><label><b>First Name :</b></label> <input
+					<td align="center"><label><b> Name :</b></label> <input
 						type="text" name="name" placeholder="Enter Name"
 						value="<%=ServletUtility.getParameter("name", request)%>">&emsp;
 
-						<label><b>Experties:</b></label> <%=HTMLUtility.getList("expertise", ServletUtility.getParameter("expertise", request), list)%>&emsp;
+						<label><b>Expertise:</b></label> <%=HTMLUtility.getList("expertise", ServletUtility.getParameter("expertise", request), list)%>&emsp;
 
+						<label><b>Date of birth :</b></label> <input type="text"
+						name="dob" placeholder="Enter Date of birth" id="udate"
+						value="<%=ServletUtility.getParameter("dob", request)%>">&emsp;
 
 						<input type="submit" name="operation"
 						value="<%=DoctorListCtl.OP_SEARCH%>"> &nbsp; <input
@@ -75,6 +81,7 @@
 					<th width="13%">Name</th>
 					<th width="10%">Expertise</th>
 					<th width="9%">Mobile No.</th>
+					<th width="9%">Gender</th>
 					<th width="9%">Date of Birth</th>
 					<th width="5%">Edit</th>
 				</tr>
@@ -83,7 +90,7 @@
 					while (it.hasNext()) {
 							bean = (DoctorBean) it.next();
 
-							SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+							SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/DD");
 							String date = sdf.format(bean.getDob());
 				%>
 
@@ -94,7 +101,9 @@
 					<td style="text-align: center; text-transform: capitalize;"><%=bean.getName()%></td>
 					<td style="text-align: center; text-transform: capitalize;"><%=bean.getExpertise()%></td>
 					<td style="text-align: center;"><%=bean.getMobile()%></td>
+					<td style="text-align: center;"><%=bean.getGender()%></td>
 					<td style="text-align: center;"><%=date%></td>
+
 					<td style="text-align: center;"><a
 						href="DoctorCtl?id=<%=bean.getId()%>">Edit</a></td>
 				</tr>

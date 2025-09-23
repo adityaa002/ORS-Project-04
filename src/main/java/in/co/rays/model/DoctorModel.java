@@ -49,17 +49,18 @@ public class DoctorModel {
 			pk = nextPK();
 			conn.setAutoCommit(false);
 
-			PreparedStatement pstmt = conn.prepareStatement("insert into st_doctor values(?,?,?,?,?,?,?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("insert into st_doctor values(?,?,?,?,?,?,?,?,?,?)");
 
 			pstmt.setInt(1, pk);
 			pstmt.setString(2, bean.getName());
 			pstmt.setString(3, bean.getMobile());
 			pstmt.setString(4, bean.getExpertise());
 			pstmt.setDate(5, new java.sql.Date(bean.getDob().getTime()));
-			pstmt.setString(6, bean.getCreatedBy());
-			pstmt.setString(7, bean.getModifiedBy());
-			pstmt.setTimestamp(8, bean.getCreatedDatetime());
-			pstmt.setTimestamp(9, bean.getModifiedDatetime());
+			pstmt.setString(6, bean.getGender());
+			pstmt.setString(7, bean.getCreatedBy());
+			pstmt.setString(8, bean.getModifiedBy());
+			pstmt.setTimestamp(9, bean.getCreatedDatetime());
+			pstmt.setTimestamp(10, bean.getModifiedDatetime());
 
 			pstmt.executeUpdate();
 			conn.commit();
@@ -89,17 +90,18 @@ public class DoctorModel {
 			conn.setAutoCommit(false);
 
 			PreparedStatement pstmt = conn.prepareStatement(
-					"update st_doctor set name=?, mobile=?, expertise=?, dob=?, created_by=?, modified_by=?, created_datetime=?, modified_datetime=? where id=?");
+					"update st_doctor set name=?, mobile=?, expertise=?, dob=?,gender= ?, created_by=?, modified_by=?, created_datetime=?, modified_datetime=? where id=?");
 
 			pstmt.setString(1, bean.getName());
 			pstmt.setString(2, bean.getMobile());
 			pstmt.setString(3, bean.getExpertise());
 			pstmt.setDate(4, new java.sql.Date(bean.getDob().getTime()));
-			pstmt.setString(5, bean.getCreatedBy());
-			pstmt.setString(6, bean.getModifiedBy());
-			pstmt.setTimestamp(7, bean.getCreatedDatetime());
-			pstmt.setTimestamp(8, bean.getModifiedDatetime());
-			pstmt.setLong(9, bean.getId());
+			pstmt.setString(5, bean.getGender());
+			pstmt.setString(6, bean.getCreatedBy());
+			pstmt.setString(7, bean.getModifiedBy());
+			pstmt.setTimestamp(8, bean.getCreatedDatetime());
+			pstmt.setTimestamp(9, bean.getModifiedDatetime());
+			pstmt.setLong(10, bean.getId());
 
 			pstmt.executeUpdate();
 			conn.commit();
@@ -159,10 +161,11 @@ public class DoctorModel {
 				bean.setMobile(rs.getString(3));
 				bean.setExpertise(rs.getString(4));
 				bean.setDob(rs.getDate(5));
-				bean.setCreatedBy(rs.getString(6));
-				bean.setModifiedBy(rs.getString(7));
-				bean.setCreatedDatetime(rs.getTimestamp(8));
-				bean.setModifiedDatetime(rs.getTimestamp(9));
+				bean.setGender(rs.getString(6));
+				bean.setCreatedBy(rs.getString(7));
+				bean.setModifiedBy(rs.getString(8));
+				bean.setCreatedDatetime(rs.getTimestamp(9));
+				bean.setModifiedDatetime(rs.getTimestamp(10));
 			}
 			rs.close();
 			pstmt.close();
@@ -191,8 +194,11 @@ public class DoctorModel {
 			if (bean.getExpertise() != null && bean.getExpertise().length() > 0) {
 				sql.append(" and expertise like '" + bean.getExpertise() + "%'");
 			}
+			if(bean.getGender() != null && bean.getGender().length() > 0) {
+				sql.append(" and gender like '" + bean.getGender() + "%'");
+			}
 			if (bean.getDob() != null) {
-				sql.append(" and dob='" + new java.sql.Date(bean.getDob().getTime()) + "'");
+				sql.append(" and dob like'" + new java.sql.Date(bean.getDob().getTime()) + "%'");
 			}
 			if (bean.getId() > 0) {
 				sql.append(" and id=" + bean.getId());
@@ -214,10 +220,11 @@ public class DoctorModel {
 				bean.setMobile(rs.getString(3));
 				bean.setExpertise(rs.getString(4));
 				bean.setDob(rs.getDate(5));
-				bean.setCreatedBy(rs.getString(6));
-				bean.setModifiedBy(rs.getString(7));
-				bean.setCreatedDatetime(rs.getTimestamp(8));
-				bean.setModifiedDatetime(rs.getTimestamp(9));
+				bean.setGender(rs.getString(6));
+				bean.setCreatedBy(rs.getString(7));
+				bean.setModifiedBy(rs.getString(8));
+				bean.setCreatedDatetime(rs.getTimestamp(9));
+				bean.setModifiedDatetime(rs.getTimestamp(10));
 				list.add(bean);
 			}
 			rs.close();

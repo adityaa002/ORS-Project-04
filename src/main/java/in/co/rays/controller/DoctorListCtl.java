@@ -1,6 +1,7 @@
 package in.co.rays.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,14 @@ public class DoctorListCtl extends BaseCtl {
 	protected void preload(HttpServletRequest request) {
 
 		try {
+			
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("Male", "Male");
+			map.put("Female", "Female");
+			
+			request.setAttribute("genderMap", map);
+
+			
 			DoctorModel model = new DoctorModel();
 			List<DoctorBean> expertiesList = (List<DoctorBean>) model.list();
 			request.setAttribute("expertiesList", expertiesList);

@@ -21,6 +21,8 @@
 
 	<%
 		List<DoctorBean> expertiseList = (List<DoctorBean>) request.getAttribute("expertiseList");
+
+		HashMap<String, String> genderMap = (HashMap<String, String>)request.getAttribute("genderMap");
 	%>
 	<form action="<%=ORSView.DOCTOR_CTL%>" method="post">
 
@@ -66,12 +68,12 @@
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("name", request)%></font></td>
 				</tr>
 
-				 <tr>
+				<tr>
 					<th align="left">Expertise<span style="color: red">*</span></th>
-					<td><%=HTMLUtility.getList("experties", DataUtility.getStringData(bean.getExpertise()), expertiseList)%>
+					<td><%=HTMLUtility.getList("expertise", DataUtility.getStringData(bean.getExpertise()), expertiseList)%>
 					</td>
-					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("experties", request)%></font></td>
-				</tr> 
+					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("expertise", request)%></font></td>
+				</tr>
 
 
 				<tr>
@@ -84,13 +86,7 @@
 				<tr>
 					<th align="left">Gender<span style="color: red">*</span></th>
 					<td>
-						<%
-							HashMap<String, String> map = new HashMap<String, String>();
-							map.put("Male", "Male");
-							map.put("Female", "Female");
-
-							String htmlList = HTMLUtility.getList("gender", ServletUtility.getParameter("gender", request), map);
-						%> <%=htmlList%>
+						<%=HTMLUtility.getList("gender", DataUtility.getStringData(bean.getGender()), genderMap)%>
 					</td>
 					<td style="position: fixed;"><font color="red"> <%=ServletUtility.getErrorMessage("gender", request)%></font></td>
 				</tr>

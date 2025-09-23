@@ -6,12 +6,18 @@ public class DoctorBean extends BaseBean {
 
 	private String Name;
 	private Date Dob;
+	private String Gender;
 	private String Mobile;
 	private String Expertise;
 
-	
-	
-	
+	public String getGender() {
+		return Gender;
+	}
+
+	public void setGender(String gender) {
+		Gender = gender;
+	}
+  
 	public String getName() {
 		return Name;
 	}
