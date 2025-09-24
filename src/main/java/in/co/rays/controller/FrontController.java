@@ -68,6 +68,7 @@ public class FrontController implements Filter {
 		request.setAttribute("uri", uri);
 
 		if (session.getAttribute("user") == null) {
+			
 			request.setAttribute("error", "Your session has been expired. Please login again..!!!");
 			ServletUtility.forward(ORSView.LOGIN_VIEW, request, response);
 			return;

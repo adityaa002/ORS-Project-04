@@ -17,7 +17,7 @@ import in.co.rays.util.DataUtility;
 import in.co.rays.util.PropertyReader;
 import in.co.rays.util.ServletUtility;
 
-@WebServlet(name = "PatientListCtl", urlPatterns = { "/ctl/PatientCtl" })
+@WebServlet(name = "PatientListCtl", urlPatterns = { "/ctl/PatientListCtl" })
 public class PatientListCtl extends BaseCtl {
 
 	@Override
