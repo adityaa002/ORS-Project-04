@@ -31,14 +31,17 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\TimetableListCtl
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\StudentListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\EmailMessage.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\CollegeCtl.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestPatientModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\RoleBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\DoctorModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\exception\DatabaseException.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\ServletUtility.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestTimetableModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestCourseModel.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\PatientCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\UserListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\DropdownListBean.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\PatientListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\FacultyBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestStudentModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\UserModel.java
@@ -56,10 +59,12 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\EmailBuilder.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\exception\DuplicateRecordException.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\CourseModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\MarksheetBean.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestDoctorModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestMarksheetModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\DoctorBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\MarksheetListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\testModel\TestSubjectModel.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\bean\PatientBean.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\UserCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\exception\RecordNotFoundException.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\RoleListCtl.java
@@ -76,4 +81,5 @@ D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\TimetableModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\CollegeListCtl.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\util\JDBCDataSource.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\TimetableCtl.java
+D:\Rays\Projects\Project-04\src\main\java\in\co\rays\model\PatientModel.java
 D:\Rays\Projects\Project-04\src\main\java\in\co\rays\controller\FacultyCtl.java
