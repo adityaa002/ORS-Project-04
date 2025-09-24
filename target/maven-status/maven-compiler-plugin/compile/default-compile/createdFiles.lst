@@ -29,6 +29,7 @@ in\co\rays\controller\WelcomeCtl.class
 in\co\rays\exception\ApplicationException.class
 in\co\rays\model\MarksheetModel.class
 in\co\rays\test\TestEmailUtility.class
+in\co\rays\testModel\TestDoctor.class
 in\co\rays\util\HTMLUtility.class
 in\co\rays\exception\DatabaseException.class
 in\co\rays\util\ServletUtility.class

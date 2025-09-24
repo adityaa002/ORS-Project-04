@@ -15,7 +15,7 @@ services:
   webapp:
     build:
       context: .
-    container_name: project04-webapp
+    container_name: project04
     ports:
       - "8080:8080"
     networks:
